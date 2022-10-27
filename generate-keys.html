@@ -9,18 +9,13 @@
     <body>
         <nav>
             <a class="selected" href="generate-keys.html">RSA Emulator v1</a>
-<!--             <a href="encrypt-text.html">Encrypt Text</a>
-            <a href="decrypt-text.html">Decrypt Text</a>
-            <a href="encrypt-file.html">Encrypt File</a>
-            <a href="decrypt-file.html">Decrypt File</a> -->
         </nav>
 
         <div class="page">
             <h1>RSA Emulator v1</h1>
             <p class="header-description">
-                Your keys and data are kept confidential by running cryptography operations in your browser using
-                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
-                JavaScript is left unminified so you can verify page source.
+                These tools have been implemented using WebCryptoAPI: 
+                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a>
             </p>
 
             <button id="button">Generate Keys</button>
@@ -42,13 +37,6 @@
         </div>
         <!--add snip here-->
         <div class="page">
-          <!--   <h1>RSA Encrypt Text</h1>
-            <p class="header-description">
-                Your keys and data are kept confidential by running cryptography operations in your browser using
-                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
-                JavaScript is left unminified so you can verify page source.
-            </p>
- -->
             <div class="field">
                 <label for="public-key">RSA Public Key</label>
                 <textarea id="public-key" rows="10"></textarea>
@@ -71,11 +59,6 @@
 
         <!---snip decode-->
         <div class="page">
-           <!--  <h1>RSA Decrypt Text</h1>
-            <p class="header-description">
-                Your keys and data are kept confidential by running cryptography operations in your browser using
-                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
-                JavaScript is left unminified so you can verify page source. -->
             </p>
 
             <div class="field">
@@ -99,9 +82,6 @@
         </div>
 
 
-        <footer>
-           <!----<p>Source code: <a href="https://github.com/galehouse5/rsa-webcrypto-tool">https://github.com/galehouse5/rsa-webcrypto-tool</a></p>-->
-        </footer>
     </body>
 
     <script src="scripts/encoding-helper.js"></script>
@@ -154,14 +134,15 @@
     <script src="scripts/encryption-helper.js"></script>
     <script>
         (function () {
-            var publicKey = document.getElementById("public-key");
-            var textToEncrypt = document.getElementById("text-to-encrypt");
+            var publicKey = document.getElementById("public-key"); 
+            var textToEncrypt = document.getElementById("text-to-encrypt"); 
             var button = document.getElementById("button1");
             var message = document.getElementById("message1");
             var encryptedText = document.getElementById("encrypted-text");
             var encryptedDownload = document.getElementById("encrypted-download");
             var result = document.getElementById("result1");
 
+            //when successful, we can examine 
             var success = function (data) {
                 encryptedText.value = arrayBufferToPem(data, "RSA TEXT");
                 encryptedDownload.href = window.URL.createObjectURL(
