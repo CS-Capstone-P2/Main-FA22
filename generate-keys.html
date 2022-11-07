@@ -34,6 +34,22 @@
                     <textarea id="private-key-text" rows="10" readonly></textarea>
                 </div>
             </div>
+
+            <!--result1, field1, public-key1, public-key-download-1, download1, private-key-text1,id_rsa1-->
+            <div id="result1">
+                <div class="field">
+                    <label for="public-key1">RSA Public Key1</label>
+                    <a id="public-key-download1" class="download" download="id_rsa.pub">id_rsa.pub</a>
+                    <textarea id="public-key-text1" rows="10" readonly></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="private-key1">RSA Private Key1</label>
+                    <a id="private-key-download1" class="download" download="id_rsa">id_rsa</a>
+                    <textarea id="private-key-text1" rows="10" readonly></textarea>
+                </div>
+            </div>
+
         </div>
         <!--add snip here-->
         <div class="page">
@@ -128,6 +144,60 @@
             window.onbeforeunload = warn;
         })();
     </script>
+
+
+
+
+<!--snip: making the second set of keys-->
+<script src="scripts/encoding-helper.js"></script>
+    <script src="scripts/encryption-helper.js"></script>
+    <script>
+        (function () {
+            var publicKeyText = document.getElementById("public-key-text1");
+            var publicKeyDownload = document.getElementById("public-key-download1");
+            var privateKeyText = document.getElementById("private-key-text1");
+            var privateKeyDownload = document.getElementById("private-key-download1");
+            var button = document.getElementById("button");
+            var message = document.getElementById("message");
+            var result = document.getElementById("result");
+
+            var success = function (keys) {
+                publicKeyText.value = arrayBufferToPem(keys.publicKeyBuffer, "RSA PUBLIC KEY1");
+                publicKeyDownload.href = window.URL.createObjectURL(
+                    new Blob([publicKeyText.value], { type: "application/octet-stream" }));
+                privateKeyText.value = arrayBufferToPem(keys.privateKeyBuffer, "RSA PRIVATE KEY1");
+                privateKeyDownload.href = window.URL.createObjectURL(
+                    new Blob([privateKeyText.value], { type: "application/octet-stream" }));
+                result.style.display = "block";
+                message.innerText = null;
+                button.disabled = false;
+            };
+
+            var error = function (error) {
+                message.innerText = error;
+                button.disabled = false;
+            };
+
+            var process = function () {
+                message.innerText = "Processing...";
+                button.disabled = true;
+                generateRsaKeys().then(success, error);
+            };
+
+            var warn = function () {
+                if (privateKey.value === "") return;
+                return "Are you sure? Your keys will be lost unless you've saved them.";
+            };
+
+            button.addEventListener("click", process);
+            window.onbeforeunload = warn;
+        })();
+    </script>
+
+
+
+
+
 
 <!--snip again-->
     <script src="scripts/encoding-helper.js"></script>
