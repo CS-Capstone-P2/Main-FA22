@@ -11,19 +11,13 @@
     <body>
         <nav>
             <a class="selected" href="generate-keys.html">RSA Emulator v1</a>
-<!--             <a href="encrypt-text.html">Encrypt Text</a>
-            <a href="decrypt-text.html">Decrypt Text</a>
-            <a href="encrypt-file.html">Encrypt File</a>
-            <a href="decrypt-file.html">Decrypt File</a> -->
         </nav>
 
         <div class="page">
-            
             <h1>RSA Emulator v1</h1>
             <p class="header-description">
-                Your keys and data are kept confidential by running cryptography operations in your browser using
-                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
-                JavaScript is left unminified so you can verify page source.
+                These tools have been implemented using WebCryptoAPI: 
+                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a>
             </p>
 
             <button id="button">Generate Keys</button>
@@ -42,16 +36,25 @@
                     <textarea id="private-key-text" rows="10" readonly></textarea>
                 </div>
             </div>
+
+            <!--result1, field1, public-key1, public-key-download-1, download1, private-key-text1,id_rsa1-->
+            <div id="result1">
+                <div class="field">
+                    <label for="public-key1">RSA Public Key1</label>
+                    <a id="public-key-download1" class="download" download="id_rsa.pub">id_rsa.pub</a>
+                    <textarea id="public-key-text1" rows="10" readonly></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="private-key1">RSA Private Key1</label>
+                    <a id="private-key-download1" class="download" download="id_rsa">id_rsa</a>
+                    <textarea id="private-key-text1" rows="10" readonly></textarea>
+                </div>
+            </div>
+
         </div>
         <!--add snip here-->
         <div class="page">
-          <!--   <h1>RSA Encrypt Text</h1>
-            <p class="header-description">
-                Your keys and data are kept confidential by running cryptography operations in your browser using
-                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
-                JavaScript is left unminified so you can verify page source.
-            </p>
- -->
             <div class="field">
                 <label for="public-key">RSA Public Key</label>
                 <textarea id="public-key" rows="10"></textarea>
@@ -75,11 +78,6 @@
         <!---snip decode-->
     
         <div class="page">
-           <!--  <h1>RSA Decrypt Text</h1>
-            <p class="header-description">
-                Your keys and data are kept confidential by running cryptography operations in your browser using
-                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
-                JavaScript is left unminified so you can verify page source. -->
             </p>
         
             <div class="field">
@@ -100,13 +98,110 @@
                 <a id="decrypted-download" class="download" download="decrypted.txt">decrypted.txt</a>
                 <textarea id="decrypted-text" rows="10" readonly></textarea>
             </div>
-        </div>
+        </div
 
 
-        <footer>
-           <!----<p>Source code: <a href="https://github.com/galehouse5/rsa-webcrypto-tool">https://github.com/galehouse5/rsa-webcrypto-tool</a></p>-->
-        </footer>
     </body>
+
+    <!---Caesar Key Encryption Function-->
+    <script src="scripts/encoding-helper.js"></script>
+    <script src="scripts/encryption-helper.js"></script>
+    <script src="scripts/caesar-shift.js"> </script>
+    <script>
+        
+        
+        (function () {
+            
+            var button = document.getElementById("cEbutton");
+            var message = document.getElementById("cEmessage");
+            
+
+            var caesarKey;
+            var caesarShow;
+            var testerOutput;
+            var userMessage;
+            
+
+            
+            var error = function (error) {
+                message.innerText = error;
+                button.disabled = false;
+            };
+
+            var process = function () {
+                caesarKey = document.getElementById("caesar-key");
+                userMessage = document.getElementById("user-message");
+                caesarShow = document.getElementById("caesar-key-show");
+
+                
+
+
+                if (caesarKey.value.trim() === "")
+                {
+                    return error("Key must be specified.");
+                }
+                    numContainer = caesarKey.value;
+
+                    
+                    testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
+                    caesarShow.innerHTML = testerOutput;
+
+            }; 
+
+            button.addEventListener("click", process);
+
+        })();
+    </script>
+
+    <!---Caesar Key Decryption Function-->
+    <script src="scripts/encoding-helper.js"></script>
+    <script src="scripts/encryption-helper.js"></script>
+    <script src="scripts/caesar-shift.js"> </script>
+    <script>
+        
+        
+        (function () {
+            
+            var button = document.getElementById("cDbutton");
+            var message = document.getElementById("cDmessage");
+            
+
+            var caesarKey;
+            var messageShow;
+            var testerOutput;
+            var encipheredMessage;
+            
+
+            
+            var error = function (error) {
+                message.innerText = error;
+                button.disabled = false;
+            };
+
+            var process = function () {
+                caesarKey = document.getElementById("caesar-key2");
+                userMessage = document.getElementById("enciphered-message");
+                messageShow = document.getElementById("enciphered-message-show");
+
+                
+
+
+                if (caesarKey.value.trim() === "")
+                {
+                    return error("Key must be specified.");
+                }
+                    numContainer = 0 - parseInt(caesarKey.value);
+
+                    
+                    testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
+                    messageShow.innerHTML = testerOutput;
+
+            }; 
+
+            button.addEventListener("click", process);
+
+        })();
+    </script>
 
     <script src="scripts/encoding-helper.js"></script>
     <script src="scripts/encryption-helper.js"></script>
@@ -153,19 +248,74 @@
         })();
     </script>
 
+
+
+
+<!--snip: making the second set of keys-->
+<script src="scripts/encoding-helper.js"></script>
+    <script src="scripts/encryption-helper.js"></script>
+    <script>
+        (function () {
+            var publicKeyText = document.getElementById("public-key-text1");
+            var publicKeyDownload = document.getElementById("public-key-download1");
+            var privateKeyText = document.getElementById("private-key-text1");
+            var privateKeyDownload = document.getElementById("private-key-download1");
+            var button = document.getElementById("button");
+            var message = document.getElementById("message");
+            var result = document.getElementById("result");
+
+            var success = function (keys) {
+                publicKeyText.value = arrayBufferToPem(keys.publicKeyBuffer, "RSA PUBLIC KEY1");
+                publicKeyDownload.href = window.URL.createObjectURL(
+                    new Blob([publicKeyText.value], { type: "application/octet-stream" }));
+                privateKeyText.value = arrayBufferToPem(keys.privateKeyBuffer, "RSA PRIVATE KEY1");
+                privateKeyDownload.href = window.URL.createObjectURL(
+                    new Blob([privateKeyText.value], { type: "application/octet-stream" }));
+                result.style.display = "block";
+                message.innerText = null;
+                button.disabled = false;
+            };
+
+            var error = function (error) {
+                message.innerText = error;
+                button.disabled = false;
+            };
+
+            var process = function () {
+                message.innerText = "Processing...";
+                button.disabled = true;
+                generateRsaKeys().then(success, error);
+            };
+
+            var warn = function () {
+                if (privateKey.value === "") return;
+                return "Are you sure? Your keys will be lost unless you've saved them.";
+            };
+
+            button.addEventListener("click", process);
+            window.onbeforeunload = warn;
+        })();
+    </script>
+
+
+
+
+
+
 <!--snip again-->
     <script src="scripts/encoding-helper.js"></script>
     <script src="scripts/encryption-helper.js"></script>
     <script>
         (function () {
-            var publicKey = document.getElementById("public-key");
-            var textToEncrypt = document.getElementById("text-to-encrypt");
+            var publicKey = document.getElementById("public-key"); 
+            var textToEncrypt = document.getElementById("text-to-encrypt"); 
             var button = document.getElementById("button1");
             var message = document.getElementById("message1");
             var encryptedText = document.getElementById("encrypted-text");
             var encryptedDownload = document.getElementById("encrypted-download");
             var result = document.getElementById("result1");
 
+            //when successful, we can examine 
             var success = function (data) {
                 encryptedText.value = arrayBufferToPem(data, "RSA TEXT");
                 encryptedDownload.href = window.URL.createObjectURL(
