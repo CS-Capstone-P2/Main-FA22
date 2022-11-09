@@ -17,6 +17,11 @@
 
         <div class="page">
             <h1>RSA Encrypt Text</h1>
+            <p class="header-description">
+                Your keys and data are kept confidential by running cryptography operations in your browser using
+                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a> and
+                JavaScript is left unminified so you can verify page source.
+            </p>
 
             <div class="field">
                 <label for="public-key">RSA Public Key</label>
@@ -37,7 +42,9 @@
                 <textarea id="encrypted-text" rows="10" readonly></textarea>
             </div>
         </div>
-    
+
+        <footer>
+            <p>Source code: <a href="https://github.com/galehouse5/rsa-webcrypto-tool">https://github.com/galehouse5/rsa-webcrypto-tool</a></p>
         </footer>
     </body>
 
