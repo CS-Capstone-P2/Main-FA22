@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Generate RSA Keys</title>
+        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    </head>
+
+    <body>
+        <nav>
+            <a class="selected" href="sign-message.html">Sign Message</a>
+            <a href="caesar-cipher.html">Caesar Cipher</a>
+            <a href="generate-keys.html">RSA Emulator v1</a>
+        </nav>
+
+         <div class="page">
+            <h1>Sign your Message</h1>
+            <p class="header-description">
+                These tools have been implemented using WebCryptoAPI: 
+                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a>
+            </p>
+
+            <div class="field">
+                <label for="input-signature">Input Signature</label>
+                <textarea id="input-signature" rows="2"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="mesg-to-sign">Message to Sign</label>
+                <textarea id="mesg-to-sign" rows="10"></textarea>
+            </div>
+
+
+            <button id="hashbutton">Generate Signed Message</button>
+            <div id="err-mesg"></div>
+
+            <div class="field">
+                <label for="signed-message">Signed Message</label>
+                <textarea id="signed-message-show" rows="3" readonly></textarea>
+            </div>
+
+            <script src="scripts/sha256.js"></script>
+            <script src= "https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+            <script>
+        
+        
+                (function () {
+                    
+                    var button = document.getElementById("hashbutton");
+                    var message = document.getElementById("err-mesg");
+                    
+        
+                    var hash;
+                    var signature;
+                    var testerOutput;
+                    var userMessage;
+                    var signedShow;
+                    
+                    var longMesg;
+
+                    var process = function () {
+                        userMessage = document.getElementById("mesg-to-sign");
+                        signature = document.getElementById("input-signature");
+                        signedShow = document.getElementById("signed-message-show");
+
+                        if (signature.value.trim() === "")
+                        {
+                            return error("Key must be specified.");
+                        }
+
+                        longMesg.concat(signature,userMessage);
+
+                        var hash = sha256.create();
+                        
+
+                        testerOutput = sha256(userMessage);
+                        signedShow.innerHTML = testerOutput;
+
+
+                    
+                    };
+                    
+                    var error = function (error) {
+                        message.innerText = error;
+                        button.disabled = false;
+                    };
+        
+        
+                    button.addEventListener("click", process);
+        
+                })();
+            </script> 
+
+             
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Generate RSA Keys</title>
+        <link rel="stylesheet" href="styles/main.css" />
+        <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    </head>
+
+   <body>
+
+    <nav>
+        <a class="selected" href="sign-message.html">Sign Message</a>
+        <a href="caesar-cipher.html">Caesar Cipher</a>
+        <a href="generate-keys.html">RSA Emulator v1</a>
+    </nav>
+
+    <div class="page">
+        <h1>Sign your Message</h1>
+        <p class="header-description">
+            These tools have been implemented using WebCryptoAPI: 
+            <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a>
+        </p>
+    
+     <div id="body">
+       <script src="scripts/hash.js"></script>
+       <div id="main">
+         <div class="input">
+  
+           <div class="field">
+            <textarea id="input"></textarea>
+           </div>
+
+        <button id="execute">Hash</button>
+        </div>
+         <div class="output">
+           <textarea id="output" placeholder="Output"></textarea>
+         </div>
+       </div>
+       
+         
+         <div class="clearfix"></div>
+       </div>
+       <script src="https://cdn.jsdelivr.net/gh/emn178/js-sha256/build/sha256.min.js"></script>
+       <script>method = sha256;</script>
+     </div>
+     
+   </body>
+ </html>
