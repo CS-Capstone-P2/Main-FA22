@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Generate RSA Keys</title>
+        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    </head>
+
+    <body>
+        <nav>
+            <a href="generate-keys.html">RSA Emulator v1</a>
+            <a class="selected" href="caesar-cipher.html">Caesar Cipher</a>
+        </nav>
+
+        <div class="page">
+            <h1>Caesarian Shift (Encryption)</h1>
+            
+            <p class="header-description">
+                In order to understand encryption, a good place to start is with more simple forms of encryption. 
+                An especially simple form of encryption is the "Caesar Cipher", which shifts the alphabet by a number of places.
+            </p>
+            <div class="field">
+                <label for="caesar-key">Caesar Cipher Key (Number of places to shift)</label>
+                <textarea id="caesar-key" rows="3"></textarea>
+            </div>
+            <div class="field">
+                <label for="user-message">Message to Encrypt</label>
+                <textarea id="user-message" rows="3"></textarea>
+            </div>
+            <div class="field">
+                <label for="caesar-key-output">Encrypted Message Output</label>
+                <a id="caesar-key-download" class="download" download="caesar.pub"></a>
+                <textarea id="caesar-key-show" rows="3" readonly></textarea>
+            </div>
+            <button id="cEbutton">Submit Key and Text</button>
+            <div id="cEmessage"></div>
+            <h1>Caesarian Shift (Decryption)</h1>
+            
+            <p class="header-description">
+                Now that you have a message encrypted by Caesarian Shift, you can decrypt it with the same key you encrypted it with.
+            </p>
+            <div class="field">
+                <label for="caesar-key2">Caesar Cipher Key</label>
+                <textarea id="caesar-key2" rows="3"></textarea>
+            </div>
+            <div class="field">
+                <label for="enciphered-message">Message to Decrypt</label>
+                <textarea id="enciphered-message" rows="3"></textarea>
+            </div>
+            <div class="field">
+                <label for="enciphered-message-download">Decrypted Message Output</label>
+                <a id="enciphered-message-download" class="download" download="caesar.pub"></a>
+                <textarea id="enciphered-message-show" rows="3" readonly></textarea>
+            </div>
+            <button id="cDbutton">Submit Key and Text</button>
+            <div id="cDmessage"></div>
+            <!---Caesar Key Encryption Function-->
+    <script src="scripts/encoding-helper.js"></script>
+    <script src="scripts/encryption-helper.js"></script>
+    <script src="scripts/caesar-shift.js"> </script>
+    <script>
+        
+        
+        (function () {
+            
+            var button = document.getElementById("cEbutton");
+            var message = document.getElementById("cEmessage");
+            
+
+            var caesarKey;
+            var caesarShow;
+            var testerOutput;
+            var userMessage;
+            
+
+            
+            var error = function (error) {
+                message.innerText = error;
+                button.disabled = false;
+            };
+
+            var process = function () {
+                caesarKey = document.getElementById("caesar-key");
+                userMessage = document.getElementById("user-message");
+                caesarShow = document.getElementById("caesar-key-show");
+
+                
+
+
+                if (caesarKey.value.trim() === "")
+                {
+                    return error("Key must be specified.");
+                }
+                    numContainer = caesarKey.value;
+
+                    
+                    testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
+                    caesarShow.innerHTML = testerOutput;
+
+            }; 
+
+            button.addEventListener("click", process);
+
+        })();
+    </script>
+
+    <!---Caesar Key Decryption Function-->
+    <script src="scripts/encoding-helper.js"></script>
+    <script src="scripts/encryption-helper.js"></script>
+    <script src="scripts/caesar-shift.js"> </script>
+    <script>
+        
+        
+        (function () {
+            
+            var button = document.getElementById("cDbutton");
+            var message = document.getElementById("cDmessage");
+            
+
+            var caesarKey;
+            var messageShow;
+            var testerOutput;
+            var encipheredMessage;
+            
+
+            
+            var error = function (error) {
+                message.innerText = error;
+                button.disabled = false;
+            };
+
+            var process = function () {
+                caesarKey = document.getElementById("caesar-key2");
+                userMessage = document.getElementById("enciphered-message");
+                messageShow = document.getElementById("enciphered-message-show");
+
+                
+
+
+                if (caesarKey.value.trim() === "")
+                {
+                    return error("Key must be specified.");
+                }
+                    numContainer = 0 - parseInt(caesarKey.value);
+
+                    
+                    testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
+                    messageShow.innerHTML = testerOutput;
+
+            }; 
+
+            button.addEventListener("click", process);
+
+        })();
+    </script>
+    
+</html>
