@@ -84,4 +84,56 @@ footer {
     float: left;
     width: 50%;
   }
- 
+  .gfg {
+    margin: 3%;
+    position: relative;
+}
+
+.sender-txt {
+    position: absolute;
+    top: 255px;
+    left: 245px;
+    color:black;
+}
+
+.encrypt-with-txt {
+    position: absolute;
+    top: 282px;
+    left: 245px;
+    color:black;
+}
+.message-txt {
+    position: absolute;
+    top: 350px;
+    left: 89px;
+    color:black;
+}
+.sending-to-txt {
+    position: absolute;
+    top: 550px;
+    left: 89px;
+    color:black;
+}
+.sent-from-txt {
+    position: absolute;
+    top: 450px;
+    left: 89px;
+    color:black;
+}
+.encrypted-message-txt {
+    position: absolute;
+    top: 650px;
+    left: 89px;
+    color:black;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
