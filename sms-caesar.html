@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<link rel="stylesheet" href="styles/main.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<title>Generate RSA Keys</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+    color: #fff;
+    background-color: #252525;
+    font-size: 18px;
+    margin: 30px 30px 0;
+}
+
+/* body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+/* The grid: Three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 100px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.containerTab {
+  padding: 20px;
+  color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the container tab */
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 33%;
+  height: 10px;
+  border-radius: 5px;
+  background: #727272;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 24px;
+  border: 1;
+  background: url('images/contrasticon1.png');
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 23px;
+  height: 24px;
+  border: 1;
+  background: url('images/contrasticon1.png');
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+    <nav>
+        <a class="selected" href="sms-caesar.html">SMS-Caesar</a>
+        <a href="generate-keys.html">RSA Emulator v1</a>
+        <a href="sign-message.html">Sign Message</a>
+        <a href="animated-emulator.html">Animated Emulator</a>
+        <a href="caesar-cipher.html">Caesar Cipher</a>
+    </nav>
+
+<div style="text-align:center">
+  <h2>Caesar SMS</h2>
+  <p>Click on the boxes below:</p>
+
+  <div class="slidecontainer">
+    <input type="range" min="0" max="26" value="13" class="slider" id="myRange">
+    <p>Shift Value:<span id="caesar-key"></span></p>
+  </div>
+  
+  <script>
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("caesar-key");
+  output.innerHTML = slider.value;
+  
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }
+  </script>
+
+</div>
+
+<!-- Three columns -->
+<div class="row">
+  <div class="column" onclick="openTab('b1');" style="background:rgb(1, 65, 1);">
+    Sender
+  </div>
+  <div class="column" onclick="openTab('b2');" style="background:rgb(182, 97, 0);">
+    Encryption
+  </div>
+  <div class="column" onclick="openTab('b3');" style="background:rgb(0, 27, 68);">
+    Recipient
+  </div>
+</div>
+
+<!-- Full-width columns: (hidden by default) -->
+<div id="b1" class="containerTab" style="display:none;background:rgb(1, 65, 1)">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <h2>Message to Encrypt</h2>
+  <div class="field">
+    <textarea id="user-message" rows="3">~Your message goes here~</textarea>
+    <button id="cEbutton">Submit Key and Text</button>
+    <div id="cEmessage"></div>
+</div>
+</div>
+
+<div id="b2" class="containerTab" style="display:none;background:rgb(182, 97, 0)">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <h2>Encrypted Message Output</h2>
+  <div class="field">
+    <a id="caesar-key-download" class="download" download="caesar.pub"></a>
+    <textarea id="caesar-key-show" rows="3" readonly>Your output will show here when you press "Submit Key and Text".</textarea>
+</div>
+</div>
+
+<div id="b3" class="containerTab" style="display:none;background:rgb(0, 27, 68)">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <h2>Box 3</h2>
+  <p>Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
+</div>
+
+<script>
+function openTab(tabName) {
+  var i, x;
+  x = document.getElementsByClassName("containerTab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+</script>
+
+            <!---Caesar Key Encryption Function-->
+            <script src="scripts/encoding-helper.js"></script>
+            <script src="scripts/encryption-helper.js"></script>
+            <script src="scripts/caesar-shift.js"> </script>
+            <script>
+                
+                
+                (function () {
+                    
+                    var button = document.getElementById("cEbutton");
+                    var message = document.getElementById("cEmessage");
+                    
+        
+                    var caesarKey;
+                    var caesarShow;
+                    var testerOutput;
+                    var userMessage;
+                    
+        
+                    
+                    var error = function (error) {
+                        message.innerText = error;
+                        button.disabled = false;
+                    };
+        
+                    var process = function () {
+                        error(""); //Clears error, so the error doesn't remain from a previous input.
+                        caesarKey = document.getElementById("caesar-key");
+                        userMessage = document.getElementById("user-message");
+                        caesarShow = document.getElementById("caesar-key-show");
+        
+                        
+        
+        
+                        if (caesarKey.value.trim() === "")
+                        {
+                            return error("Key must be specified.");
+                        }
+        
+        
+                        numContainer = caesarKey.value;
+        
+                            
+        
+                        if (caesarKey.value.trim() === "0")
+                        {
+                            testerOutput = "Hello, it's <yourname>. The last email you sent me had something strange in it, would you tell me why? I uploaded a screenshot here at scamsite.phishinglink";
+                            caesarShow.innerHTML = testerOutput;
+        
+        
+                            return error("INTERCEPTED! If your online communications are not encrypted, 'men in the middle' can more easily read and alter your outgoing messages. In this case, your intended recipient received a convincing email with an attached scam link in YOUR name. Make sure to set a key other than 0!");
+        
+                        }
+                        else
+                        {
+                            testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
+                            caesarShow.innerHTML = testerOutput;
+                        }
+        
+                    }; 
+        
+                    button.addEventListener("click", process);
+        
+                })();
+            </script>
+
+<!---Caesar Key Decryption Function-->
+<script src="scripts/encoding-helper.js"></script>
+<script src="scripts/encryption-helper.js"></script>
+<script src="scripts/caesar-shift.js"> </script>
+<script>
+    
+    
+    (function () {
+        
+        var button = document.getElementById("cDbutton");
+        var message = document.getElementById("cDmessage");
+        
+
+        var caesarKey;
+        var messageShow;
+        var testerOutput;
+        var encipheredMessage;
+        
+
+        
+        var error = function (error) {
+            message.innerText = error;
+            button.disabled = false;
+        };
+
+        var process = function () {
+            caesarKey = document.getElementById("caesar-key2");
+            userMessage = document.getElementById("enciphered-message");
+            messageShow = document.getElementById("enciphered-message-show");
+
+            
+
+
+            if (caesarKey.value.trim() === "")
+            {
+                return error("Key must be specified.");
+            }
+                numContainer = 0 - parseInt(caesarKey.value);
+
+                
+                testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
+                messageShow.innerHTML = testerOutput;
+
+        }; 
+
+        button.addEventListener("click", process);
+
+    })();
+</script>
+
+</body>
+</html> 
