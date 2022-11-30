@@ -9,16 +9,20 @@
 
     <body>
         <nav>
-            <a class="selected" href="generate-keys.html">RSA Emulator v1</a>
             <a href="caesar-cipher.html">Caesar Cipher</a>
+            <a class="selected" href="generate-keys.html">RSA Emulator v1</a>
             <a href="sign-message.html">Sign Message</a>
-            <a href="animated-emulator.html">animated-emulator</a>
+            <a href="animated-emulator.html">Animated Emulator</a>
             
         </nav>
 
         <div class="page">
             <h1>RSA Emulator v1</h1>
-            <p class="header-description"> 
+            <p class="header-description">
+                These tools have been implemented using WebCryptoAPI: 
+                <a href="https://www.w3.org/TR/WebCryptoAPI/" target="Web Crypto API">Web Crypto API</a>
+            </p>
+
             <button id="button">Generate Keys</button>
             <div id="message"></div>
             
@@ -99,7 +103,7 @@
         </div
 
 
-        </body>
+    </body>
 
 
     <script src="scripts/encoding-helper.js"></script>
