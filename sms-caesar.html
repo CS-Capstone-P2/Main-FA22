@@ -109,7 +109,7 @@ body {
   <p>Click on the boxes below:</p>
 
   <div class="slidecontainer">
-    <input type="range" min="0" max="26" value="13" class="slider" id="myRange">
+    <input type="range" min="0" max="26" value="12" class="slider" id="myRange">
     <p>Shift Value:<span id="caesar-key"></span></p>
   </div>
   
@@ -144,6 +144,7 @@ body {
   <h2>Message to Encrypt</h2>
   <div class="field">
     <textarea id="user-message" rows="3">~Your message goes here~</textarea>
+    
     <button id="cEbutton">Submit Key and Text</button>
     <div id="cEmessage"></div>
 </div>
@@ -154,14 +155,14 @@ body {
   <h2>Encrypted Message Output</h2>
   <div class="field">
     <a id="caesar-key-download" class="download" download="caesar.pub"></a>
-    <textarea id="caesar-key-show" rows="3" readonly>Your output will show here when you press "Submit Key and Text".</textarea>
+    <textarea id="caesar-key-show" rows="3" readonly>meme</textarea>
 </div>
 </div>
 
 <div id="b3" class="containerTab" style="display:none;background:rgb(0, 27, 68)">
   <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-  <h2>Box 3</h2>
-  <p>Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
+  <h2>Recipient Recieves:</h2>
+  <textarea id="caesar-key-show" rows="3" readonly>asas</textarea>
 </div>
 
 <script>
