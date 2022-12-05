@@ -1,76 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="scripts/animation-helper.js"></script>
-    <head>
-        <meta charset="utf-8" />
-        <title>Generate RSA Keys</title>
-        <link rel="stylesheet" href="styles/main.css" />
-        <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    </head>
 
-   <body>
+<head>
+    <meta charset="utf-8" />
+    <title>Generate RSA Keys</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
 
     <nav>
         <a href="caesar-cipher.html">Caesar Cipher</a>
         <a href="generate-keys.html">RSA Emulator v1</a>
         <a href="sign-message.html">Sign Message</a>
+        <a href="sms-caesar.html">SMS-Caesar</a>
         <a class="selected" href="animated-emulator.html">Animated Emulator</a>
 
-        
+
     </nav>
 
     <div class="page">
         <h1>SMS Emulator Prototype</h1>
 
         <body>
-            
-            <img  id="senderimage"
-                src="images\Sender.jpg"  >
-                <br>
-                <button id="step1" onclick="changeSenderImage(); style.display = 'none'">Next</button>
-                <br>
-                
-                <img  id="packetimage"
-                src="images\Packet.jpg"  >
-                <br>
-                <button style="display:none;" id="step2" onclick="changePacketImage();">Next</button>
-                <br>
-                
-                <img  id="recipientimage"
-                src="images\Recipient.jpg"  >
-                <br>
-                <button style="display:none;" id="step3" onclick="changeRecipientImage();"> Next</button>
-                <br>
-            
-            </div>
-               
-            </div>
-            
-           
-                <!-- <div class="Sender">
-                <img src="images\Sender.jpg">
-                <h3 class="sender-txt" >Bob </h3>
-                <h3 class="encrypt-with-txt" >9</h3>
-                <h3 class="message-txt">This is a test</h3>
-            </div>
-                <img src="images\Packet.jpg">
-                <h3 class="sending-to-txt" >Alice </h3>
-                <h3 class="sent-from-txt" >Bob</h3>
-                <h3 class="encrypted-message-txt">This is a test</h3>
-            </div>
 
-                <img src="images\Recipient.jpg">
-                <h3 class="sender-txt" >Bob </h3>
-                <h3 class="encrypt-with-txt" >9</h3>
-                <h3 class="message-txt">This is a test</h3>
-    
-            </div> -->
+            <img id="senderimage" src="images\Sender.jpg">
+            <br>
+            <button id="step1" onclick="changeSenderImage(); style.display = 'none'">Next</button>
+            <br>
+
+            <img id="packetimage" src="images\Packet.jpg">
+            <br>
+            <button style="display:none;" id="step2" onclick="changePacketImage();">Next</button>
+            <br>
+
+            <img id="recipientimage" src="images\Recipient.jpg">
+            <br>
+            <button style="display:none;" id="step3" onclick="changeRecipientImage();"> Next</button>
+            <br>
 
     </div>
-       
-    
-     
-     
-   </body>
- </html>
+
+    </div>
+
+
+
+    </div>
+
+
+
+
+</body>
+
+</html>
