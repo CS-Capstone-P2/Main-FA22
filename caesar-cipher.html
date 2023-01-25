@@ -25,6 +25,64 @@
             An especially simple form of encryption is the "Caesar Cipher", which shifts the alphabet by a number of
             places.
         </p>
+
+        <!-- The Cipher Table START -->
+        <table name="cipher" id="cipherTable">
+        </table>
+        <!-- The Cipher Table's Script to Initialize it. -->
+        <script>
+            (function generateTable() {
+                // creates a <table> element and a <tbody> element
+                const plainStr = new String("ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // all the characters that we used to fill in the table to make this more readable
+                const tbl = document.getElementById("cipherTable"); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
+                const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
+
+                // creating all cells
+                for (let i = 1; i <= 2; i++) {
+                    // creates a table row
+                    const row = document.createElement("tr");
+
+                    for (let j = 0; j < 27; j++) {
+                        //gets the value to put into celltext
+                        var c = plainStr[j - 1];
+
+                        // Create a <td> element and a text node, make the text
+                        // node the contents of the <td>, and put the <td> at
+                        // the end of the table row
+                        const cell = document.createElement("td");
+                        let cellText;
+                        if(j==0){ //This is a check to see if we are currently in the label column
+                            if(i==1) //check for the row that we are on and put in the appropriate label accordingly
+                            {
+                                cellText = document.createTextNode(`Plain`);
+                            }
+                            else{
+                                cellText = document.createTextNode(`Cipher`);
+                            }
+                        }
+                        else{  //otherwise we are using the appropriate default lettering
+                            cellText = document.createTextNode(`${c}`);
+                        }
+                        //append the child node to the cell
+                        cell.appendChild(cellText);
+                        //append the cell to the row
+                        row.appendChild(cell);
+                    }
+
+                    // add the row to the end of the table body
+                    tblBody.appendChild(row);
+                }
+
+                // put the <tbody> in the <table>
+                tbl.appendChild(tblBody);
+                // appends <table> into <body> [NOT NEEDED SINCE WE ARE NOT GENERATING A TABLE IN THIS METHOD JUST EDITING AN EXISTING TABLE]
+                        //document.body.appendChild(tbl);
+                // sets the border attribute of tbl to '2' [not sure but this might be getting overwritten by the css sytle]
+                tbl.setAttribute("border", "2");
+            })();
+        </script>
+        <!-- Cipher Table END -->
+
         <div class="field">
             <label for="caesar-key">Caesar Cipher Key (Number of places to shift)</label>
             <textarea id="caesar-key" rows="3">0</textarea>
@@ -40,6 +98,7 @@
                 readonly>Your output will show here when you press "Submit Key and Text".</textarea>
         </div>
         <button id="cEbutton">Submit Key and Text</button>
+        
         <div id="cEmessage"></div>
         <h1>Caesarian Shift (Decryption)</h1>
 
@@ -80,6 +139,7 @@
                 var caesarShow;
                 var testerOutput;
                 var userMessage;
+                var animSpeed = 250; //might wanna make this a variable editable from a slider or something on the webpage
 
 
 
@@ -115,6 +175,7 @@
 
                     }
                     else {
+                        shiftAnimation(parseInt(numContainer), animSpeed);
                         testerOutput = caesarShift(userMessage.value, parseInt(numContainer));
                         caesarShow.innerHTML = testerOutput;
                     }
