@@ -48,7 +48,7 @@ var caesarShift = function (str, amount) {
 
     //Also as a note I think the following line of code (Line 51) will need to be uncommented unless we are going to put limits on how big the shift is going to be
         //Or Else we are going to run into an issue of this loop taking a rediculously long time.
-    //amount = amount % 26; //This should simplify the amount of times the anim loops to the effective distance based on the amount inputed [NOT CONFIDENT THO]
+    amount = amount % 26; //This should simplify the amount of times the anim loops to the effective distance based on the amount inputed [NOT CONFIDENT THO]
 
     for (var j = 1; j <= amount; j++) //loop through the amount of times in order to 1 by 1 shift the eniter cipher
     {
