@@ -1,0 +1,97 @@
+<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>RSA Encrypt Text</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+    </head>
+
+    <nav>
+        <a href="caesar-lab-mainpage.html">Exit Caesar Lab</a>
+    </nav>
+
+    <div class="page">
+        <h1>Caesarian Cipher Lab - Caesarian Shift Basics</h1>
+        <p class="header-description">
+            The Caesarian Cipher is an encryption method where you shift each character based on the given key value (Integer i.e. all Nautrual Numbers, 0, and Negative numbers).
+            Let's walk through a long-form example of this shifting method then when we go to encrypt, we can scale down the explanation for this step.
+        </p>
+        <button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button>
+        <script type="text/javascript" src="../scripts/button-helper.js"> </script>
+        <div id="example" class="header-description" style="visibility:hidden">
+            <p>
+                <!-- The Cipher Table START -->
+                <table name="cipher" id="cipherTable">
+                </table>
+                <!-- The Cipher Table's Script to Initialize it. -->
+                <script>
+                    (function generateTable() {
+                        // creates a <table> element and a <tbody> element
+                        const plainStr = new String("ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // all the characters that we used to fill in the table to make this more readable
+                        const tbl = document.getElementById("cipherTable"); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
+                        const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
+
+                        // creating all cells
+                        for (let i = 1; i <= 2; i++) {
+                            // creates a table row
+                            const row = document.createElement("tr");
+
+                            for (let j = 0; j < 27; j++) {
+                                //gets the value to put into celltext
+                                var c = plainStr[j - 1];
+
+                                // Create a <td> element and a text node, make the text
+                                // node the contents of the <td>, and put the <td> at
+                                // the end of the table row
+                                const cell = document.createElement("td");
+                                let cellText;
+                                if(j==0){ //This is a check to see if we are currently in the label column
+                                    if(i==1) //check for the row that we are on and put in the appropriate label accordingly
+                                    {
+                                        cellText = document.createTextNode(`Plain`);
+                                    }
+                                    else{
+                                        cellText = document.createTextNode(`Cipher`);
+                                    }
+                                }
+                                else{  //otherwise we are using the appropriate default lettering
+                                    cellText = document.createTextNode(`${c}`);
+                                }
+                                //append the child node to the cell
+                                cell.appendChild(cellText);
+                                //append the cell to the row
+                                row.appendChild(cell);
+                            }
+
+                            // add the row to the end of the table body
+                            tblBody.appendChild(row);
+                        }
+
+                        // put the <tbody> in the <table>
+                        tbl.appendChild(tblBody);
+                        // appends <table> into <body> [NOT NEEDED SINCE WE ARE NOT GENERATING A TABLE IN THIS METHOD JUST EDITING AN EXISTING TABLE]
+                                //document.body.appendChild(tbl);
+                        // sets the border attribute of tbl to '2' [not sure but this might be getting overwritten by the css sytle]
+                        tbl.setAttribute("border", "2");
+                    })();
+                </script>
+                <!-- Cipher Table END -->
+            </p>
+            <script src="../scripts/caesar-shift.js"> </script>
+            
+                                    <!-- BIG TO-DO -->
+            <!-- All we really need to do for this page in terms of functionality is 2 things: -->
+                <!-- First, we need to make the changes to the shifting animation per Dr. Wang's instructions (label shift rows and have show each shift on a new row) -->
+                <!-- Second, there needs to be an input field to change the animation speed and also the shift key which gets put into the button function below -->
+            <button id="runShift" onclick="runShiftAsyncButton('visibility2', 4 , 100);">Run Example Shift</button>
+            <button id="visibility2" onclick="toggleVisibility('next', 'visibility2', false);" style="visibility:hidden;">Next</button>
+        </div>
+        <div id="next" class="header-description" style="visibility:hidden">
+            <p>
+                As you can see this cipher is fairly basic as it is a linear mapping of the letters based off a shift value. However, the caesar cipher is a great introductory
+                cipher to get us thinking about security and how we can use it to keep our data safe. Now let's go encrypt something...
+            </p>
+            <button ><a href="caesar-lab-mainpage.html">Next Page</a></button>
+        </div>
+    </div>
+</body>
+

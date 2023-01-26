@@ -16,32 +16,7 @@
             This message is able to be viewed by anyone lurking on the public domain, which we have named Hackers. Let's see an example...
         </p>
         <button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button>
-        <script type="text/javascript">
-            function toggleVisibility(divId, buttonId=null, onlyHideButton=true)
-            {
-                var exampleDiv = document.getElementById(divId);
-                var button;
-                if(buttonId != null)
-                {
-                    button = document.getElementById(buttonId);
-                }
-                
-                if(exampleDiv.style.visibility == "hidden") {
-                    exampleDiv.style.visibility = "visible";
-                    if(buttonId != null) 
-                    { 
-                        if(onlyHideButton)
-                        {
-                            button.style.visibility = "hidden"; 
-                        }else{
-                            button.style.display = "none"; 
-                        }
-                    }
-                } else {
-                    exampleDiv.style.visibility = "hidden";
-                }
-            }
-        </script>
+        <script type="text/javascript" src="../scripts/button-helper.js"> </script>
         <div id="example" class="header-description" style="visibility:hidden">
             <p>
                 [PlaceHolder for gif image showing plaintext getting attacked by the hackers.]
@@ -53,7 +28,7 @@
                 As you can see from the gif, if we don't encrypt our data when its in the hostile territory (the open internet) then it is susceptible to being seen and tampered with.
                 This is why we will now go and learn how to do the basic encryption method known as the Caesar Cipher. 
             </p>
-            <button ><a href="caesar-lab-mainpage.html">Next Page</a></button>
+            <button ><a href="caesar-lab-shift.html">Next Page</a></button>
         </div>
     </div>
 </body>
