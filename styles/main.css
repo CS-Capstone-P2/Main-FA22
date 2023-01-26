@@ -138,6 +138,9 @@ footer {
   font-size: 16px;
 }
 
+.hidden{ visibility: hidden; }
+.show{ visibility: visible }
+
 table {
     border-collapse: collapse;
     border: 1px solid rgb(193, 19, 190);

@@ -1,0 +1,38 @@
+<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>RSA Encrypt Text</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+    </head>
+
+    <nav>
+        <a href="mockup-caesar-lab.html">Exit Caesar Lab</a>
+    </nav>
+
+    <div class="page">
+        <h1>Caesarian Cipher Lab - Why It's Important</h1>
+        <p class="header-description">
+            When we send a message over the internet, whether it be from our phones or computers, it is in what we call the Public Domain.
+            This message is able to be viewed by anyone lurking on the public domain, which we have named Hackers. Let's see an example...
+        </p>
+        <button id="visibility" onclick="toggleVisibility();">Show Example</button>
+        <script type="text/javascript">
+            function toggleVisibility()
+            {
+                var exampleDiv = document.getElementById('example');
+                var button = document.getElementById('visibility');
+                
+                if(exampleDiv.style.visibility == "hidden") {
+                    exampleDiv.style.visibility = "visible";
+                    button.style.visibility = "hidden";
+                } else {
+                    exampleDiv.style.visibility = "hidden";
+                }
+            }
+        </script>
+        <div id="example" class="header-description" style="visibility:hidden">
+            PlaceHolder for gif image
+        </div>
+    </div>
+</body>
+
