@@ -1,0 +1,35 @@
+<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>RSA Encrypt Text</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+    </head>
+
+    <nav>
+        <a href="caesar-lab-mainpage.html">Exit Caesar Lab</a>
+    </nav>
+
+    <div class="page">
+        <h1>Caesarian Cipher Lab - Why It's Important</h1>
+        <p class="header-description">
+            When we send a message over the internet, whether it be from our phones or computers, it is in what we call the Public Domain.
+            This message is able to be viewed by anyone lurking on the public domain, which we have named Hackers. Let's see an example...
+        </p>
+        <button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button>
+        <script type="text/javascript" src="../scripts/button-helper.js"> </script>
+        <div id="example" class="header-description" style="visibility:hidden">
+            <p>
+                [PlaceHolder for gif image showing plaintext getting attacked by the hackers.]
+            </p>
+            <button id="visibility2" onclick="toggleVisibility('next', 'visibility2', false);">Next</button>
+        </div>
+        <div id="next" class="header-description" style="visibility:hidden">
+            <p>
+                As you can see from the gif, if we don't encrypt our data when its in the hostile territory (the open internet) then it is susceptible to being seen and tampered with.
+                This is why we will now go and learn how to do the basic encryption method known as the Caesar Cipher. 
+            </p>
+            <button ><a href="caesar-lab-mainpage.html">Next Page</a></button>
+        </div>
+    </div>
+</body>
+
