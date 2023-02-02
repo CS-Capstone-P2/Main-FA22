@@ -138,6 +138,10 @@ footer {
   font-size: 16px;
 }
 
+button:disabled{
+    background-color:rgb(255, 131, 131);
+    }
+
 .hidden{ visibility: hidden; }
 .show{ visibility: visible }
 

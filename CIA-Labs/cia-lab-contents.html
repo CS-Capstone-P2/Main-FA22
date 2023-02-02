@@ -1,0 +1,46 @@
+<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Lab 1: Confidentiality</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+    </head>
+
+    <nav>
+        <a href="cia-labs-home.html">Exit CIA Lab</a>
+    </nav>
+
+    <div class="page">
+        <h1>CIA Lab 1: Confidentiality - Why It's Important</h1>
+        <p class="header-description">
+            Let's say that you want to pass a note to one of your classmates, but they are all the way across the classroom. You will have to send that
+            message through a public environment that you are not in control of. 
+        </p>
+
+        <p class="header-description">
+            If this message has sensitive contents though, you will need a way
+            to make sure only the intended recipient reads that message; in other words you want to preserve the <b>Confidentiality</b> of that message.
+        </p>
+
+        <p class="header-description">
+            The same is true when talking about communications over the internet. Anyone can see what is passing through the internet which means
+            we need to devise a way to ensure our messages are safe from those who might be listening in:
+        </p>
+
+        <button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button>
+        <script type="text/javascript" src="../scripts/button-helper.js"> </script>
+        <div id="example" class="header-description" style="visibility:hidden">
+            <p>
+                <img src="sending-message1.gif" alt=""  width="800" height="400">
+            </p>
+            <button id="visibility2" onclick="toggleVisibility('next', 'visibility2', false);">Next</button>
+        </div>
+        <div id="next" class="header-description" style="visibility:hidden">
+            <p>
+                As you can see from the gif, if we don't encrypt our data when it is in the hostile environment (the open internet) then it is susceptible to being seen and potentially even tampered with.
+                One way we can go about encrypting our message to ensure its confidentiality is by utilizing the <b>Caesar Cipher</b>. 
+            </p>
+            <button ><a href="cia-lab-shift.html">Next Page</a></button>
+        </div>
+    </div>
+</body>
+
