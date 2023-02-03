@@ -69,11 +69,59 @@ var caesarShift = function (str, amount) {
     return new Promise(resolve => setTimeout(resolve, ms));
   };
 
-  var encryptAnimation = async function(shiftKey, message, speed)
+  var encryptAnimation = async function(speed, decrypt=false)
   {
     const messageTable = document.getElementById("messageTable");
     const cipherTable = document.getElementById("cipherTable");
+    
+    //differentiate between encrypt and decrypt
+    const messageTableRow = 0;
+    let searchRow = 0;
+    let oppositeRow = 1;
+    if(decrypt)
+    {
+      searchRow = 1;
+      oppositeRow = 0;
+    }
 
+    //console.log("here1");
+    for(var i = 0, cell; cell = messageTable.rows[messageTableRow].cells[i]; i++) // for each element in message table
+    {
+      //console.log("here2");
+      messageTable.rows[messageTableRow].cells[i].style.background = "green"; //set the current cell to green highlight
+      await sleep(speed);
+      
+      for(var j = 0, cell; cell = cipherTable.rows[searchRow].cells[j]; j++) // search the cipher table for the corrisponding letter
+      {
+        //console.log("here3");
+        if (j == 0){continue;} // if it is on an index that is part of the key
+        cipherTable.rows[searchRow].cells[j].style.background = "green"; //set the current cipher table cell to green highlight
+        await sleep(speed);
+        if(cipherTable.rows[searchRow].cells[j].innerHTML == messageTable.rows[messageTableRow].cells[i].innerHTML) // if the two letters are equal
+        {
+          cipherTable.rows[oppositeRow].cells[j].style.background = "green"; //highlight the cell under the current cipher table cell green
+          await sleep(speed);
+          cipherTable.rows[searchRow].cells[j].style.background = null; //un-highlight the upper cell
+          await sleep(speed);
+          messageTable.rows[messageTableRow].cells[i].innerHTML = cipherTable.rows[oppositeRow].cells[j].innerHTML; //set the message cell to the cipher text
+          await sleep(speed);
+          cipherTable.rows[oppositeRow].cells[j].style.background = null; // unhighlight the cipher table cell
+          break; // break out to move onto the next message table cell
+        }
+        else{
+          cipherTable.rows[searchRow].cells[j].style.background = null;
+        }
+        await sleep(speed);
+      }
+      //unhighlight current letter and move on
+      messageTable.rows[messageTableRow].cells[i].style.background = null;
+      await sleep(speed);
+    }
+    //console.log("here4");
+  }
+
+  var populateMessageTable = async function(message){
+    const messageTable = document.getElementById("messageTable");
     
     //first generate the message tables
     const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
@@ -101,40 +149,5 @@ var caesarShift = function (str, amount) {
     // appends <table> into <body> [NOT NEEDED SINCE WE ARE NOT GENERATING A TABLE IN THIS METHOD JUST EDITING AN EXISTING TABLE]
             //document.body.appendChild(tbl);
     // sets the border attribute of tbl to '2' [not sure but this might be getting overwritten by the css sytle]
-    messageTable.setAttribute("border", "2");
-    
-    console.log("here1");
-    for(var i = 0, cell; cell = messageTable.rows[0].cells[i]; i++) // for each element in message table
-    {
-      console.log("here2");
-      messageTable.rows[0].cells[i].style.background = "green"; //set the current cell to green highlight
-      await sleep(speed);
-      
-      for(var j = 0, cell; cell = cipherTable.rows[0].cells[j]; j++) // search the cipher table for the corrisponding letter
-      {
-        console.log("here3");
-        if (j == 0){continue;} // if it is on an index that is part of the key
-        cipherTable.rows[0].cells[j].style.background = "green"; //set the current cipher table cell to green highlight
-        await sleep(speed);
-        if(cipherTable.rows[0].cells[j].innerHTML == messageTable.rows[0].cells[i].innerHTML) // if the two letters are equal
-        {
-          cipherTable.rows[1].cells[j].style.background = "green"; //highlight the cell under the current cipher table cell green
-          await sleep(speed);
-          cipherTable.rows[0].cells[j].style.background = null; //un-highlight the upper cell
-          await sleep(speed);
-          messageTable.rows[0].cells[i].innerHTML = cipherTable.rows[1].cells[j].innerHTML; //set the message cell to the cipher text
-          await sleep(speed);
-          cipherTable.rows[1].cells[j].style.background = null; // unhighlight the cipher table cell
-          break; // break out to move onto the next message table cell
-        }
-        else{
-          cipherTable.rows[0].cells[j].style.background = null;
-        }
-        await sleep(speed);
-      }
-      //unhighlight current letter and move on
-      messageTable.rows[0].cells[i].style.background = null;
-      await sleep(speed);
-    }
-    console.log("here4");
-  } 
+    //messageTable.setAttribute("border", "2");
+  }

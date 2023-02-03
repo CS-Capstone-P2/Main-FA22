@@ -54,7 +54,8 @@ async function runShiftAsyncButton(divId, shiftKey, speed, message, buttonId=nul
             button.style.display = "none"; 
         }
     }
-    await shiftAnimation(shiftKey, speed); 
-    await encryptAnimation(shiftKey, message, speed);
+    await shiftAnimation(shiftKey, speed);
+    await populateMessageTable(message); // message needs to be sanitized
+    await encryptAnimation(speed);
     exampleDiv.style.visibility = "visible";
 }
