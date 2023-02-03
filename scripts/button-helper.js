@@ -33,7 +33,7 @@ function toggleVisibility(divId, buttonId=null, onlyHideButton=true)
     }
 }
 
-async function runShiftAsyncButton(divId, amount, speed, buttonId=null, onlyHideButton=true)
+async function runShiftAsyncButton(divId, shiftKey, speed, message, buttonId=null, onlyHideButton=true)
 {
     var exampleDiv = document.getElementById(divId);
     var button;
@@ -54,6 +54,7 @@ async function runShiftAsyncButton(divId, amount, speed, buttonId=null, onlyHide
             button.style.display = "none"; 
         }
     }
-    await shiftAnimation(amount, speed); 
+    await shiftAnimation(shiftKey, speed); 
+    await encryptAnimation(shiftKey, message, speed);
     exampleDiv.style.visibility = "visible";
 }
