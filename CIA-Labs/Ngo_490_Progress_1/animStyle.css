@@ -1,0 +1,88 @@
+body {
+  background-color: white;
+}
+h1 {
+  color: rgb(50, 98, 241);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 200%;
+}
+h2 {
+  color: rgb(52, 54, 56);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 140%;
+}
+p {
+  color: black;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 130%;
+}
+
+.box {
+  width: 400px;
+  padding-top: 10px;
+  border-style: solid;
+  border-color: #336699;
+  border-width: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  word-wrap: break-word;
+}
+
+label {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 120%;
+  margin: 20px 0px;
+}
+
+input {
+  display: block;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 10px;
+  font-size: 120%;
+  font-weight: 200;
+  margin: 20px;
+  background-color: white;
+  width: 550px;
+}
+
+button {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 20px;
+  font-size: 120%;
+}
+
+hr {
+  border: 1px solid white;
+  margin: 15px 0px;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+.animate {
+  transform: translateX(1173px);
+  transition: all 2s;
+  z-index: 999;
+}
