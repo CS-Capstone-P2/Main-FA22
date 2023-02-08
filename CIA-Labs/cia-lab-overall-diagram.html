@@ -19,10 +19,16 @@
             <br />When ready, enter a message and key, then click the "Next" button
             below. To start from the beginning, use the "Reset" button.
         </p>
-        </div>
+       
     
-        <div class="field">
-            <div style = "position:fixed; left:70px; top:140px;">
+       
+            
+            <span>
+                <p id="update" class="box" style="font-size: 120%;" readonly>
+                    This text box will be updated whenever the "Next" button is clicked to explain the different steps!
+                </p>
+            </span>
+            <div>
                 <label for="message"><strong>Message to Encrypt</strong></label>
                 <input
                 id="message"
@@ -32,9 +38,6 @@
                 style="width: 350px;"
                 />
                 </div>
-        </div>
-        <div class="field">
-            <div style = "position:fixed; left:70px; top:220px;">
                 <label for="key">
                     <br /><strong
                         >Caesar Cipher Key (Number of places to shift)</strong
@@ -49,18 +52,25 @@
                     min="-26"
                     style="width: 100px;"
                     />
+
+        </div>
+        <div class="field">
+            <div>
+                
+            <!--BUTTONS-->
+        </div>
+            <button id="next" onclick="animate()">Next</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div style="position:fixed; right:45px; bottom:265px;">
+            <button id="dButton">Decrypt</button>
+        </div>
             </div>
         </div>
-        <div style = "position:fixed; right:100px; top:120px;">
-            <h2>What's Going On?</h2>
-            <span>
-                <p id="update" class="box" style="font-size: 120%;" readonly>
-                    This text box will be updated whenever the "Next" button is clicked to explain the different steps!
-                </p>
-            </span>
-        </div>
+        
         <!---ALICE boxes-->
-        <div style="position:fixed; left:10px; bottom:200px">
+        
+        <div style="position:fixed; left:10px; bottom:440px">
             <label for="aOriginal"><strong>Original Message</strong></label>
             <input
             id="aOriginal"
@@ -69,7 +79,7 @@
             readonly
             />
         </div>
-        <div style="position:fixed; left:10px; bottom:100px">
+        <div style="position:fixed; left:10px; bottom:350px">
             <label for="aEncrypt"><strong>Encrypted Message</strong></label>
             <input
             id="aEncrypt"
@@ -78,7 +88,7 @@
             readonly
             />
         </div>
-        <div style="position:absolute; left:10px; bottom:100px">
+        <div style="position:absolute; left:10px; bottom:350px">
             <label for="aEncryptCopy"><strong>Encrypted Message</strong></label>
             <input
             id="aEncryptCopy"
@@ -88,7 +98,7 @@
             />
         </div>
         <!---BOB boxes-->
-        <div style="position:fixed; right:10px; bottom:200px">
+        <div style="position:fixed; right:10px; bottom:350px">
             <label for="bDecrypt"><strong>Decrypted Message</strong></label>
             <input
             id="bDecrypt"
@@ -97,7 +107,7 @@
             readonly
             />
         </div>
-        <div style="position:fixed; right:10px; bottom:100px">
+        <div style="position:fixed; right:10px; bottom:450px">
             <label for="bEncrypt"><strong>Encrypted Message</strong></label>
             <input
             id="bEncrypt"
@@ -107,7 +117,7 @@
             />
         </div>
         <!---HACKER box-->
-        <div style="position:fixed; right:465px; bottom:0px;">
+        <div style="position:fixed; left:825px; bottom:175px;">
             <input
             id="hEncrypt"
             type="text"
@@ -116,35 +126,29 @@
             />
         </div>
     
-        <!--BUTTONS-->
-        <div style="position:fixed; left:250px; top:280px;">
-            <button id="next" onclick="animate()">Next</button>
-        </div>
-        <div style="position:fixed; left:350px; top:280px;">
-            <button id="reset">Reset</button>
-        </div>
-        <div style="position:fixed; right:45px; bottom:265px;">
-            <button id="dButton">Decrypt</button>
-        </div>
+        
         
         <!---IMAGES ADDED: Alice, Bob, Hacker, Internet Cloud, Key-->
         <img id="alice" src="../images/caeser-images/newalice_og.png" width="200" height="180"
-                style="position:fixed; left:300px; bottom:130px;"/>
+                style="position:fixed; left:550px; bottom:350px;"/>
         <img
             id="cloud"
             src="../images/caeser-images/cloud_transfer_og1.png"
-            width="260"
-            height="230"
-            style="position:fixed; left:510px; bottom: 150px;"
+            width="300"
+            height="260"
+            style="position:fixed; left:810px; bottom:300;"
         />
         <img id="bob" src="../images/caeser-images/newbob_og.png" width="200" height="180"
-                style="position:fixed; right:310px; bottom:130px;"/>
+                style="position:fixed; right:550px; bottom:350px;"/>
     
         <img id="hacker" src="../images/caeser-images/hacker_og.png" width="200" height="210"
-                style="position:fixed; left:540px; bottom: 20px;"/>
+                style="position:fixed; left:860px; bottom: 165px;"/>
     
         <img id="keyImage" src="../images/caeser-images/key_og.png" width="100" height="110"
-                style="position:fixed; top:255px;"/>
+                style="position:fixed; left:500px; bottom:375px;"/>
+        
+        <img id="keyImage2" src="../images/caeser-images/key_og.png" width="100" height="110"
+                style="position:fixed; right:500px; bottom:375px;"/>
         </div>
     
         <script type="text/javascript" src="../scripts/cShift.js"></script>
