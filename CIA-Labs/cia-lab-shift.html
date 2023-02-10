@@ -90,7 +90,37 @@
             <!-- All we really need to do for this page in terms of functionality is 2 things: -->
                 <!-- First, we need to make the changes to the shifting animation per Dr. Wang's instructions (label shift rows and have show each shift on a new row) -->
                 <!-- Second, there needs to be an input field to change the animation speed and also the shift key which gets put into the button function below -->
-            <button id="runShift" onclick="runShiftAsyncButton('visibility2', 4 , 100, 'TEST MESSAGE'), getElementById('runShift').style.display = 'block'; this.style.display = 'none'">Run Example Shift</button>
+                <strong>x10 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
+
+                    <label for="user-message"><strong>Input Message to Encrypt:</strong></label>
+                    <input type="text" id="user-message" name="user-message" pattern="[A]" title="All Capital Message"><br><br>
+
+                <label for="key"> <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
+                    <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" pattern="[0-9]+"/>
+
+                    <!-- Each of these 3 functions apply to reading user input for the Caesar Cipher demonstration-->
+                    <script>
+                        function shiftPlacement() 
+                        {
+                            let placement = document.getElementById("key");
+                            return placement.value;
+                        }
+
+                        function speedCheckbox() 
+                         {
+                            let speed = 500;
+                          if (document.getElementById("myCheck").checked) {speed = 100;} else {speed = 1000;}
+                          return speed.value;
+                         }
+
+                         function inputMessage() 
+                         {
+                            var msg2 = document.getElementById("user-message");
+                            return msg2.value.toUpperCase();
+                         }
+                        </script>
+
+            <button id="runShift" onclick="runShiftAsyncButton('visibility2', shiftPlacement(), speedCheckbox(), inputMessage()), getElementById('runShift').style.display = 'block'; this.style.display = 'none'">Run Example Shift</button>
             <button id="reset" onclick="location.reload()">Reset</button>
             <button id="visibility2" onclick="toggleVisibility('next', 'visibility2', false);" style="visibility:hidden;">Next</button>
         </div>
