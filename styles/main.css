@@ -61,6 +61,7 @@ nav > a.selected {
 }
 
 .page {
+    height: auto;
     padding: 30px;
     background-color: #333;
 }
@@ -70,7 +71,9 @@ a {
 }
 
 footer {
-    margin: 15px;
+    position: fixed;
+    margin: 5px;
+    bottom: 0px;
     background-color: #252525;
 }
 
@@ -91,40 +94,39 @@ footer {
 }
 
 .sender-txt {
-    position: absolute;
+    position: relative;
     top: 255px;
     left: 245px;
     color:black;
 }
 
 .encrypt-with-txt {
-    position: absolute;
+    position: relative;
     top: 282px;
     left: 245px;
     color:black;
 }
 .message-txt {
-    position: absolute;
+    position: relative;
     top: 350px;
     left: 89px;
     color:black;
 }
 .sending-to-txt {
-    position: absolute;
+    position: relative;
     top: 550px;
     left: 89px;
     color:black;
 }
 .sent-from-txt {
-    position: absolute;
+    position: relative;
     top: 450px;
     left: 89px;
     color:black;
 }
 .encrypted-message-txt {
-    position: absolute;
-    top: 650px;
-    left: 89px;
+    position: relative;
+    height: auto;
     color:black;
 }
 .button {
@@ -153,4 +155,14 @@ table {
     width: 900px;
     height: 50px;
     text-align: center;
+  }
+
+  .box {
+    height: auto;
+  }
+
+  image{
+    height:auto;
+    padding: 10px;
+    position:relative;
   }
