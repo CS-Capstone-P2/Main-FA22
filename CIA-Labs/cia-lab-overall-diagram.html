@@ -63,7 +63,7 @@
             <!--BUTTONS-->
         </div>
             <button id="next" onclick="animate()">Next</button>
-            <button id="reset" onclick="location.reload()">Reset</button>
+            <button id="reset2" onclick="window.location.reload()">Reset</button>
         </div>
         <div style="position:fixed; right:45px; bottom:265px;">
             <button id="dButton">Decrypt</button>
@@ -206,6 +206,8 @@
                 aOriginal.value = message.value;
                 d.value = aOutput;
                 h.value = aOutput;
+                document.body.style.backgroundColor = "red";
+                
         } else {
             //if there is a user input
             console.log("Key: ", eKey.value);
@@ -219,6 +221,7 @@
             aOriginal.value = message.value;
             d.value = aOutput;
             h.value = aOutput;
+            document.body.style.backgroundColor = "#252525";
             }
             aEncrypt.className = "animate";
         };
