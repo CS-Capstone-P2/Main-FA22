@@ -53,7 +53,7 @@
                                         cellText = document.createTextNode(`Plain`);
                                     }
                                     else{
-                                        cellText = document.createTextNode(`Cipher`);
+                                        cellText = document.createTextNode(`Shift Key `);
                                     }
                                 }
                                 else{  //otherwise we are using the appropriate default lettering
@@ -90,7 +90,7 @@
             <!-- All we really need to do for this page in terms of functionality is 2 things: -->
                 <!-- First, we need to make the changes to the shifting animation per Dr. Wang's instructions (label shift rows and have show each shift on a new row) -->
                 <!-- Second, there needs to be an input field to change the animation speed and also the shift key which gets put into the button function below -->
-                <strong>x10 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
+                <strong>x2 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
 
                     <label for="user-message"><strong>Input Message to Encrypt:</strong></label>
                     <input type="text" id="user-message" name="user-message" pattern="[A]" title="All Capital Message"><br><br>
@@ -108,9 +108,10 @@
 
                         function speedCheckbox() 
                          {
-                            let speed = 500;
-                          if (document.getElementById("myCheck").checked) {speed = 100;} else {speed = 1000;}
-                          return speed.value;
+                            let speed = 250;
+                            if (document.getElementById("myCheck").checked) {speed = 100;}
+                            console.log(speed);
+                            return speed;
                          }
 
                          function inputMessage() 
