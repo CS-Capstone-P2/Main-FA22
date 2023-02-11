@@ -35,8 +35,12 @@ var caesarShift = function (str, amount) {
     // All done!
     return output;
   };
+  
+  var shiftAnimation = async function(shiftKey, speed) 
+  {
+    clearTable("cipherTable");
+    generateCipherTable();
 
-  var shiftAnimation = async function(shiftKey, speed) {
     //console.log("Total Time the shift animation will take: " + (shiftKey*26*3*speed) + "ms");
     const table = document.getElementById("cipherTable"); //get the cipher table
     let dir = 1; // if the key is positive we need it to move to the right 1 each time
@@ -52,14 +56,116 @@ var caesarShift = function (str, amount) {
 
     for (var j = 1; j <= shiftKey; j++) //loop through the amount of times in order to 1 by 1 shift the eniter cipher
     {
-      for (var i = 1, cell; cell = table.rows[1].cells[i]; i++) //iterate through the cells in the cipher row [row 0 plain-text / row 1 cipher-text]
+      if(j < 4)
       {
-        table.rows[1].cells[i].style.background = "green";
-        await sleep(speed);
-        table.rows[1].cells[i].innerHTML = caesarShift(table.rows[1].cells[i].innerHTML, dir); //shift the current letter in the correct direction according to the dir var
-        await sleep(speed);
-        table.rows[1].cells[i].style.background = null;
-        await sleep(speed);
+        if(j > 1)
+        {
+<<<<<<< Updated upstream
+          var tbodyRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+          // Insert a row at the end of table
+          var newRow = tbodyRef.insertRow();
+          var newRow = generateCopyRow("cipherTable", j - 1, "Shift Key ");
+          //document.getElementById("cipherTable").getElementsByTagName('tbody')[0].appendChild(row);
+=======
+          // Insert a row at the end of table
+          const newRow = document.createElement("tr");
+          var indexToCopy = j - 1;
+          var differentLabel = "Shift Key ";
+
+          for(var i = 0, cell; cell = table.rows[indexToCopy].cells[i]; i++)
+          {
+            const new_cell = document.createElement("td");
+            const cellText = document.createTextNode(`${table.rows[indexToCopy].cells[i].innerHTML}`);
+            new_cell.appendChild(cellText);
+            newRow.appendChild(new_cell);
+          }
+
+          if(differentLabel != "")
+          {
+            newRow.cells[0].innerHTML = differentLabel;
+          }
+          table.tBodies[0].appendChild(newRow);
+>>>>>>> Stashed changes
+        }
+
+        for (var i = 0, cell; cell = table.rows[j].cells[i]; i++) //iterate through the cells in the cipher row [row 0 plain-text / row 1 cipher-text]
+        {
+          if(i == 0)
+          {
+            table.rows[j].cells[i].innerHTML += j;
+          }else{
+            table.rows[j].cells[i].style.background = "green";
+            await sleep(speed);
+            table.rows[j].cells[i].innerHTML = caesarShift(table.rows[j].cells[i].innerHTML, dir); //shift the current letter in the correct direction according to the dir var
+            await sleep(speed);
+            table.rows[j].cells[i].style.background = null;
+            await sleep(speed);
+          }
+        }
+      }
+      else{
+        //add row with the verical elipse = table.rows[1].cells[4].innerHTML = "⋮";
+        if(j == 4)
+        {
+<<<<<<< Updated upstream
+          //add elipse
+          const row = document.createElement("tr");
+          const cell = document.createElement("td");
+          const cellText = document.createTextNode(`⋮`);
+          //append the child node to the cell
+          cell.appendChild(cellText);
+          //append the cell to the row
+          row.appendChild(cell);
+          document.getElementById("cipherTable").getElementsByTagName('tbody')[0].appendChild(row);
+          
+          //create a copy row
+          row = generateCopyRow("cipherTable", j - 1, "Shift Key ");
+          row[0].innerHTML += shiftKey;
+          document.getElementById("cipherTable").getElementsByTagName('tbody')[0].appendChild(row);
+=======
+          {
+            //add elipse
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            const cellText = document.createTextNode(`⋮`);
+            //append the child node to the cell
+            cell.appendChild(cellText);
+            //append the cell to the row
+            row.appendChild(cell);
+            table.tBodies[0].appendChild(row);
+          }
+
+          //create a copy row
+          const newRow = document.createElement("tr");
+          var indexToCopy = j - 1;
+          var differentLabel = "Shift Key ";
+
+          for(var i = 0, cell; cell = table.rows[indexToCopy].cells[i]; i++)
+          {
+            const new_cell = document.createElement("td");
+            const cellText = document.createTextNode(`${table.rows[indexToCopy].cells[i].innerHTML}`);
+            new_cell.appendChild(cellText);
+            newRow.appendChild(new_cell);
+          }
+
+          if(differentLabel != "")
+          {
+            newRow.cells[0].innerHTML = differentLabel + shiftKey;
+          }
+          table.tBodies[0].appendChild(newRow);
+>>>>>>> Stashed changes
+        }
+        //finish the rest of the cipher table
+        for (var i = 1, cell; cell = table.rows[5].cells[i]; i++) //iterate through the cells in the cipher row [row 0 plain-text / row 1 cipher-text]
+        {
+          table.rows[5].cells[i].style.background = "green";
+          await sleep(speed);
+          table.rows[5].cells[i].innerHTML = caesarShift(table.rows[5].cells[i].innerHTML, dir); //shift the current letter in the correct direction according to the dir var
+          await sleep(speed);
+          table.rows[5].cells[i].style.background = null;
+          await sleep(speed);
+        }
       }
     }
   };
@@ -151,3 +257,91 @@ var caesarShift = function (str, amount) {
     // sets the border attribute of tbl to '2' [not sure but this might be getting overwritten by the css sytle]
     //messageTable.setAttribute("border", "2");
   }
+
+  var clearTable = async function (tableId)
+  {
+<<<<<<< Updated upstream
+    var bodyRef = document.getElementById(tableId).getElementByTagName('tbody');
+=======
+    var bodyRef = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+>>>>>>> Stashed changes
+    if(bodyRef != null)
+    {
+      bodyRef.remove();
+    }
+  }
+
+<<<<<<< Updated upstream
+  var generateCopyRow = async function(tableId, indexToCopy, differentLabel = "")
+  {
+    const table = document.getElementById("cipherTable");
+    var row = document.createElement("tr");
+
+    for(var i = 0, cell; cell = table.rows[indexToCopy].cells[i]; i++)
+    {
+      const new_cell = document.createElement("td");
+      const cellText = document.createTextNode(`${table.rows[indexToCopy].cells[i].innerHTML}`);
+      new_cell.appendChild(cellText);
+      row.appendChild(new_cell);
+    }
+
+    if(differentLabel != "")
+    {
+      row.cells[0].innerHTML = differentLabel;
+    }
+    
+    return row;
+  }
+
+=======
+>>>>>>> Stashed changes
+  var generateCipherTable = async function () 
+  {
+    // creates a <table> element and a <tbody> element
+    const plainStr = new String("ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // all the characters that we used to fill in the table to make this more readable
+    const tbl = document.getElementById("cipherTable"); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
+    const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
+
+    // creating all cells
+    for (let i = 1; i <= 2; i++) {
+        // creates a table row
+        const row = document.createElement("tr");
+
+        for (let j = 0; j < 27; j++) {
+            //gets the value to put into celltext
+            var c = plainStr[j - 1];
+
+            // Create a <td> element and a text node, make the text
+            // node the contents of the <td>, and put the <td> at
+            // the end of the table row
+            const cell = document.createElement("td");
+            let cellText;
+            if(j==0){ //This is a check to see if we are currently in the label column
+                if(i==1) //check for the row that we are on and put in the appropriate label accordingly
+                {
+                    cellText = document.createTextNode(`Plain`);
+                }
+                else{
+                    cellText = document.createTextNode(`Shift Key `);
+                }
+            }
+            else{  //otherwise we are using the appropriate default lettering
+                cellText = document.createTextNode(`${c}`);
+            }
+            //append the child node to the cell
+            cell.appendChild(cellText);
+            //append the cell to the row
+            row.appendChild(cell);
+        }
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+    }
+
+    // put the <tbody> in the <table>
+    tbl.appendChild(tblBody);
+    // appends <table> into <body> [NOT NEEDED SINCE WE ARE NOT GENERATING A TABLE IN THIS METHOD JUST EDITING AN EXISTING TABLE]
+            //document.body.appendChild(tbl);
+    // sets the border attribute of tbl to '2' [not sure but this might be getting overwritten by the css sytle]
+    tbl.setAttribute("border", "2");
+}
