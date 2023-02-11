@@ -60,12 +60,33 @@ var caesarShift = function (str, amount) {
       {
         if(j > 1)
         {
+<<<<<<< Updated upstream
           var tbodyRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 
           // Insert a row at the end of table
           var newRow = tbodyRef.insertRow();
           var newRow = generateCopyRow("cipherTable", j - 1, "Shift Key ");
           //document.getElementById("cipherTable").getElementsByTagName('tbody')[0].appendChild(row);
+=======
+          // Insert a row at the end of table
+          const newRow = document.createElement("tr");
+          var indexToCopy = j - 1;
+          var differentLabel = "Shift Key ";
+
+          for(var i = 0, cell; cell = table.rows[indexToCopy].cells[i]; i++)
+          {
+            const new_cell = document.createElement("td");
+            const cellText = document.createTextNode(`${table.rows[indexToCopy].cells[i].innerHTML}`);
+            new_cell.appendChild(cellText);
+            newRow.appendChild(new_cell);
+          }
+
+          if(differentLabel != "")
+          {
+            newRow.cells[0].innerHTML = differentLabel;
+          }
+          table.tBodies[0].appendChild(newRow);
+>>>>>>> Stashed changes
         }
 
         for (var i = 0, cell; cell = table.rows[j].cells[i]; i++) //iterate through the cells in the cipher row [row 0 plain-text / row 1 cipher-text]
@@ -87,6 +108,7 @@ var caesarShift = function (str, amount) {
         //add row with the verical elipse = table.rows[1].cells[4].innerHTML = "⋮";
         if(j == 4)
         {
+<<<<<<< Updated upstream
           //add elipse
           const row = document.createElement("tr");
           const cell = document.createElement("td");
@@ -101,6 +123,38 @@ var caesarShift = function (str, amount) {
           row = generateCopyRow("cipherTable", j - 1, "Shift Key ");
           row[0].innerHTML += shiftKey;
           document.getElementById("cipherTable").getElementsByTagName('tbody')[0].appendChild(row);
+=======
+          {
+            //add elipse
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            const cellText = document.createTextNode(`⋮`);
+            //append the child node to the cell
+            cell.appendChild(cellText);
+            //append the cell to the row
+            row.appendChild(cell);
+            table.tBodies[0].appendChild(row);
+          }
+
+          //create a copy row
+          const newRow = document.createElement("tr");
+          var indexToCopy = j - 1;
+          var differentLabel = "Shift Key ";
+
+          for(var i = 0, cell; cell = table.rows[indexToCopy].cells[i]; i++)
+          {
+            const new_cell = document.createElement("td");
+            const cellText = document.createTextNode(`${table.rows[indexToCopy].cells[i].innerHTML}`);
+            new_cell.appendChild(cellText);
+            newRow.appendChild(new_cell);
+          }
+
+          if(differentLabel != "")
+          {
+            newRow.cells[0].innerHTML = differentLabel + shiftKey;
+          }
+          table.tBodies[0].appendChild(newRow);
+>>>>>>> Stashed changes
         }
         //finish the rest of the cipher table
         for (var i = 1, cell; cell = table.rows[5].cells[i]; i++) //iterate through the cells in the cipher row [row 0 plain-text / row 1 cipher-text]
@@ -206,13 +260,18 @@ var caesarShift = function (str, amount) {
 
   var clearTable = async function (tableId)
   {
+<<<<<<< Updated upstream
     var bodyRef = document.getElementById(tableId).getElementByTagName('tbody');
+=======
+    var bodyRef = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+>>>>>>> Stashed changes
     if(bodyRef != null)
     {
       bodyRef.remove();
     }
   }
 
+<<<<<<< Updated upstream
   var generateCopyRow = async function(tableId, indexToCopy, differentLabel = "")
   {
     const table = document.getElementById("cipherTable");
@@ -234,6 +293,8 @@ var caesarShift = function (str, amount) {
     return row;
   }
 
+=======
+>>>>>>> Stashed changes
   var generateCipherTable = async function () 
   {
     // creates a <table> element and a <tbody> element
