@@ -102,12 +102,24 @@ var caesarShift = function (str, amount) {
           {
             //add elipse
             const row = document.createElement("tr");
-            const cell = document.createElement("td");
-            const cellText = document.createTextNode(`⋮`);
-            //append the child node to the cell
-            cell.appendChild(cellText);
-            //append the cell to the row
-            row.appendChild(cell);
+            {
+              const cell = document.createElement("td");
+              const cellText = document.createTextNode(`⋮`);
+              //append the child node to the cell
+              cell.appendChild(cellText);
+              //append the cell to the row
+              row.appendChild(cell);
+            }
+            for (var z = 0; z < 26; z++)
+            {
+              const cell = document.createElement("td");
+              const cellText = document.createTextNode(`⋮`);
+              //append the child node to the cell
+              cell.appendChild(cellText);
+              //append the cell to the row
+              row.appendChild(cell);
+            }
+            
             table.tBodies[0].appendChild(row);
           }
 
@@ -157,10 +169,10 @@ var caesarShift = function (str, amount) {
     //differentiate between encrypt and decrypt
     const messageTableRow = 0;
     let searchRow = 0;
-    let oppositeRow = 1;
+    let oppositeRow = cipherTable.rows.length - 1;
     if(decrypt)
     {
-      searchRow = 1;
+      searchRow = cipherTable.rows.length - 1;
       oppositeRow = 0;
     }
 
@@ -179,10 +191,18 @@ var caesarShift = function (str, amount) {
         await sleep(speed);
         if(cipherTable.rows[searchRow].cells[j].innerHTML == messageTable.rows[messageTableRow].cells[i].innerHTML) // if the two letters are equal
         {
-          cipherTable.rows[oppositeRow].cells[j].style.background = "green"; //highlight the cell under the current cipher table cell green
-          await sleep(speed);
-          cipherTable.rows[searchRow].cells[j].style.background = null; //un-highlight the upper cell
-          await sleep(speed);
+          let temp = searchRow;
+          let direction = -1;
+          if(searchRow > oppositeRow) {direction = 1; }
+
+          while(temp != oppositeRow)
+          {
+            cipherTable.rows[temp - direction].cells[j].style.background = "green"; //highlight the cell under the current cipher table cell green
+            await sleep(speed);
+            cipherTable.rows[temp].cells[j].style.background = null; //un-highlight the upper cell
+            await sleep(speed);
+            temp -= direction;
+          }
           messageTable.rows[messageTableRow].cells[i].innerHTML = cipherTable.rows[oppositeRow].cells[j].innerHTML; //set the message cell to the cipher text
           await sleep(speed);
           cipherTable.rows[oppositeRow].cells[j].style.background = null; // unhighlight the cipher table cell
