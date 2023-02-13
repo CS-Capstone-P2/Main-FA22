@@ -180,7 +180,6 @@
 </div>
 
             
-    
         <script type="text/javascript" src="../scripts/cShift.js"></script>
         <script>
         //NOTE: and console.log() used were for me to keep track on what was happening,
@@ -207,6 +206,7 @@
             script.type = "text/javascript";
             script.src = "cShift.js";
             document.getElementsByTagName("head")[0].appendChild(script);
+            aOriginal.value = message.value;
     
             if (message.value === "") {
             console.log("Message value is null..."); //if there is no user input
