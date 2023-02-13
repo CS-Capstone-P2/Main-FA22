@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<!---Name: Grace Ngo-->
+<!---CS 490 Revision/Make-Up-->
+
+<head>
+  <title>Caesar Shift</title>
+  <link rel="stylesheet" href="./animStyle.css" />
+</head>
+<body>
+  <div class="page">
+    <h1>Caesar Shift (Animation)</h1>
+    <p class="description">
+      <!---Caesar Key Information-->
+      Sometimes encryption and decryption are easier to understand through
+      visualization, and this animation is built to help do just that!
+      <br />When ready, enter a message and key, then click the "Next" button
+      below. To start from the beginning, use the "Reset" button.
+    </p>
+    </div>
+
+    <div class="field">
+        <div style = "position:fixed; left:70px; top:140px;">
+            <label for="message"><strong>Message to Encrypt</strong></label>
+            <input
+            id="message"
+            type="text"
+            placeholder="Insert your message here!"
+            onsubmit="return this.value"
+            style="width: 350px;"
+            />
+            </div>
+    </div>
+    <div class="field">
+        <div style = "position:fixed; left:70px; top:220px;">
+            <label for="key">
+                <br /><strong
+                  >Caesar Cipher Key (Number of places to shift)</strong
+                ></label
+              >
+              <input
+                id="key"
+                type="number"
+                placeholder="0"
+                value="0"
+                max="26"
+                min="-26"
+                style="width: 100px;"
+              />
+        </div>
+    </div>
+    <div style = "position:fixed; right:100px; top:120px;">
+        <h2>What's Going On?</h2>
+        <span>
+            <p id="update" class="box" style="font-size: 120%;" readonly>
+                This text box will be updated whenever the "Next" button is clicked to explain the different steps!
+            </p>
+        </span>
+    </div>
+    <!---ALICE boxes-->
+    <div style="position:fixed; left:10px; bottom:200px">
+        <label for="aOriginal"><strong>Original Message</strong></label>
+        <input
+        id="aOriginal"
+        type="text"
+        style="width:280px; border: 2px solid rgb(244, 133, 186)"
+        readonly
+        />
+    </div>
+    <div style="position:fixed; left:10px; bottom:100px">
+        <label for="aEncrypt"><strong>Encrypted Message</strong></label>
+        <input
+        id="aEncrypt"
+        type="text"
+        style="width:280px; border: 2px solid rgb(244, 133, 186);"
+        readonly
+        />
+    </div>
+    <div style="position:absolute; left:10px; bottom:100px">
+      <label for="aEncryptCopy"><strong>Encrypted Message</strong></label>
+      <input
+      id="aEncryptCopy"
+      type="text"
+      style="width:280px; border: 2px solid rgb(244, 133, 186);"
+      readonly
+      />
+  </div>
+    <!---BOB boxes-->
+    <div style="position:fixed; right:10px; bottom:200px">
+        <label for="bDecrypt"><strong>Decrypted Message</strong></label>
+        <input
+        id="bDecrypt"
+        type="text"
+        style="width:280px; border: 2px solid rgb(127, 164, 255)"
+        readonly
+        />
+    </div>
+    <div style="position:fixed; right:10px; bottom:100px">
+        <label for="bEncrypt"><strong>Encrypted Message</strong></label>
+        <input
+        id="bEncrypt"
+        type="text"
+        style="width:280px; border: 2px solid rgb(127, 164, 255);"
+        readonly
+        />
+    </div>
+    <!---HACKER box-->
+    <div style="position:fixed; right:465px; bottom:0px;">
+        <input
+        id="hEncrypt"
+        type="text"
+        style="width:280px; border: 2px solid rgb(48, 71, 66)"
+        readonly
+        />
+    </div>
+
+    <!--BUTTONS-->
+    <div style="position:fixed; left:250px; top:280px;">
+        <button id="next" onclick="animate()">Next</button>
+    </div>
+    <div style="position:fixed; left:350px; top:280px;">
+        <button id="reset">Reset</button>
+    </div>
+    <div style="position:fixed; right:45px; bottom:265px;">
+        <button id="dButton">Decrypt</button>
+    </div>
+    
+    <!---IMAGES ADDED: Alice, Bob, Hacker, Internet Cloud, Key-->
+    <img id="alice" src="images/newalice_og.png" width="200" height="180"
+         style="position:fixed; left:300px; bottom:130px;"/>
+    <img
+      id="cloud"
+      src="images/cloud_transfer_og1.png"
+      width="260"
+      height="230"
+      style="position:fixed; left:510px; bottom: 150px;"
+    />
+    <img id="bob" src="images/newbob_og.png" width="200" height="180"
+         style="position:fixed; right:310px; bottom:130px;"/>
+
+    <img id="hacker" src="images/hacker_og.png" width="200" height="210"
+         style="position:fixed; left:540px; bottom: 20px;"/>
+
+    <img id="keyImage" src="images/key_og.png" width="100" height="110"
+         style="position:fixed; top:255px;"/>
+  </div>
+
+  <script type="text/javascript" src="cShift.js"></script>
+  <script>
+    //NOTE: and console.log() used were for me to keep track on what was happening,
+    //they do not affect the code nor the user's experience
+    var next = document.getElementById("next"); //Next button
+    var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box
+    var aOriginal = document.getElementById("aOriginal");
+    var aEncryptCopy = document.getElementById("aEncryptCopy");
+    var message = document.getElementById("message"); //Message to Encrypt text box
+    var eKey = document.getElementById("key"); //number of places to shift
+    var aOutput = ""; //final encrypted message goes here
+    let aDiv = document.getElementById("animate");
+
+    let d = document.getElementById("bEncrypt");
+    let h = document.getElementById("hEncrypt");
+    
+    var encryptMessage = function () {
+
+      console.log("eKey: ", eKey.value);
+      console.log("In encryptMessage...");
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "cShift.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+
+      if (message.value === "") {
+        console.log("Message value is null..."); //if there is no user input
+        document.getElementById("hacker").src = "images/hacker_og.png";
+        document.getElementById("update").style.color = "black";
+        document.getElementById("update").innerHTML = "Please enter a message to encrypt.";
+      } 
+      else if(eKey.value === "0") {
+            console.log("hacker alert!!");
+            document.getElementById("hacker").src = "images/hacker_og.png";
+            document.getElementById("update").style.color = "red";
+            document.getElementById("update").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
+            console.log("Key: ", eKey.value);
+            aOutput = cShift(message.value, eKey.value);
+            console.log("After cShift...");
+            aEncrypt.value = aOutput;
+            aEncryptCopy.value = aOutput;
+            aOriginal.value = message.value;
+            d.value = aOutput;
+            h.value = aOutput;
+    } else {
+        //if there is a user input
+        console.log("Key: ", eKey.value);
+        aOutput = cShift(message.value, eKey.value);
+        console.log("After cShift...");
+        document.getElementById("hacker").src = "images/defeat_og.png";
+        document.getElementById("update").style.color = "black";
+        document.getElementById("update").innerHTML = "Your message has been encrypted successfully! You can now try to decrypt the message by clicking on the Decrypt button next to Bob.";
+        aEncrypt.value = aOutput;
+        aEncryptCopy.value = aOutput;
+        aOriginal.value = message.value;
+        d.value = aOutput;
+        h.value = aOutput;
+      }
+      aEncrypt.className = "animate";
+    };
+
+    next.onclick = encryptMessage;
+
+    var dButton = document.getElementById("dButton"); //Decrypt Text button
+    var decrypt = document.getElementById("bDecrypt"); //Encrypted Message text box
+    var dOutput = ""; //final decrypted message goes here
+
+    var decryptMessage = function() {
+      console.log("In decryptMessage...");
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "cShift.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+      if (message.value === "") {
+        console.log("Message value is null..."); //if there is no user input
+      } else {
+        //if there is a user input
+        let num = 0 - eKey.value;
+        dOutput = cShift(d.value, num);
+        document.getElementById("update").innerHTML = "The message has been decrypted successfully!";
+        console.log("After cShift...");
+        decrypt.value = dOutput;
+      }
+    };
+    dButton.onclick = decryptMessage;
+
+   var clearResult = function() {
+    document.getElementById("aEncrypt").value = "";
+    document.getElementById("aOriginal").value = "";
+    document.getElementById("aEncryptCopy").value = "";
+    document.getElementById("bEncrypt").value = "";
+    document.getElementById("hacker").src = "images/hacker_og.png";
+    document.getElementById("bDecrypt").value = "";
+    document.getElementById("hEncrypt").value = "";
+    document.getElementById("message").value = "";
+    document.getElementById("key").value = 0;
+    //the next two lines are SUPPOSED to reset the box animation but it would not work?
+    document.getElementById('animate').style.left="10px";
+    document.getElementById("animate").style.bottom="100px";
+    document.getElementById("update").innerHTML = "Let's try again: use a different message or key this time!";
+   };
+   reset.onclick = clearResult;
+
+  </script>
+</body>
