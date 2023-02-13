@@ -74,7 +74,8 @@
             <div class="column left">
                 
 
-            </body><div>
+            </body>
+            <div>
                 <label for="aOriginal"><strong>Original Message</strong></label>
                 <input
                 id="aOriginal"
@@ -200,6 +201,8 @@
     
             console.log("eKey: ", eKey.value);
             console.log("In encryptMessage...");
+            console.log("Text: ",message.value);
+            console.log("aText: ",aOriginal.value);
             var script = document.createElement("script");
             script.type = "text/javascript";
             script.src = "cShift.js";
