@@ -221,6 +221,7 @@ var caesarShift = function (str, amount) {
   }
 
   var populateMessageTable = async function(message){
+    await clearTable("messageTable");
     const messageTable = document.getElementById("messageTable");
     
     //first generate the message tables

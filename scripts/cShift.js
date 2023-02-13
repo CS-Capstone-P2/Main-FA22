@@ -55,9 +55,9 @@ var cShift = function (str, amount) {
 Zach Wilson & Sean Martin Code Below from old caesar shift animation to use for the overall diagram page
 */
 
-var diagramShiftAnimation = async function(shiftKey, speed) {
+var diagramShiftAnimation = async function(shiftKey, speed, cipherTableId) {
   //console.log("Total Time the shift animation will take: " + (shiftKey*26*3*speed) + "ms");
-  const table = document.getElementById("cipherTable"); //get the cipher table
+  const table = document.getElementById(cipherTableId); //get the cipher table
   let dir = 1; // if the key is positive we need it to move to the right 1 each time
   if (shiftKey < 0) // check if the amount is negative and if it is account for that so the logic doesnt break
   {
@@ -87,10 +87,10 @@ var sleep = function (ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
-var diagramEncryptAnimation = async function(speed, decrypt=false)
+var diagramEncryptAnimation = async function(speed, cipherTableId, messageTableId, decrypt=false)
 {
-  const messageTable = document.getElementById("messageTable");
-  const cipherTable = document.getElementById("cipherTable");
+  const messageTable = document.getElementById(messageTableId);
+  const cipherTable = document.getElementById(cipherTableId);
   
   //differentiate between encrypt and decrypt
   const messageTableRow = 0;
@@ -138,11 +138,12 @@ var diagramEncryptAnimation = async function(speed, decrypt=false)
   //console.log("here4");
 };
 
-var diagramGenerateTable = async function(plainStr) 
+var diagramGenerateTable = async function(plainStr, cipherTableId) 
 {
+  await clearTable(cipherTableId);
   // creates a <table> element and a <tbody> element
   plainStr = tableSanitization(plainStr);
-  const tbl = document.getElementById("cipherTable"); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
+  const tbl = document.getElementById(cipherTableId); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
   const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
 
   // creating all cells
@@ -210,3 +211,46 @@ var tableSanitization = function(inputStr)
   }
   return temp;
 };
+
+var clearTable = async function (tableId)
+{
+  var bodyRef = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+  if(bodyRef != null)
+  {
+    bodyRef.remove();
+  }
+};
+
+
+var populateTextTable = async function(message, tableId){
+  await clearTable(tableId);
+  const messageTable = document.getElementById(tableId);
+  
+  //first generate the message tables
+  const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
+  const row = document.createElement("tr");
+
+  for (let j = 0; j < message.length; j++) 
+  {
+    // Create a <td> element and a text node, make the text
+    // node the contents of the <td>, and put the <td> at
+    // the end of the table row
+    const cell = document.createElement("td");
+    const cellText = document.createTextNode(`${message[j]}`);
+    //append the child node to the cell
+    cell.appendChild(cellText);
+    //append the cell to the row
+    row.appendChild(cell);
+  }
+
+  // add the row to the end of the table body
+  tblBody.appendChild(row);
+
+
+  // put the <tbody> in the <table>
+  messageTable.appendChild(tblBody);
+  // appends <table> into <body> [NOT NEEDED SINCE WE ARE NOT GENERATING A TABLE IN THIS METHOD JUST EDITING AN EXISTING TABLE]
+          //document.body.appendChild(tbl);
+  // sets the border attribute of tbl to '2' [not sure but this might be getting overwritten by the css sytle]
+  //messageTable.setAttribute("border", "2");
+}
