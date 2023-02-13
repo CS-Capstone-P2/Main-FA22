@@ -65,24 +65,29 @@
             <button id="next" onclick="animate()">Next</button>
             <button id="reset2" onclick="window.location.reload()">Reset</button>
         </div>
-        <div style="position:fixed; right:45px; bottom:265px;">
-            <button id="dButton">Decrypt</button>
-        </div>
+        
+            
+
             </div>
         </div>
         
-        <!---ALICE boxes-->
-        
-        <div style="position:fixed; left:10px; bottom:440px">
-            <label for="aOriginal"><strong>Original Message</strong></label>
-            <input
-            id="aOriginal"
-            type="text"
-            style="width:280px; border: 2px solid rgb(244, 133, 186)"
-            readonly
-            />
-        </div>
-        <div style="position:fixed; left:10px; bottom:350px">
+            <div class="column left">
+                
+
+            </body><div>
+                <label for="aOriginal"><strong>Original Message</strong></label>
+                <input
+                id="aOriginal"
+                type="text"
+                style="width:280px; border: 2px solid rgb(244, 133, 186)"
+                readonly
+                />
+            </div>
+           </br>
+            </br>
+            </br>
+            </br>
+            
             <label for="aEncrypt"><strong>Encrypted Message</strong></label>
             <input
             id="aEncrypt"
@@ -90,78 +95,90 @@
             style="width:280px; border: 2px solid rgb(244, 133, 186);"
             readonly
             />
-        </div>
-        <div style="position:absolute; left:10px; bottom:350px" , hidden>
-            <label for="aEncryptCopy"><strong>Encrypted Message</strong></label>
-            <input
-            id="aEncryptCopy"
-            type="text"
-            style="width:280px; border: 2px solid rgb(244, 133, 186);"
-            readonly
-            />
-        </div>
-        <!---BOB boxes-->
-        <!--Now hidden extra box-->>
-        <div style="position:fixed; right:10px; bottom:350px">
-            <label for="bDecrypt"><strong>Decrypted Message</strong></label>
-            <input
-            id="bDecrypt"
-            type="text"
-            style="width:280px; border: 2px solid rgb(127, 164, 255)"
-            readonly
-            />
-        </div>
-        <div style="position:fixed; right:10px; bottom:450px">
-            <label for="bEncrypt"><strong>Encrypted Message</strong></label>
-            <input
-            id="bEncrypt"
-            type="text"
-            style="width:280px; border: 2px solid rgb(127, 164, 255);"
-            readonly
-            />
-        </div>
-        <!---HACKER box-->
-        <div style="position:fixed; left:825px; bottom:175px;">
+            </div>
+            <div style= "display: none">
+                <label for="aEncryptCopy"><strong>Encrypted Message</strong></label>
+                <input
+                id="aEncryptCopy"
+                type="text"
+                style="width:280px; border: 2px solid rgb(244, 133, 186);"
+                readonly
+                />
+            </div>
+
+            </div>
+
+            <div class="column middle">
+                
+
+                <img src="/images/AB_arrow.png" alt="arrows">
+            </br>
+              
+
+
+                <!---HACKER box-->
             <input
             id="hEncrypt"
             type="text"
             style="width:280px; border: 2px solid rgb(48, 71, 66)"
             readonly
             />
+            
         </div>
+           
+            </div>
 
-        <div style="position:fixed; left:10px; bottom:50px">
-            <p class="header-description">
-                Once you are done using the visualizer, click this button to move to the next page.
-            </p>
-            <button ><a href="cia-lab-contents.html">Next Page</a></button>
-        </div>
-        
-    
-        
-        
-        <!---IMAGES ADDED: Alice, Bob, Hacker, Internet Cloud, Key-->
-        <img id="alice" src="../images/caeser-images/newalice_og.png" width="200" height="180"
-                style="position:fixed; left:550px; bottom:350px;"/>
-        <img
-            id="cloud"
-            src="../images/caeser-images/cloud_transfer_og1.png"
-            width="300"
-            height="260"
-            style="position:fixed; left:810px; bottom:300;"
-        />
-        <img id="bob" src="../images/caeser-images/newbob_og.png" width="200" height="180"
-                style="position:fixed; right:550px; bottom:350px;"/>
-    
-        <img id="hacker" src="../images/caeser-images/hacker_og.png" width="200" height="210"
-                style="position:fixed; left:860px; bottom: 165px;"/>
-    
-        <img id="keyImage" src="../images/caeser-images/key_og.png" width="100" height="110"
-                style="position:fixed; left:500px; bottom:375px;"/>
-        
-        <img id="keyImage2" src="../images/caeser-images/key_og.png" width="100" height="110"
-                style="position:fixed; right:500px; bottom:375px;"/>
-        </div>
+
+            <div class="column right">
+                
+
+                    <label for="bDecrypt"><strong>Decrypted Message</strong></label>
+                    <input
+                    id="bDecrypt"
+                    type="text"
+                    style="width:280px; border: 2px solid rgb(127, 164, 255)"
+                    readonly
+                    />
+            </br>
+        </br>
+    </br>
+
+                    <label for="bEncrypt"><strong>Encrypted Message</strong></label>
+                    <input
+                    id="bEncrypt"
+                    type="text"
+                    style="width:280px; border: 2px solid rgb(127, 164, 255);"
+                    readonly
+                    />
+                    <br>
+                    <br>
+                    <br>
+
+                    <button id="dButton">Decrypt</button>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+            <div id = "bottom">
+                <p class="header-description">
+                    Once you are done using the visualizer, click this button to move to the next page.
+                </p>
+                <button ><a href="cia-lab-contents.html">Next Page</a></button>
+                </div>
+                
+            </div>
+
+        </br>
+    </br>
+</br>
+</div>
+</div>
+</div>
+
+            
     
         <script type="text/javascript" src="../scripts/cShift.js"></script>
         <script>
@@ -214,7 +231,7 @@
             console.log("Key: ", eKey.value);
             aOutput = cShift(message.value, eKey.value);
             console.log("After cShift...");
-            document.getElementById("hacker").src = "../images/caeser-images/defeat_og.png";
+            document.getElementById("arrows").src = "../images/Arrow_gif.gif";
             document.getElementById("update").style.color = "black";
             document.getElementById("update").innerHTML = "Your message has been encrypted successfully! You can now try to decrypt the message by clicking on the Decrypt button next to Bob.";
             aEncrypt.value = aOutput;
