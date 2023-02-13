@@ -75,7 +75,7 @@ var diagramShiftAnimation = async function(shiftKey, speed) {
     {
       table.rows[1].cells[i].style.background = "green";
       await sleep(speed);
-      table.rows[1].cells[i].innerHTML = caesarShift(table.rows[1].cells[i].innerHTML, dir); //shift the current letter in the correct direction according to the dir var
+      table.rows[1].cells[i].innerHTML = cShift(table.rows[1].cells[i].innerHTML, dir); //shift the current letter in the correct direction according to the dir var
       await sleep(speed);
       table.rows[1].cells[i].style.background = null;
       await sleep(speed);
