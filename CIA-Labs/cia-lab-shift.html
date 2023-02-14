@@ -87,11 +87,19 @@
             <script src="../scripts/caesar-shift.js"> </script>
                 <strong>x2 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
 
+                <form action="javascript:runShiftAsyncButton('visibility2', shiftPlacement(), speedCheckbox(), inputMessage())" id = "userForm">
                     <label for="user-message"><strong>Input Message to Encrypt:</strong></label>
-                    <input type="text" id="user-message" name="user-message" pattern="[A]" title="All Capital Message"><br><br>
-
-                <label for="key"> <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
+                    <input type="text" id="user-message" name="user-message" required><br><br>
+                    <label for="key"> <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
                     <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" pattern="[0-9]+"/>
+                    <div>
+                        <input type="submit" value="Run Example Shift" />
+                    </div>
+                    <div>
+                        <input type="reset" value="Reset" />
+                    </div>
+                      
+                </form>
 
                     <!-- Each of these 3 functions apply to reading user input for the Caesar Cipher demonstration-->
                     <script>
@@ -116,8 +124,6 @@
                          }
                         </script>
 
-            <button id="runShift" onclick="runShiftAsyncButton('visibility2', shiftPlacement(), speedCheckbox(), inputMessage()), getElementById('runShift').style.display = 'block'; this.style.display = 'none'">Run Example Shift</button>
-            <button id="reset" onclick="location.reload()">Reset</button>
             <button id="visibility2" onclick="toggleVisibility('next', 'visibility2', false);" style="visibility:hidden;">Next</button>
         </div>
         <div id="next" class="header-description" style="visibility:hidden">
