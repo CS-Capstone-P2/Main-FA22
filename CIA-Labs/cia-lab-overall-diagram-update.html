@@ -182,9 +182,8 @@
             
         <script type="text/javascript" src="../scripts/cShift.js"></script>
         <script>
-        //NOTE: and console.log() used were for me to keep track on what was happening,
-        //they do not affect the code nor the user's experience
-        var next = document.getElementById("next"); //Next button
+       
+var next = document.getElementById("next"); //Next button
         var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box
         var aOriginal = document.getElementById("aOriginal");
         var aEncryptCopy = document.getElementById("aEncryptCopy");
@@ -194,99 +193,5 @@
     
         let d = document.getElementById("bEncrypt");
         let h = document.getElementById("hEncrypt");
-        
-        var encryptMessage = function () {
-    
-            console.log("eKey: ", eKey.value);
-            console.log("In encryptMessage...");
-            console.log("Text: ",message.value);
-            console.log("aText: ",aOriginal.value);
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = "cShift.js";
-            document.getElementsByTagName("head")[0].appendChild(script);
-            aOriginal.value = message.value;
-    
-            if (message.value === "") {
-            console.log("Message value is null..."); //if there is no user input
-            document.getElementById("hacker").src = "../images/caeser-images/hacker_og.png";
-            document.getElementById("update").style.color = "black";
-            document.getElementById("update").innerHTML = "Please enter a message to encrypt.";
-            } 
-            else if(eKey.value === "0") {
-                console.log("hacker alert!!");
-                document.getElementById("hacker").src = "../images/caeser-images/hacker_og.png";
-                document.getElementById("update").style.color = "red";
-                document.getElementById("update").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
-                console.log("Key: ", eKey.value);
-                aOutput = cShift(message.value, eKey.value);
-                console.log("After cShift...");
-                aEncrypt.value = aOutput;
-                aEncryptCopy.value = aOutput;
-                aOriginal.value = message.value;
-                d.value = aOutput;
-                h.value = aOutput;
-                document.body.style.backgroundColor = "red";
-                
-        } else {
-            //if there is a user input
-            console.log("Key: ", eKey.value);
-            aOutput = cShift(message.value, eKey.value);
-            console.log("After cShift...");
-            document.getElementById("arrows").src = "../images/Arrow_gif.gif";
-            document.getElementById("update").style.color = "black";
-            document.getElementById("update").innerHTML = "Your message has been encrypted successfully! You can now try to decrypt the message by clicking on the Decrypt button next to Bob.";
-            aEncrypt.value = aOutput;
-            aEncryptCopy.value = aOutput;
-            aOriginal.value = message.value;
-            d.value = aOutput;
-            h.value = aOutput;
-            document.body.style.backgroundColor = "#252525";
-            }
-            aEncrypt.className = "animate";
-        };
-    
-        next.onclick = encryptMessage;
-    
-        var dButton = document.getElementById("dButton"); //Decrypt Text button
-        var decrypt = document.getElementById("bDecrypt"); //Encrypted Message text box
-        var dOutput = ""; //final decrypted message goes here
-    
-        var decryptMessage = function() {
-            console.log("In decryptMessage...");
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = "cShift.js";
-            document.getElementsByTagName("head")[0].appendChild(script);
-            if (message.value === "") {
-            console.log("Message value is null..."); //if there is no user input
-            } else {
-            //if there is a user input
-            let num = 0 - eKey.value;
-            dOutput = cShift(d.value, num);
-            document.getElementById("update").innerHTML = "The message has been decrypted successfully!";
-            console.log("After cShift...");
-            decrypt.value = dOutput;
-            }
-        };
-        dButton.onclick = decryptMessage;
-    
-        var clearResult = function() {
-        document.getElementById("aEncrypt").value = "";
-        document.getElementById("aOriginal").value = "";
-        document.getElementById("aEncryptCopy").value = "";
-        document.getElementById("bEncrypt").value = "";
-        document.getElementById("hacker").src = "../images/caeser-images/hacker_og.png";
-        document.getElementById("bDecrypt").value = "";
-        document.getElementById("hEncrypt").value = "";
-        document.getElementById("message").value = "";
-        document.getElementById("key").value = 0;
-        //the next two lines are SUPPOSED to reset the box animation but it would not work?
-        document.getElementById('animate').style.left="10px";
-        document.getElementById("animate").style.bottom="100px";
-        document.getElementById("update").innerHTML = "Let's try again: use a different message or key this time!";
-        };
-        reset.onclick = clearResult;
-    
     </script>
 </body>
