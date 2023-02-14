@@ -1,5 +1,6 @@
 <body>
     <head>
+        <script type="text/javascript" src="../scripts/cShift.js"></script>
         <meta charset="utf-8" />
         <title>Lab 1: Confidentiality</title>
         <link rel="stylesheet" href="../styles/main.css" />
@@ -27,8 +28,8 @@
        </h2>
             
             <span>
-                <p id="update" class="box" style="font-size: 120%;" readonly>
-                    This text box will be updated whenever the "Next" button is clicked to explain the different steps!
+                <p id="info" class="box" style="font-size: 120%; border:3px double white;" readonly>
+                    Type in a message below and click next to learn how to safely send a message.
                 </p>
             </span>
             <div>
@@ -62,7 +63,9 @@
                 
             <!--BUTTONS-->
         </div>
-            <button id="next" onclick="animate()">Next</button>
+            <button id="next1" onclick="start()">Next</button>
+            <button id="next2" style="display: none;" onclick="stepTwo()">Next</button>
+            <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
             <button id="reset2" onclick="window.location.reload()">Reset</button>
         </div>
         
@@ -87,7 +90,6 @@
            </br>
             </br>
             </br>
-            </br>
             
             <label for="aEncrypt"><strong>Encrypted Message</strong></label>
             <input
@@ -96,17 +98,7 @@
             style="width:280px; border: 2px solid rgb(244, 133, 186);"
             readonly
             />
-            </div>
-            <div style= "display: none">
-                <label for="aEncryptCopy"><strong>Encrypted Message</strong></label>
-                <input
-                id="aEncryptCopy"
-                type="text"
-                style="width:280px; border: 2px solid rgb(244, 133, 186);"
-                readonly
-                />
-            </div>
-
+           
             </div>
 
             <div class="column middle">
@@ -115,8 +107,6 @@
                 <img src="/images/AB_arrow.png" alt="arrows">
             </br>
               
-
-
                 <!---HACKER box-->
             <input
             id="hEncrypt"
@@ -155,7 +145,7 @@
                     <br>
                     <br>
 
-                    <button id="dButton">Decrypt</button>
+                    <button id="dButton" onclick="final()">Decrypt</button>
 
             <br>
             <br>
@@ -184,14 +174,82 @@
         <script>
        
 var next = document.getElementById("next"); //Next button
-        var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box
-        var aOriginal = document.getElementById("aOriginal");
-        var aEncryptCopy = document.getElementById("aEncryptCopy");
+        var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box for alice
+        var aOriginal = document.getElementById("aOriginal"); // OG Alice text
+        var bEncrypt = document.getElementById("bEncrypt"); //Encrypted Message text box for bob
+        var bDecrypt = document.getElementById("bDecrypt"); //uncrypted Message text box for bob
+        var hEncrypt = document.getElementById("hEncrypt"); //Encrypted Message text box for hacker
         var message = document.getElementById("message"); //Message to Encrypt text box
         var eKey = document.getElementById("key"); //number of places to shift
         var aOutput = ""; //final encrypted message goes here
     
-        let d = document.getElementById("bEncrypt");
-        let h = document.getElementById("hEncrypt");
+
+    
+    
+        var start = function () {
+
+            aOriginal.value = message.value;
+            if(message.value == "")
+            {
+                document.getElementById("info").style.color = "yellow";
+                document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
+
+            }
+            else
+            {
+                document.getElementById("info").style.color = "white";
+                document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
+                document.getElementById("next1").style = "display:none";
+                document.getElementById("next2").style = "display:all";
+
+            }
+        }
+
+        var stepTwo = function () 
+        {
+
+            aEncrypt.value = cShift(aOriginal.value, eKey.value);
+            document.getElementById("info").style.color = "white";
+            document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
+            document.getElementById("next2").style = "display:none";
+            document.getElementById("next3").style = "display:all";
+
+        }
+        var stepThree = function () 
+        {
+            if(eKey.value === "0")
+            {
+                document.getElementById("info").style.color = "red";
+                document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
+                document.body.style.backgroundColor = "red";
+                bEncrypt.value = aOriginal.value;
+                hEncrypt.value = aOriginal.value;
+
+
+            }
+            else
+            {
+                aEncrypt.value = cShift(aOriginal.value, eKey.value);
+                document.body.style.backgroundColor = "#252525";
+                document.getElementById("info").style.color = "white";
+                document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
+                document.getElementById("next3").style = "display:none";
+                bEncrypt.value = aEncrypt.value;
+                hEncrypt.value = aEncrypt.value;
+                document.getElementById("arrows").src = "../images/Arrow_gif.gif";
+            }
+        }
+        var final = function () 
+        {
+
+            bDecrypt.value = aOriginal.value;
+            document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
+
+        }
+
+
+    
+    
+    
     </script>
 </body>
