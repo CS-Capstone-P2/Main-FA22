@@ -218,7 +218,7 @@ var next = document.getElementById("next"); //Next button
         }
         var stepThree = function () 
         {
-            if(eKey.value === "0")
+            if(eKey.value % 26 == "0")
             {
                 document.getElementById("info").style.color = "red";
                 document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
