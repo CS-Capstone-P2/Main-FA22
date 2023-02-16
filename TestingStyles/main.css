@@ -79,12 +79,14 @@
     background-color: #aaa;
     width: 100%;
     padding: 20px;
+    
   }
 
   img {
     align-items: center;
     max-width: 100%;
     height: auto;
+    
   }
   
   /* Add a card effect for articles */
@@ -152,6 +154,12 @@ button, input[type=file] {
   position: fixed;
   top: 0;
   width: 100%
+}
+
+.responsive {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
