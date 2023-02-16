@@ -29,6 +29,11 @@
     background: white;
   }
   
+  .headerBU {
+    padding: 20px;
+    background-color:#a10101;
+    height: 120px;
+  }
   .header h1 {
     font-size: 30px;
   }
@@ -37,7 +42,7 @@
   /* Style the top navigation bar */
   .topnav {
     overflow: hidden;
-    background-color: #6b0000;
+    background-color:#a10101;
   }
   
   /* Style the topnav links */
@@ -105,12 +110,15 @@
   
   /* Footer */
   .footer {
-    padding: 20px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #a10101;
+    color: white;
     text-align: center;
-    background: white;
-    margin-top: 20px;
   }
-  
 .column {
   float: left;
   width: 33.33%;
