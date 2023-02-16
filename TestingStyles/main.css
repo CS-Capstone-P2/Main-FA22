@@ -1,26 +1,30 @@
 * {
     box-sizing: border-box;
   }
+
   
   body {
     font-family: Arial;
-    padding: 10px;
-    background: #f1f1f1;
+    background: white;
+    margin: 0px 0px 0px;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
   }
   
   .field, #button {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .field > label {
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
   /* Header/Blog Title */
   .header {
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     background: white;
   }
@@ -33,7 +37,7 @@
   /* Style the top navigation bar */
   .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #6b0000;
   }
   
   /* Style the topnav links */
@@ -42,7 +46,7 @@
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 15px;
     text-decoration: none;
   }
   
@@ -57,12 +61,15 @@
   .leftcolumn {   
     float: left;
     width: 33%;
+    background-color: white;
+    padding-left: 20px;
+    text-align: right;
   }
   
   /* Right column */
   .rightcolumn {
     float: left;
-    width: 25%;
+    width: 33%;
     background-color: #f1f1f1;
     padding-left: 20px;
   }
@@ -98,7 +105,7 @@
   .footer {
     padding: 20px;
     text-align: center;
-    background: #ddd;
+    background: white;
     margin-top: 20px;
   }
   
@@ -130,8 +137,8 @@ button, input[type=file] {
 }
 
 .page {
-  padding: 30px;
-  background-color: #333;
+  
+  background-color: white;
 }
 
 /* Clear floats after the columns */
@@ -139,6 +146,17 @@ button, input[type=file] {
   content: "";
   display: table;
   clear: both;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 100px;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
