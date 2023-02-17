@@ -143,6 +143,12 @@
           var start = function () {
   
               aOriginal.value = message.value;
+              if (message.value.trim() == "")
+              {
+                alert("User has only entered spaces!");
+                return -1;
+              }
+              
               if(message.value == "")
               {
                   document.getElementById("info").style.color = "blue";
