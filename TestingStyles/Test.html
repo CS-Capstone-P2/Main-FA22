@@ -119,6 +119,7 @@
 
             
           </div>
+          
         
 
           <div class="footer">
@@ -157,7 +158,7 @@
               }
               else
               {
-                  document.getElementById("info").style.color = "white";
+                  document.getElementById("info").style.color = "blue";
                   document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
                   document.getElementById("next1").style = "display:none";
                   document.getElementById("next2").style = "display:all";
@@ -170,7 +171,7 @@
           {
   
               aEncrypt.value = cShift(aOriginal.value, eKey.value);
-              document.getElementById("info").style.color = "white";
+              document.getElementById("info").style.color = "black";
               document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
               document.getElementById("next2").style = "display:none";
               document.getElementById("next3").style = "display:all";
@@ -193,7 +194,7 @@
               {
                   aEncrypt.value = cShift(aOriginal.value, eKey.value);
                   document.body.style.backgroundColor = "white";
-                  document.getElementById("info").style.color = "white";
+                  document.getElementById("info").style.color = "black";
                   document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
                   bEncrypt.value = aEncrypt.value;
                   hEncrypt.value = aEncrypt.value;

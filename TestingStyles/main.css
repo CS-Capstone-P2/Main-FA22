@@ -9,7 +9,7 @@
     margin: 0px 0px 0px;
     overflow: hidden;
     height: 100vh;
-    width: 100vw;
+    width: 100w;
   }
   
   .field, #button {
@@ -66,7 +66,6 @@
   .leftcolumn {   
     float: left;
     width: 33%;
-    background-color: white;
     padding-left: 20px;
     text-align: right;
   }
@@ -176,8 +175,14 @@ button, input[type=file] {
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
   .column {
+    width: 100%;
+  }
+  .header{
+    width: 100%;
+  }
+  .img{
     width: 100%;
   }
 }
