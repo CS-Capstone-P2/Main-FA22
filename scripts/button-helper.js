@@ -35,6 +35,11 @@ function toggleVisibility(divId, buttonId=null, onlyHideButton=true)
 
 async function runShiftAsyncButton(divId, shiftKey, speed, message, buttonId=null, onlyHideButton=true)
 {
+    if (message.trim() == "") //Halts the function and creates an alert if the message consists only of spaces.
+    {
+        alert("User has only entered spaces!");
+        return -1;
+    }
     var exampleDiv = document.getElementById(divId);
     var button;
     if(buttonId != null)
