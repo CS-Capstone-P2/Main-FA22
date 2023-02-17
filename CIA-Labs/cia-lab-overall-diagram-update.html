@@ -108,9 +108,14 @@
             </div>
             <!--Middle column with image of arrows and hacker text box-->
             <div class="column middle">
-                
+           
+                <br>
+                <marquee 
+                    direction = "right" 
+                    id = "moveText"
+                    >
+                </marquee>   
 
-                <img src="/images/send.gif" width="700" height="75" id="sending" alt="sending" style="display: none" ;>
                 <img src="/images/AB_arrow.png" id = "arrows" alt="arrows">
                 
             </br>
@@ -167,6 +172,7 @@
 
         </br>
     </br>
+    <button onclick="move()">Next</button>
 </br>
 </div>
 </div>
@@ -178,13 +184,15 @@
        
 var next = document.getElementById("next"); //Next button
         var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box for alice
+        var aEncrypt2 = document.getElementById("aEncrypt").value; //Encrypted Message text box for alice
         var aOriginal = document.getElementById("aOriginal"); // OG Alice text
         var bEncrypt = document.getElementById("bEncrypt"); //Encrypted Message text box for bob
         var bDecrypt = document.getElementById("bDecrypt"); //uncrypted Message text box for bob
         var hEncrypt = document.getElementById("hEncrypt"); //Encrypted Message text box for hacker
         var message = document.getElementById("message"); //Message to Encrypt text box
         var eKey = document.getElementById("key"); //number of places to shift
-        var aOutput = ""; //final encrypted message goes here
+        var aOutput = ""; //final encrypted message goes her
+        var moveText = document.getElementById("moveText"); //The moving text
     
     
         var start = function () {
@@ -240,10 +248,12 @@ var next = document.getElementById("next"); //Next button
                 hEncrypt.value = aEncrypt.value;
                 document.getElementById("next3").style = "display:none";
                 document.getElementById("arrows").src = "../images/Arrow_gif.gif";
-                document.getElementById("sending").style = "display:all";
                 document.getElementById("rats").style = "display:all";
                 document.getElementById("lock").style = "display:all";
                 document.getElementById("dButton").style = "display:all";
+                moveText.textContent = bEncrypt.value;
+                moveText.start();
+                
                 
             }
         }
@@ -260,5 +270,11 @@ var next = document.getElementById("next"); //Next button
         }
     
     
+        function move()
+	{
+		let data = document.getElementById("aEncrypt").innerHTML;
+		document.getElementById("aEncrypt").innerHTML = "<marquee behavior='scroll' direction='right' scrollamount='10'>" 
+														+ data + "</marquee>";
+	}
     </script>
 </body>
