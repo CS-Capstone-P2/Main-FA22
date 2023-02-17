@@ -90,7 +90,7 @@
 
           <div class="column">
             
-             
+            <br>
               <br>
               <br>
                 <br>
@@ -98,6 +98,7 @@
                 <marquee 
                     direction = "right" 
                     id = "moveText"
+                    style="width: 100%";
                     >
                 </marquee> 
               <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
@@ -112,13 +113,13 @@
               <h2>BOB</h2>
               <h5>Recipient</h5>
               <!-- <img src="../images/caeser-images/bob.png" width="200" height="180">
-               --><br />
+               -->
               <label for="bEncrypt"><strong>Encrypted Message</strong></label>
               <input id="bEncrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255);" readonly />
               <br>
               <br>
               <br>
-              
+              <br>
               <label for="bDecrypt"><strong>Decrypted Message</strong></label>
               <input id="bDecrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
@@ -196,7 +197,6 @@
                   bEncrypt.value = aOriginal.value;
                   hEncrypt.value = aOriginal.value;
   
-  
               }
               else
               {
@@ -212,7 +212,6 @@
                   document.getElementById("lock").style = "display:all";
                   document.getElementById("dButton").style = "display:all";
                   moveText.textContent = bEncrypt.value;
-                  moveText.start();
                   
               }
           }
