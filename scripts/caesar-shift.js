@@ -179,6 +179,11 @@ var caesarShift = function (str, amount) {
     //console.log("here1");
     for(var i = 0, cell; cell = messageTable.rows[messageTableRow].cells[i]; i++) // for each element in message table
     {
+      //if the character is a non-letter, skip and continue
+      if(messageTable.rows[messageTableRow].cells[i].innerHTML.charCodeAt(0) <= 64 || messageTable.rows[messageTableRow].cells[i].innerHTML.charCodeAt(0) >= 123 || (messageTable.rows[messageTableRow].cells[i].innerHTML.charCodeAt(0) >= 91 && messageTable.rows[messageTableRow].cells[i].innerHTML.charCodeAt(0) <= 96))
+      {
+        continue;
+      }
       //console.log("here2");
       messageTable.rows[messageTableRow].cells[i].style.background = "green"; //set the current cell to green highlight
       await sleep(speed);
