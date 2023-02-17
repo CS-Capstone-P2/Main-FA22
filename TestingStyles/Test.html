@@ -90,9 +90,16 @@
 
           <div class="column">
             
-              <h2></h2>
-              <h5></h5>
-              <img src="../images/send.gif" width="700" height="75" id="sending" alt="sending" style="display: none; object-fit:scale-down;" class="responsive">
+             
+              <br>
+              <br>
+                <br>
+                <br>
+                <marquee 
+                    direction = "right" 
+                    id = "moveText"
+                    >
+                </marquee> 
               <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
               <!-- <img src="../images/caeser-images/hacker_og.png" width="200" height="180">-->
               <input id="hEncrypt" type="text" style="width:280px; border: 2px solid rgb(48, 71, 66)" readonly />
@@ -139,6 +146,7 @@
           var message = document.getElementById("message"); //Message to Encrypt text box
           var eKey = document.getElementById("key"); //number of places to shift
           var aOutput = ""; //final encrypted message goes here
+          var moveText = document.getElementById("moveText"); //The moving text
       
       
           var start = function () {
@@ -200,10 +208,11 @@
                   hEncrypt.value = aEncrypt.value;
                   document.getElementById("next3").style = "display:none";
                   document.getElementById("arrows").src = "../images/Arrow_gif.gif";
-                  document.getElementById("sending").style = "display:all";
                   document.getElementById("rats").style = "display:all";
                   document.getElementById("lock").style = "display:all";
                   document.getElementById("dButton").style = "display:all";
+                  moveText.textContent = bEncrypt.value;
+                  moveText.start();
                   
               }
           }
