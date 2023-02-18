@@ -1,0 +1,256 @@
+<html>
+    <body>
+      <head>
+        <meta charset="utf-8" />
+        <title>Lab 1: Confidentiality</title>
+        <link rel="stylesheet" href="main.css" />
+        <script type="text/javascript" src="../scripts/cShift.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+
+      <div class="topnav" id="Navbar">
+        <div class="headerBU" style="text-align: center; height: 80px;">
+          <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
+        </div>
+        <a href="../CIA-Labs/cia-labs-home.html">Exit Lab</a>
+        <a href="../CIA-Labs/cia-lab-overall-diagram.html">Visualizer</a>
+        <a href="../CIA-Labs/cia-lab-contents.html">Explanation</a>
+        <a href="../CIA-Labs/cia-lab-shift.html">Caesar Shift</a>
+      </div>
+      
+    
+        <div class="header">
+          <h1>CIA Lab 1: Confidentiality - Try it out</h1>
+          <!---
+          <p class="description">
+            Sometimes encryption and decryption are easier to understand through
+            visualization, and this animation is built to help do just that!
+            <br />When ready, enter a message and key, then click the "Next" button
+            below. To start from the beginning, use the "Reset" button.
+          </p>-->
+
+          <h3>
+            What is going on?
+          </h3>
+
+          <span>
+            <p id="info" class="box" style="font-size: 120%; border:3px double white;" readonly>
+              Type in a message below and click next to learn how to safely send a message.
+            </p>
+          </span>
+
+          </div>
+        
+        <div class="header">
+          <div>
+            <label for="message"><strong>Message to Encrypt</strong></label>
+            <input id="message" type="text" placeholder="Insert your message here!" onsubmit="return this.value"
+              style="width: 350px;" />
+          </div>
+          <label for="key">
+            <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
+          <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" style="width: 100px;" />
+        
+          <div class="field">
+            <!--BUTTONS-->
+            <button id="next1" onclick="start()">Next</button>
+            <button id="next2" style="display: none;" onclick="stepTwo()">Next</button>
+            <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
+            <button id="dButton" style="display: none;" onclick="final()">Decrypt</button>
+            <button id="reset2" onclick="window.location.reload()">Reset</button>
+          </div>
+
+        </div>
+
+        
+          <div class="leftcolumn">
+            
+              <h2>ALICE</h2>
+              <h5>Sender</h5>
+              <!-- <img src="../images/caeser-images/alice.png" width="200" height="180">
+               --><br />
+              <div>
+                <label for="aEncrypt"><strong>Encrypted Message</strong></label>
+                <input id="aEncrypt" type="text" style="width:280px; border: 2px solid rgb(244, 133, 186);" readonly />
+              </div>
+
+              </br>
+              </br>
+              </br>
+              
+              <label for="aOriginal"><strong>Original Message</strong></label>
+              <input id="aOriginal" type="text" style="width:280px; border: 2px solid rgb(244, 133, 186)" readonly />
+
+            </br>
+            </br>
+            </br>
+            <div>
+              <table name="cipher" id="cipherTable"></table>
+              <table name="message" id="messageTable"></table>
+            </div>
+          </div>
+
+          <div class="column">
+            
+            <br>
+              <br>
+              <br>
+                <br>
+                <br>
+                <marquee 
+                    direction = "right" 
+                    id = "moveText"
+                    style="width: 100%";
+                    >
+                </marquee> 
+              <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
+              <!-- <img src="../images/caeser-images/hacker_og.png" width="200" height="180">-->
+              <input id="hEncrypt" type="text" style="width:280px; border: 2px solid rgb(48, 71, 66)" readonly />
+
+              <img src="/images/Rats-Small.png" id="rats" alt="rats" style="display: none; object-fit:scale-down; "> 
+          </div>
+
+          <div class="column">
+            
+              <h2>BOB</h2>
+              <h5>Recipient</h5>
+              <!-- <img src="../images/caeser-images/bob.png" width="200" height="180">
+               -->
+              <label for="bEncrypt"><strong>Encrypted Message</strong></label>
+              <input id="bEncrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255);" readonly />
+              <br>
+              <br>
+              <br>
+              <br>
+              <label for="bDecrypt"><strong>Decrypted Message</strong></label>
+              <input id="bDecrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255)" readonly />
+              </br>
+              <img src="/images/caeser-images/lock.png" width="200" height="200" id="lock" alt="lock" style="display: none; object-fit:scale-down;" class="responsive">
+
+            
+          </div>
+          
+        
+
+          <div class="footer">
+            Property of Bradley University. All Rights Reserved. 2023
+          </div>
+        
+        
+          <script type="text/javascript" src="../scripts/cShift.js"></script>
+          <script>
+         
+  var next = document.getElementById("next"); //Next button
+          var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box for alice
+          var aOriginal = document.getElementById("aOriginal"); // OG Alice text
+          var bEncrypt = document.getElementById("bEncrypt"); //Encrypted Message text box for bob
+          var bDecrypt = document.getElementById("bDecrypt"); //uncrypted Message text box for bob
+          var hEncrypt = document.getElementById("hEncrypt"); //Encrypted Message text box for hacker
+          var message = document.getElementById("message"); //Message to Encrypt text box
+          var eKey = document.getElementById("key"); //number of places to shift
+          var aOutput = ""; //final encrypted message goes here
+          var moveText = document.getElementById("moveText"); //The moving text
+      
+      
+          var start = function () {
+  
+              aOriginal.value = message.value;
+              if (message.value.trim() == "")
+              {
+                alert("User has only entered spaces!");
+                return -1;
+              }
+              
+              if(message.value == "")
+              {
+                  document.getElementById("info").style.color = "blue";
+                  document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
+              }
+              else
+              {
+                  document.getElementById("info").style.color = "blue";
+                  document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
+                  document.getElementById("next1").style = "display:none";
+                  document.getElementById("next2").style = "display:all";
+                  document.getElementById('message').readOnly = true;
+              }
+          }
+  
+          var stepTwo = function () 
+          {
+              //anim functions await their completion before continuing
+              //await 
+              //continue...
+              aEncrypt.value = cShift(aOriginal.value, eKey.value);
+              document.getElementById("info").style.color = "black";
+              document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
+              document.getElementById("next2").style = "display:none";
+              document.getElementById("next3").style = "display:all";
+  
+          }
+          var stepThree = function () 
+          {
+              if(eKey.value % 26 == "0")
+              {
+                  document.getElementById("info").style.color = "red";
+                  document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
+                  document.body.style.backgroundColor = "red";
+                  document.getElementById("arrows").src = "../images/caeser-images/hacker_og.png";
+                  bEncrypt.value = aOriginal.value;
+                  hEncrypt.value = aOriginal.value;
+  
+              }
+              else
+              {
+                  aEncrypt.value = cShift(aOriginal.value, eKey.value);
+                  document.body.style.backgroundColor = "white";
+                  document.getElementById("info").style.color = "black";
+                  document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
+                  bEncrypt.value = aEncrypt.value;
+                  hEncrypt.value = aEncrypt.value;
+                  document.getElementById("next3").style = "display:none";
+                  document.getElementById("arrows").src = "../images/Arrow_gif.gif";
+                  document.getElementById("rats").style = "display:all";
+                  document.getElementById("lock").style = "display:all";
+                  document.getElementById("dButton").style = "display:all";
+                  moveText.textContent = bEncrypt.value;
+                  
+              }
+          }
+          var final = function () 
+          {
+  
+              bDecrypt.value = aOriginal.value;
+              document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
+              document.getElementById("sending").style = "display:none";
+              document.getElementById("arrows").src = "../images/AB_arrow_right.png";
+              document.getElementById("dButton").style = "display:none";
+              document.getElementById("lock").src = "../images/caeser-images/unlock.png";
+          }
+        </script>
+        
+    <script>
+      window.onscroll = function () { myFunction() };
+
+      var topnav = document.getElementById("Navbar");
+      var sticky = topnav.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          topnav.classList.add("sticky");
+        } else {
+          topnav.classList.remove("sticky");
+        }
+      }
+    </script>
+
+    
+    
+  </body>
+
+  
+</html>

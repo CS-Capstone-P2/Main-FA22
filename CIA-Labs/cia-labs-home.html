@@ -1,32 +1,132 @@
 <body>
     <head>
         <meta charset="utf-8" />
-        <title>RSA Encrypt Text</title>
-        <link rel="stylesheet" href="../styles/main.css" />
+        <title>Lab 1: Confidentiality</title>
+        <link rel="stylesheet" href="../TestingStyles/main.css" />
+        <script type="text/javascript" src="../scripts/cShift.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-core.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-venn.min.js"></script>
+        <style type="text/css">
+            html,
+            body,
+            #container {
+              width: 100%;
+              height: 95%;
+              margin: 0;
+              padding: 0;
+            }
+          </style>
     </head>
 
-    <nav>
+    <div class="topnav" id="Navbar">
+        <div class="headerBU" style="text-align: center; height: 80px;">
+            <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
+        </div>
         <a class="selected" href="cia-labs-home.html">CIA Labs</a>
-        <!--Tentatively going to remove these from the available headers for now- if we need use of them for testing purposes, we can open in live server. 
-            Most of the functionality on these pages will be shifted to the CIA labs portion anyways. 
-        <a href="../caesar-cipher.html">Caesar Cipher</a>
-        <a href="../generate-keys.html">RSA Emulator v1</a>
-        <a href="../sign-message.html">Sign Message</a>-->
-    </nav>
+    </div>
 
     <div class="page">
-        <h1>CIA Labs</h1>
-        <p class="header-description">
-            The security principles of Confidentiality, Integrity, and Availability (often referred to as the CIA Triad) helps us keep our private information safe.
-        </p>
-        <p class="header-description">
-            The links below will walk you through the basics of each of the three parts of the CIA triad by using practical examples and visualizations.
-            Understanding these different security principles allows us to carry on browsing safely. 
-        </p>
-        <a href="cia-lab-overall-diagram.html"><button type="button">Confidentiality</button></a> 
-        <br><br>
-        <button type="button" disabled>Integrity (Under Construction)</button>
-        <br><br>
-        <button type="button" disabled>Authenticity (Under Construction)</button>
+        <body>
+            <div id="container"></div>
+            <script>
+                anychart.onDocumentReady(function() {
+                    var data = [
+                        {
+                            x: "C",
+                            value: 100,
+                            name: "Confidentiality"
+                        },
+                        {
+                            x: "I",
+                            value: 100,
+                            name: "Integrity"
+                        },
+                        {
+                            x: "A",
+                            value: 100,
+                            name: "Authenticity"
+                        },
+                        {
+                            x: ["C", "A"],
+                            value: 25,
+                            name: "Confidentiatlity and Authenticity"
+                        },
+                        {
+                            x: ["C", "I"],
+                            value: 25,
+                            name: "Confidentiatlity and Integrity"
+                        },
+                        {
+                            x: ["I", "A"],
+                            value: 25,
+                            name: "Integrity and Authenticity"
+                        },
+                        {
+                            x: ["C", "I", "A"],
+                            value: 25,
+                            name: "The triad"
+                        }
+                    ];
+                    // create venn diagram
+                    var chart = anychart.venn(data);
+
+                    // set container id for the chart
+                    chart.container("container");
+
+                    // initiate chart drawing
+                    chart.draw();
+
+                    // set chart title
+                    chart.title("The CIA Triad");
+
+                    // set labels settings
+                    chart.labels().format("{%Name}");
+                });
+            </script>
+
+            <script>$(window).click(function(e) {
+                var x = e.clientX, y = e.clientY,
+                    elementMouseIsOver = document.elementFromPoint(x, y);
+                
+                //alert(elementMouseIsOver.id);
+                var elmt = elementMouseIsOver.id;
+                if(elmt == "ac_path_12"){
+                    window.location="cia-lab-overall-diagram.html";
+                }
+                else if(elmt == "ac_path_18")
+                {
+                    alert("Confidentiality and Authenticity page coming soon!")
+                }
+                else if(elmt == "ac_path_16")
+                {
+                    alert("Authenticity page coming soon!")
+                }
+                else if(elmt == "ac_path_1c")
+                {
+                    alert("Authenticity and Integrity page coming soon!")
+                }
+                else if(elmt == "ac_path_14")
+                {
+                    alert("Integrity page coming soon!")
+                }
+                else if(elmt == "ac_path_1a")
+                {
+                    alert("Confidentiality and Integrity page coming soon!")
+                }else if(elmt == "ac_path_1e")
+                {
+                    alert("Full Triad page coming soon!")
+                }
+
+            });</script>
+        </body>
+    </div>
+
+    <div class="footer">
+        Property of Bradley University. All Rights Reserved. 2023
     </div>
 </body>

@@ -2,18 +2,28 @@
     <head>
         <meta charset="utf-8" />
         <title>Lab 1: Confidentiality</title>
-        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../TestingStyles/main.css" />
+        <script type="text/javascript" src="../scripts/cShift.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
 
-    <nav>
-        <a href="cia-labs-home.html">Exit Lab</a>
-        <a href="cia-lab-overall-diagram.html">Visualizer</a>
-        <a href="cia-lab-contents.html">Explanation</a>
-        <a href="cia-lab-shift.html">Caesar Shift</a>
-    </nav>
+    <div class="topnav" id="Navbar">
+        <div class="headerBU" style="text-align: center; height: 80px;">
+            <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
+        </div>
+        <a href="../CIA-Labs/cia-labs-home.html">Exit Lab</a>
+        <a href="../CIA-Labs/cia-lab-overall-diagram.html">Visualizer</a>
+        <a href="../CIA-Labs/cia-lab-contents.html">Explanation</a>
+        <a href="../CIA-Labs/cia-lab-shift.html">Caesar Shift</a>
+    </div>
 
     <div class="page">
         <h1>CIA Lab 1: Confidentiality - Why It's Important</h1>
+        <!--
         <p class="header-description">
             What if you sat across the classroom from your friend, and you wanted to pass them a note? Would you trust the person at each desk between you and your friend not to read it?
         </p>
@@ -25,6 +35,7 @@
         <p class="header-description">
             The same is true when talking about communications over the internet. Check out the example below!
         </p>
+        --->
 
         <button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button>
         <script type="text/javascript" src="../scripts/button-helper.js"> </script>
@@ -39,8 +50,12 @@
                 If we don't encrypt our data and make it unreadable to strangers, it might be seen by the wrong people, or even tampered with by hackers.
                 One way we can encrypt a message in order to ensure its confidentiality is by utilizing the <b>Caesar Cipher</b>. 
             </p>
-            <button ><a href="cia-lab-shift.html">Next Page</a></button>
         </div>
+        <button ><a href="cia-lab-shift.html">Next Page</a></button>
     </div>
+
+    <div class="footer">
+        Property of Bradley University. All Rights Reserved. 2023
+      </div>
 </body>
 

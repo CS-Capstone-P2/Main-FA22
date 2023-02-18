@@ -80,14 +80,7 @@ footer {
 #result {
     display: none;
 }
-.col1 {
-    float: left;
-    width: 50%;
-  }
-  .col2 {
-    float: left;
-    width: 50%;
-  }
+
   .gfg {
     margin: 3%;
     position: relative;
@@ -166,3 +159,51 @@ table {
     padding: 10px;
     position:relative;
   }
+  .field > label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .page {
+    padding: 30px;
+    background-color: #333;
+  }
+ 
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+  }
+  
+  .left, .right {
+    width: 15%;
+  }
+  
+  .middle {
+    width: 45%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+  @media screen and (max-width: 1200px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  #bottom {
+    bottom: 20;
+    left: 20;
+  }
+  
