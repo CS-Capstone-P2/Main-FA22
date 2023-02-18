@@ -1,0 +1,209 @@
+* {
+    font-family: Consolas, monospace;
+}
+
+body {
+    color: #fff;
+    background-color: #252525;
+    font-size: 18px;
+    margin: 30px 30px 0;
+}
+
+.field, #button {
+    margin-bottom: 30px;
+}
+
+.field > label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.field > .download {
+    float: right;
+}
+
+input, textarea {
+    background-color: #252525;
+    width: 100%;
+    color: #fff;
+}
+
+button, input[type=file] {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #252525;
+    color: #fff;
+    cursor: pointer;
+}
+
+.header-description {
+    margin-bottom: 30px;
+}
+
+#message {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+nav {
+    background-color: #252525;
+}
+
+nav > a {
+    display: inline-block;
+    padding: 15px;
+    text-decoration: none;
+}
+
+nav > a.selected {
+    background-color: #333;
+}
+
+.page {
+    height: auto;
+    padding: 30px;
+    background-color: #333;
+}
+
+a {
+    color: #fff;
+}
+
+footer {
+    position: fixed;
+    margin: 5px;
+    bottom: 0px;
+    background-color: #252525;
+}
+
+#result {
+    display: none;
+}
+
+  .gfg {
+    margin: 3%;
+    position: relative;
+}
+
+.sender-txt {
+    position: relative;
+    top: 255px;
+    left: 245px;
+    color:black;
+}
+
+.encrypt-with-txt {
+    position: relative;
+    top: 282px;
+    left: 245px;
+    color:black;
+}
+.message-txt {
+    position: relative;
+    top: 350px;
+    left: 89px;
+    color:black;
+}
+.sending-to-txt {
+    position: relative;
+    top: 550px;
+    left: 89px;
+    color:black;
+}
+.sent-from-txt {
+    position: relative;
+    top: 450px;
+    left: 89px;
+    color:black;
+}
+.encrypted-message-txt {
+    position: relative;
+    height: auto;
+    color:black;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:disabled{
+    background-color:rgb(255, 131, 131);
+    }
+
+.hidden{ visibility: hidden; }
+.show{ visibility: visible }
+
+table {
+    border-collapse: collapse;
+    border: 1px solid rgb(193, 19, 190);
+    letter-spacing: 1px;
+    font-size: 1rem;
+    width: 900px;
+    height: 50px;
+    text-align: center;
+  }
+
+  .box {
+    height: auto;
+  }
+
+  image{
+    height:auto;
+    padding: 10px;
+    position:relative;
+  }
+  .field > label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .page {
+    padding: 30px;
+    background-color: #333;
+  }
+ 
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+  }
+  
+  .left, .right {
+    width: 15%;
+  }
+  
+  .middle {
+    width: 45%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+  @media screen and (max-width: 1200px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  #bottom {
+    bottom: 20;
+    left: 20;
+  }
+  
