@@ -85,7 +85,13 @@
               <label for="aOriginal"><strong>Original Message</strong></label>
               <input id="aOriginal" type="text" style="width:280px; border: 2px solid rgb(244, 133, 186)" readonly />
 
-            
+            </br>
+            </br>
+            </br>
+            <div>
+              <table name="cipher" id="cipherTable"></table>
+              <table name="message" id="messageTable"></table>
+            </div>
           </div>
 
           <div class="column">
@@ -163,7 +169,6 @@
               {
                   document.getElementById("info").style.color = "blue";
                   document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
-  
               }
               else
               {
@@ -172,13 +177,14 @@
                   document.getElementById("next1").style = "display:none";
                   document.getElementById("next2").style = "display:all";
                   document.getElementById('message').readOnly = true;
-  
               }
           }
   
           var stepTwo = function () 
           {
-  
+              //anim functions await their completion before continuing
+              //await 
+              //continue...
               aEncrypt.value = cShift(aOriginal.value, eKey.value);
               document.getElementById("info").style.color = "black";
               document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
@@ -224,7 +230,6 @@
               document.getElementById("arrows").src = "../images/AB_arrow_right.png";
               document.getElementById("dButton").style = "display:none";
               document.getElementById("lock").src = "../images/caeser-images/unlock.png";
-  
           }
         </script>
         
