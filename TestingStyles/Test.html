@@ -156,7 +156,7 @@
           var moveText = document.getElementById("moveText"); //The moving text
       
       
-          var start = function () {
+          var start = async function () {
   
               aOriginal.value = message.value;
               if (message.value.trim() == "")
@@ -167,23 +167,28 @@
               
               if(message.value == "")
               {
-                  document.getElementById("info").style.color = "blue";
-                  document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
+                document.getElementById("info").style.color = "blue";
+                document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
               }
               else
               {
-                  document.getElementById("info").style.color = "blue";
-                  document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
-                  document.getElementById("next1").style = "display:none";
-                  document.getElementById("next2").style = "display:all";
-                  document.getElementById('message').readOnly = true;
+                //anim functions await their completion before continuing
+                await diagramGenerateTable(aOriginal.value.toUpperCase(), "cipherTable");
+                await populateTextTable(aOriginal.value.toUpperCase(), "messageTable");
+                //continue..
+                document.getElementById("info").style.color = "blue";
+                document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
+                document.getElementById("next1").style = "display:none";
+                document.getElementById("next2").style = "display:all";
+                document.getElementById('message').readOnly = true;
               }
           }
   
-          var stepTwo = function () 
+          var stepTwo = async function () 
           {
               //anim functions await their completion before continuing
-              //await 
+              await diagramShiftAnimation(eKey.value, 100, "cipherTable");
+              await diagramEncryptAnimation (100, "cipherTable", "messageTable")
               //continue...
               aEncrypt.value = cShift(aOriginal.value, eKey.value);
               document.getElementById("info").style.color = "black";
@@ -221,9 +226,11 @@
                   
               }
           }
-          var final = function () 
+          var final = async function () 
           {
-  
+              //decrypt anim then continue...
+              await diagramEncryptAnimation (100, "cipherTable", "messageTable", true);
+              //continue...
               bDecrypt.value = aOriginal.value;
               document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
               document.getElementById("sending").style = "display:none";

@@ -25,11 +25,11 @@ var cShift = function (str, amount) {
   // Go through each character
   for (var i = 0; i < str.length; i++) {
     var c = str.charAt(i);
-    console.log("C: ", c);
+    //console.log("C: ", c);
 
     if (c.match(/[a-z]/i)) {
       var code = str.charCodeAt(i);
-      console.log("Code: ", code);
+      //console.log("Code: ", code);
       // Uppercase letters
       if (code >= 65 && code <= 90) {
         c = String.fromCharCode(((code - 65 + k) % 26) + 65);
@@ -142,7 +142,7 @@ var diagramGenerateTable = async function(plainStr, cipherTableId)
 {
   await clearTable(cipherTableId);
   // creates a <table> element and a <tbody> element
-  plainStr = tableSanitization(plainStr);
+  plainStr = removeDuplicateCharacters(plainStr);
   const tbl = document.getElementById(cipherTableId); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
   const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
 
@@ -190,26 +190,26 @@ var diagramGenerateTable = async function(plainStr, cipherTableId)
   tbl.setAttribute("border", "2");
 };
 
-var tableSanitization = function(inputStr)
+var removeDuplicateCharacters = function(str)
 {
-  temp = "";
-  for(var i = 0; i < inputStr.length; i++)
+  var arr = str.split("");
+  var outputArr = str.split("");
+  var dupes = [];
+  for(var i = 0; i < arr.length; i++)
   {
-    let bfound = false;
-    for(var j = 0; j < temp.length; j++)
+    for(var j = 0; j <= i; j++)
     {
-      if(temp[j] == inputStr[i])
+      if(arr[i] == arr[j] && i != j)
       {
-        bfound = true;
+        dupes.push(i);
       }
     }
-
-    if(bfound)
-    {
-      temp += inputStr[i];
-    }
   }
-  return temp;
+  for(var i = 0; i < dupes.length; i++)
+  {
+    outputArr = outputArr.splice(dupes[i], 1);
+  }
+  return arr.join("");
 };
 
 var clearTable = async function (tableId)
