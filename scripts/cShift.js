@@ -15,7 +15,7 @@ var cShift = function (str, amount) {
   //NOTE: and console.log() used were for me to keep track on what was happening,
   //they do not affect the code nor the user's experience
   var output = "";
-  console.log("Amount: ", amount);
+  //console.log("Amount: ", amount);
   let k = parseInt(amount); //to ensure that amount is considered a number and not a string
 
   if (k < 0) {
@@ -41,7 +41,7 @@ var cShift = function (str, amount) {
       }
     } else if (c.match(/[0-9]/i)) {
       var num = parseInt(c);
-      console.log("num: ", num);
+      //console.log("num: ", num);
       c = num + k;
       console.log("c: ", c);
     }
@@ -140,9 +140,31 @@ var diagramEncryptAnimation = async function(speed, cipherTableId, messageTableI
 
 var diagramGenerateTable = async function(plainStr, cipherTableId) 
 {
+  //clears cipher table
   await clearTable(cipherTableId);
+  //removes duplicate characters in plainStr
+  var arr = plainStr.split("");
+  var outputArr = [];
+  var dupes = [];
+  for(let i = 0; i < arr.length; i++)
+  {
+    for(let j = 0; j < i; j++)
+    {
+      if((arr[i] == arr[j]) && (i != j))
+      {
+        dupes.push(i);
+      }
+    }
+  }
+  for(let i = 0; i < arr.length; i++)
+  {
+    if(!dupes.includes(i))
+    {
+      outputArr.push(arr[i]);
+    }
+  }
+  plainStr = outputArr.join("");
   // creates a <table> element and a <tbody> element
-  plainStr = removeDuplicateCharacters(plainStr);
   const tbl = document.getElementById(cipherTableId); //gets the table existing in the HTML based off the id we assigned the table (HardCoded)
   const tblBody = document.createElement("tbody"); //creating a body element for the table that we will attach at the end of the function after it has been filled out
 
@@ -192,24 +214,7 @@ var diagramGenerateTable = async function(plainStr, cipherTableId)
 
 var removeDuplicateCharacters = function(str)
 {
-  var arr = str.split("");
-  var outputArr = str.split("");
-  var dupes = [];
-  for(var i = 0; i < arr.length; i++)
-  {
-    for(var j = 0; j <= i; j++)
-    {
-      if(arr[i] == arr[j] && i != j)
-      {
-        dupes.push(i);
-      }
-    }
-  }
-  for(var i = 0; i < dupes.length; i++)
-  {
-    outputArr = outputArr.splice(dupes[i], 1);
-  }
-  return arr.join("");
+  
 };
 
 var clearTable = async function (tableId)
