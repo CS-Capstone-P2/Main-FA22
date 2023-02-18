@@ -129,7 +129,7 @@
               <label for="bDecrypt"><strong>Decrypted Message</strong></label>
               <input id="bDecrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
-              <img src="/images/caeser-images/lock.png" width="200" height="200" id="lock" alt="lock" style="display: none; object-fit:scale-down;" class="responsive">
+              <img src="/images/caeser-images/lock.png" width="200" height="200" id="lock" alt="lock" style="display: none;">
 
             
           </div>
@@ -231,7 +231,6 @@
               //continue...
               bDecrypt.value = aOriginal.value;
               document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
-              document.getElementById("sending").style = "display:none";
               document.getElementById("arrows").src = "../images/AB_arrow_right.png";
               document.getElementById("dButton").style = "display:none";
               document.getElementById("lock").src = "../images/caeser-images/unlock.png";
