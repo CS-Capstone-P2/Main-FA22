@@ -39,7 +39,7 @@
                         {
                             x: "C",
                             value: 100,
-                            name: "Confidentiality"
+                            name: "Authenticity"
                         },
                         {
                             x: "I",
@@ -49,22 +49,22 @@
                         {
                             x: "A",
                             value: 100,
-                            name: "Authenticity"
+                            name: "Confidentiality"
                         },
                         {
                             x: ["C", "A"],
                             value: 25,
-                            name: "Confidentiatlity and Authenticity"
+                            name: " "
                         },
                         {
                             x: ["C", "I"],
                             value: 25,
-                            name: "Confidentiatlity and Integrity"
+                            name: " "
                         },
                         {
                             x: ["I", "A"],
                             value: 25,
-                            name: "Integrity and Authenticity"
+                            name: " "
                         },
                         {
                             x: ["C", "I", "A"],
@@ -97,30 +97,25 @@
                 
                 //alert(elementMouseIsOver.id);
                 var elmt = elementMouseIsOver.id;
-                if(elmt == "ac_path_12"){
-                    window.location="cia-lab-overall-diagram.html";
-                }
-                else if(elmt == "ac_path_18")
-                {
-                    alert("Confidentiality and Authenticity page coming soon!")
-                }
-                else if(elmt == "ac_path_16")
-                {
+                if(elmt == "ac_path_12"){ // left circle
                     alert("Authenticity page coming soon!")
                 }
-                else if(elmt == "ac_path_1c")
-                {
+                else if(elmt == "ac_path_18"){ // left and top circles overlap
+                    alert("Confidentiality and Authenticity page coming soon!")
+                }
+                else if(elmt == "ac_path_16"){ // top circle
+                    window.location="cia-lab-overall-diagram.html";
+                }
+                else if(elmt == "ac_path_1c"){ // right and top circles overlap
                     alert("Authenticity and Integrity page coming soon!")
                 }
-                else if(elmt == "ac_path_14")
-                {
+                else if(elmt == "ac_path_14"){ // right circle
                     alert("Integrity page coming soon!")
                 }
-                else if(elmt == "ac_path_1a")
-                {
+                else if(elmt == "ac_path_1a"){ // left and right circles overlap
                     alert("Confidentiality and Integrity page coming soon!")
-                }else if(elmt == "ac_path_1e")
-                {
+                }
+                else if(elmt == "ac_path_1e"){ // center overlap
                     alert("Full Triad page coming soon!")
                 }
 
