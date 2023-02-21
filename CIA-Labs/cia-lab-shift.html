@@ -27,9 +27,9 @@
             The Caesarian Cipher is an encryption method where you shift each character based on the given key value (Integer i.e. all Nautrual Numbers, 0, and Negative numbers).
             Let's walk through a long-form example of this shifting method then when we go to encrypt, we can scale down the explanation for this step.
         </p>
-        <button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button>
+        <!--<button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button> -->
         <script type="text/javascript" src="../scripts/button-helper.js"> </script>
-        <div id="example" class="header-description" style="visibility:hidden">
+        <div id="example" class="header-description">
             <p>
                 <!-- The Cipher Table START -->
                 <table name="cipher" id="cipherTable">
@@ -101,15 +101,10 @@
                     <input type="text" id="user-message" name="user-message" required><br><br>
                     <label for="key"> <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
                     <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" pattern="[0-9]+"/>
-                    <div>
-                        <input type="submit" value="Run Example Shift" />
-                    </div>
-                    <div>
-                        <input type="reset" value="Reset" />
-                    </div>
+                    <button type="submit" value="Run Example Shift"> Run Example Shift </button>
+                    <button type="reset" value="Reset"> Reset </button>
                       
                 </form>
-
                     <!-- Each of these 3 functions apply to reading user input for the Caesar Cipher demonstration-->
                     <script>
                         function shiftPlacement() 
