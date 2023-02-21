@@ -104,7 +104,10 @@
                 <marquee 
                     direction = "right" 
                     id = "moveText"
+                    loop = 2
                     style="width: 100%";
+                   
+                    
                     >
                 </marquee> 
               <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
@@ -221,6 +224,7 @@
                   document.getElementById("lock").style = "display:all";
                   document.getElementById("dButton").style = "display:all";
                   moveText.textContent = bEncrypt.value;
+                  moveText.start();
               }
           }
           var final = async function () 
