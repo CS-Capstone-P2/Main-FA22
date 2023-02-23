@@ -2,8 +2,8 @@
     <head>
         <meta charset="utf-8" />
         <title>Lab 1: Confidentiality</title>
-        <link rel="stylesheet" href="../styles/main.css" />
-        <script type="text/javascript" src="../scripts/cShift.js"></script>
+        <link rel="stylesheet" href="/styles/main.css" />
+        <script type="text/javascript" src="/scripts/cShift.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -37,17 +37,17 @@
                 anychart.onDocumentReady(function() {
                     var data = [
                         {
-                            x: "C",
-                            value: 100,
-                            name: "Authenticity"
-                        },
-                        {
                             x: "I",
                             value: 100,
                             name: "Integrity"
                         },
                         {
                             x: "A",
+                            value: 100,
+                            name: "Authenticity"
+                        },
+                        {
+                            x: "C",
                             value: 100,
                             name: "Confidentiality"
                         },
@@ -98,19 +98,21 @@
                 //alert(elementMouseIsOver.id);
                 var elmt = elementMouseIsOver.id;
                 if(elmt == "ac_path_12"){ // left circle
-                    alert("Authenticity page coming soon!")
+                    //alert("Integrity page coming soon!")
+                    window.location="/integrity-lab/integrity-lab-visualizer.html";
                 }
                 else if(elmt == "ac_path_18"){ // left and top circles overlap
                     alert("Confidentiality and Authenticity page coming soon!")
                 }
                 else if(elmt == "ac_path_16"){ // top circle
-                    window.location="cia-lab-overall-diagram.html";
+                    //alert("Confidentiality page coming soon!")
+                    window.location="/confidentiality-lab/confidentiality-lab-visualizer.html";
                 }
                 else if(elmt == "ac_path_1c"){ // right and top circles overlap
-                    alert("Authenticity and Integrity page coming soon!")
+                    alert("Integrity and Authenticity page coming soon!")
                 }
                 else if(elmt == "ac_path_14"){ // right circle
-                    alert("Integrity page coming soon!")
+                    alert("Authenticity page coming soon!")
                 }
                 else if(elmt == "ac_path_1a"){ // left and right circles overlap
                     alert("Confidentiality and Integrity page coming soon!")
