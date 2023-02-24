@@ -21,7 +21,7 @@
         <a href="../confidentiality-lab/confidentiality-lab-shift.html">Caesar Shift</a>
     </div>
 
-    <div class="page" style="text-align: center; padding-left: 20px;">
+    <div class="page" style="text-align: center; font-size: 20px; padding-left: 20px;">
         <h1>CIA Lab 1: Confidentiality - Caesarian Shift Basics</h1>
         <p class="header-description">
             The Caesarian Cipher is an encryption method where you shift each character based on the given key value (Integer i.e. all Nautrual Numbers, 0, and Negative numbers).
@@ -29,10 +29,10 @@
         </p>
         <!--<button id="visibility" onclick="toggleVisibility('example', 'visibility', false);">Show Example</button> -->
         <script type="text/javascript" src="../scripts/button-helper.js"> </script>
-        <div id="example" class="header-description">
+        <div id="example" class="header-description" >
             <p>
                 <!-- The Cipher Table START -->
-                <table name="cipher" id="cipherTable">
+                <table  name="cipher" id="cipherTable" style = "font-size: 25">
                 </table>
                 <!-- The Cipher Table's Script to Initialize it. -->
                 <script>
@@ -88,9 +88,9 @@
                     })();
                 </script>
                 <!-- Cipher Table END -->
-                <p></p>
+                <p style="text-align: center;"></p>
                 <!-- Message Table Start -->
-                <table name="message" id="messageTable">
+                <table style = "font-size: 25; text-align: center;" name="message" id="messageTable">
                 </table>
                 <!-- Message Table END-->
             </p>
@@ -98,10 +98,13 @@
                 <strong>x2 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
 
                 <form action="javascript:runShiftAsyncButton('visibility2', shiftPlacement(), speedCheckbox(), inputMessage())" id = "userForm">
+                    <br>
                     <label for="user-message"><strong>Input Message to Encrypt:</strong></label>
-                    <input type="text" id="user-message" name="user-message" required><br><br>
+                    <input style="width: 25%; font-size: 16;" type="text" id="user-message" name="user-message" required><br><br>
                     <label for="key"> <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
-                    <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" pattern="[0-9]+"/>
+                    <input style="width: 3%; font-size: 16;" id="key" type="number" placeholder="0" value="0" max="26" min="-26" pattern="[0-9]+"/>
+                    <br>
+                    <br>
                     <button type="submit" value="Run Example Shift"> Run Example Shift </button>
                     <button type="reset" value="Reset"> Reset </button>
                       

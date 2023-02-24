@@ -190,7 +190,5 @@ button, input[type=file] {
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
+  padding: 2px;
 }
