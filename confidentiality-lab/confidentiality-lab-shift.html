@@ -32,7 +32,7 @@
         <div id="example" class="header-description" >
             <p>
                 <!-- The Cipher Table START -->
-                <table  name="cipher" id="cipherTable" style = "font-size: 25">
+                <table  name="cipher" id="cipherTable" style = "font-size: 25" >
                 </table>
                 <!-- The Cipher Table's Script to Initialize it. -->
                 <script>
@@ -95,14 +95,16 @@
                 <!-- Message Table END-->
             </p>
             <script src="../scripts/caesar-shift.js"> </script>
-                <strong>x2 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
 
                 <form action="javascript:runShiftAsyncButton('visibility2', shiftPlacement(), speedCheckbox(), inputMessage())" id = "userForm">
                     <br>
                     <label for="user-message"><strong>Input Message to Encrypt:</strong></label>
-                    <input style="width: 25%; font-size: 16;" type="text" id="user-message" name="user-message" required><br><br>
+                    <input style="width: 25%; font-size: 16;" type="text" id="user-message" name="user-message" required><br>
                     <label for="key"> <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
                     <input style="width: 3%; font-size: 16;" id="key" type="number" placeholder="0" value="0" max="26" min="-26" pattern="[0-9]+"/>
+                    <br>
+                    <br>
+                    <strong>x2 Speed: </strong><input type="checkbox" id="myCheck" width=auto>
                     <br>
                     <br>
                     <button type="submit" value="Run Example Shift"> Run Example Shift </button>
