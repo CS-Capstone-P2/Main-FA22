@@ -17,14 +17,14 @@
           <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
         </div>
         <a href="../cia-labs-home.html">CIA Lab Home</a>
-        <a href="../confidentiality-lab/confidentiality-lab-visualizer.html">Visualizer</a>
-        <a href="../confidentiality-lab/confidentiality-lab-explanation.html">Explanation</a>
+        <a href="../confidentiality-lab/confidentiality-lab-visualizer.html">Confidentiality</a>
+        <a href="../confidentiality-lab/confidentiality-lab-explanation.html">Background</a>
         <a href="../confidentiality-lab/confidentiality-lab-shift.html">Caesar Shift</a>
       </div>
       
     
         <div class="header">
-          <h1 style="font-size: 45;">CIA Lab 1: Confidentiality - Try it out</h1>
+          <!-- <h1 style="font-size: 45;">CIA Lab 1: Confidentiality - Try it out</h1> -->
           <!---
           <p class="description">
             Sometimes encryption and decryption are easier to understand through
@@ -35,20 +35,20 @@
 
 
           <span>
-            <p id="info" class="box" style="font-size: 18;" readonly>
+            <p id="info" class="box" style="font-size: 20;" readonly>
               Type in a message below and click next to learn how to safely send a message.
             </p>
           </span>  
         
         <div class="header">
           <div>
-            <label style="font-size: 18;" for="message"><strong>Message to Encrypt</strong></label>
+            <label style="font-size: 20;" for="message"><strong>Message to Encrypt</strong></label>
             <input id="message" type="text" placeholder="Insert your message here!" onsubmit="return this.value"
               style="width: 350px;" />
           </div>
           <label for="key">
             <br /><strong>Caesar Cipher Key (Number of places to shift)</strong></label>
-          <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" style="width: 100px;" />
+          <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" style="width: 100px; font-size: 20px;" />
         
           <div class="field">
             <!--BUTTONS-->
@@ -69,16 +69,16 @@
               <!-- <img src="../images/caeser-images/alice.png" width="200" height="180">
                --><br />
               <div>
-                <label style="font-size: 18;" for="aEncrypt"><strong>Encrypted Message</strong></label>
-                <input id="aEncrypt" type="text" style="width:280px; border: 2px solid rgb(244, 133, 186);" readonly />
+                <label style="font-size: 20;" for="aEncrypt"><strong>Encrypted Message</strong></label>
+                <input id="aEncrypt" type="text" style="width:280px; font-size: 20px; border: 2px solid rgb(244, 133, 186);" readonly />
               </div>
 
               </br>
               </br>
               </br>
               
-              <label style="font-size: 18;" for="aOriginal"><strong>Original Message</strong></label>
-              <input id="aOriginal" type="text" style="width:280px; border: 2px solid rgb(244, 133, 186)" readonly />
+              <label style="font-size: 20;" for="aOriginal"><strong>Original Message</strong></label>
+              <input id="aOriginal" type="text" style="width:280px; font-size: 20px; border: 2px solid rgb(244, 133, 186)" readonly />
 
             </br>
             </br>
@@ -100,14 +100,13 @@
                     direction = "right" 
                     id = "moveText"
                     loop = 2
-                    style="width: 100%";
-                   
+                    style="width: 100%; font-size: 20px;"
                     
                     >
                 </marquee> 
               <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
               <!-- <img src="../images/caeser-images/hacker_og.png" width="200" height="180">-->
-              <input style="font-size: 14; width: 50%;" id="hEncrypt" type="text" style="width:280px; border: 2px solid rgb(48, 71, 66)" readonly />
+              <input style="font-size: 20; width: 50%;" id="hEncrypt" type="text" style="width:280px; border: 2px solid rgb(48, 71, 66)" readonly />
 
               <img src="/images/Rats-Small.png" id="rats" alt="rats" style="display: none; object-fit:scale-down; "> 
           </div>
@@ -118,14 +117,14 @@
               <h5>Recipient</h5>
               <!-- <img src="../images/caeser-images/bob.png" width="200" height="180">
                -->
-              <label style="font-size: 16;" for="bEncrypt"><strong>Encrypted Message</strong></label>
-              <input id="bEncrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255);" readonly />
+              <label style="font-size: 20;" for="bEncrypt"><strong>Encrypted Message</strong></label>
+              <input id="bEncrypt" type="text" style="width:280px; font-size: 20px; border: 2px solid rgb(127, 164, 255);" readonly />
               <br>
               <br>
               <br>
               <br>
-              <label style="font-size: 18;" for="bDecrypt"><strong>Decrypted Message</strong></label>
-              <input id="bDecrypt" type="text" style="width:280px; border: 2px solid rgb(127, 164, 255)" readonly />
+              <label style="font-size: 20;" for="bDecrypt"><strong>Decrypted Message</strong></label>
+              <input id="bDecrypt" type="text" style="width:280px; font-size: 20px; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
               <img src="/images/caeser-images/lock.png" width="200" height="200" id="lock" alt="lock" style="display: none;">
 
