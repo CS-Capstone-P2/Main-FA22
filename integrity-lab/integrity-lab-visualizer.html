@@ -22,7 +22,6 @@
       
     
         <div class="header">
-          <h1>CIA Lab 2: Integrity - Try it out</h1>
           <!---
           <p class="description">
             Sometimes encryption and decryption are easier to understand through
@@ -158,7 +157,7 @@
           var SecretMessage = document.getElementById("SecretMessage"); 
           var Hashed = document.getElementById("Hashed"); 
           var Result = document.getElementById("Result"); 
-          var concatination = ""; 
+          var concatination = "Test"; 
           var moveText = document.getElementById("moveText"); 
       
       
@@ -174,9 +173,10 @@
               else
               {
                 document.getElementById("next1").style = "display:none";
-                
-             
-                Explain.value = Ssercet.value + Umessage.value;
+                concatination = Ssercet.value + Umessage.value;
+                Explain.value = "This is our message with the shared secret: " + concatination;
+                console.log(concatination);
+                document.getElementById("next2").style = "display:all";
                 
               }
           }
@@ -184,13 +184,9 @@
           var stepTwo = async function () 
           {
             document.getElementById("next2").style = "display:none";
-            //anim functions await their completion before continuing
-            await diagramShiftAnimation(eKey.value, 100, "cipherTable");
-            await diagramEncryptAnimation (100, "cipherTable", "messageTable")
-            //continue...
-            aEncrypt.value = cShift(aOriginal.value, eKey.value);
-            document.getElementById("info").style.color = "black";
-            document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
+            Hmessage.value = hashingFunction(concatination);
+            Explain.value = "Now we take our combined message and use modulo to get our hash. We do this by: " + concatination + " % 11 = " + Hmessage.value;
+
             document.getElementById("next3").style = "display:all";
   
           }
