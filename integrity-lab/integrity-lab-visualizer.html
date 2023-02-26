@@ -44,9 +44,10 @@
             <input id="message" type="text" placeholder="Insert your message here!" onsubmit="return this.value"
               style="width: 250px;" />
           </div>
-          <label for="key">
+          <label for="mainSecret">
             <br /><strong>Shared Secret</strong></label>
-          <input id="key" type="number" placeholder="0" value="0" max="26" min="-26" style="width: 100px;" />
+          <input id="mainSecret" type="text" placeholder="Insert your secret value" onsubmit="return this.value"  
+            style="width: 200px;" />
           <br>
           <br>
         
@@ -83,7 +84,7 @@
               <br>
               <br>
               
-              <input id="Explain"  placeholder="Explaination" type="text" style="width:80%; height: 150px; text-align: center; border: 2px solid rgb(244, 133, 186)" readonly />
+              <input id="Explain"  placeholder="Explaination" type="text" style="width:80%; height: 150px; text-align: center; border: 2px solid rgb(244, 133, 186)"  readonly />
           </div>
 
           <div class="column">
@@ -142,46 +143,41 @@
           </div>
         
         
-          <script type="text/javascript" src="../scripts/cShift.js"></script>
+          <script type="text/javascript" src="../scripts/hashing.js"></script>
           <script>
          
-  var next = document.getElementById("next"); //Next button
-          var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box for alice
-          var aOriginal = document.getElementById("aOriginal"); // OG Alice text
-          var bEncrypt = document.getElementById("bEncrypt"); //Encrypted Message text box for bob
-          var bDecrypt = document.getElementById("bDecrypt"); //uncrypted Message text box for bob
-          var hEncrypt = document.getElementById("hEncrypt"); //Encrypted Message text box for hacker
-          var message = document.getElementById("message"); //Message to Encrypt text box
-          var eKey = document.getElementById("key"); //number of places to shift
-          var aOutput = ""; //final encrypted message goes here
-          var moveText = document.getElementById("moveText"); //The moving text
+  var next = document.getElementById("next"); 
+          var message = document.getElementById("message"); 
+          var mainSecret = document.getElementById("mainSecret"); 
+          var Umessage = document.getElementById("Umessage"); 
+          var Ssercet = document.getElementById("Ssercet"); 
+          var Hmessage = document.getElementById("Hmessage"); 
+          var Explain = document.getElementById("Explain"); 
+          var HHmessage = document.getElementById("HHmessage"); 
+          var Bhash = document.getElementById("Bhash"); 
+          var SecretMessage = document.getElementById("SecretMessage"); 
+          var Hashed = document.getElementById("Hashed"); 
+          var Result = document.getElementById("Result"); 
+          var concatination = ""; 
+          var moveText = document.getElementById("moveText"); 
       
       
           var start = async function () {
   
-              aOriginal.value = message.value;
+              Umessage.value = message.value;
+              Ssercet.value = mainSecret.value;
               if (message.value.trim() == "")
               {
-                alert("The inputted message is only spaces!");
+                alert("The inputted message is blank!");
                 return -1;
-              }
-              
-              if(message.value == "")
-              {
-                document.getElementById("info").style.color = "blue";
-                document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
               }
               else
               {
                 document.getElementById("next1").style = "display:none";
-                //anim functions await their completion before continuing
-                await diagramGenerateTable(aOriginal.value.toUpperCase(), "cipherTable");
-                await populateTextTable(aOriginal.value.toUpperCase(), "messageTable");
-                //continue..
-                document.getElementById("info").style.color = "blue";
-                document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
-                document.getElementById("next2").style = "display:all";
-                document.getElementById('message').readOnly = true;
+                
+             
+                Explain.value = Ssercet.value + Umessage.value;
+                
               }
           }
   
