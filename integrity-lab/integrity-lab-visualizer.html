@@ -161,7 +161,7 @@
           var SecretMessage = document.getElementById("SecretMessage"); 
           var Hashed = document.getElementById("Hashed"); 
           var Result = document.getElementById("Result"); 
-          var concatination = "Test"; 
+          var concat = "Test"; 
           var moveText = document.getElementById("moveText"); 
       
       
@@ -177,19 +177,20 @@
               else
               {
                 document.getElementById("next1").style = "display:none";
-                concatination = Ssercet.value + Umessage.value;
-                Explain.value = "This is our message with the shared secret: " + concatination;
-                console.log(concatination);
+                concat = Ssercet.value + Umessage.value;
+                Explain.value = "This is our message with the shared secret: " + concat;
+                console.log(concat);
                 document.getElementById("next2").style = "display:all";
                 
               }
           }
   
-          var stepTwo = async function () 
+          var stepTwo = async function()
           {
             document.getElementById("next2").style = "display:none";
-            Hmessage.value = hashingFunction(concatination);
-            Explain.value = "Now we take our combined message and use modulo to get our hash. We do this by: " + concatination + " % 11 = " + Hmessage.value;
+            let arr = arrConcat(Ssercet.value, Umessage.value);
+            Hmessage.value = hashingFunction(arr);
+            Explain.value = "Now we take our combined message and use modulo to get our hash. We do this by: " + concat + " % 13 = " + Hmessage.value;
 
             document.getElementById("next3").style = "display:all";
   

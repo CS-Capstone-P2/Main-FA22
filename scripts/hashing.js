@@ -1,4 +1,4 @@
-var concatination = function(S, M){
+var arrConcat = function(S, M){
     const concat = [S, M];
     return concat;
 }
