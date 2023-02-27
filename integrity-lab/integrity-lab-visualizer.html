@@ -41,7 +41,7 @@
           <div>
             <label for="message"><strong>Message to Hash</strong></label>
             <input id="message" type="text" placeholder="Insert your message here!" onsubmit="return this.value"
-              style="width: 250px;" />
+              style="width: 250px; font-size: 16;" />
           </div>
           <label for="mainSecret">
             <br /><strong>Shared Secret</strong></label>
@@ -55,7 +55,10 @@
             <button id="next1" onclick="start()">Next</button>
             <button id="next2" style="display: none;" onclick="stepTwo()">Next</button>
             <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
-            <button id="dButton" style="display: none;" onclick="final()">Decrypt</button>
+            <button id="next4" style="display: none;" onclick="stepFour()">Next</button>
+            <button id="next5" style="display: none;" onclick="stepFive()">Next</button>
+            <button id="next6" style="display: none;" onclick="stepSix()">Next</button>
+            <button id="final" style="display: none;" onclick="final()">Decrypt</button>
             <button id="reset2" onclick="window.location.href = window.location.href;">Reset</button>
             <input type="checkbox" id="hacking" name="hacking" value="hacking">
             <label for="hacking"> Enable Hacking</label>
@@ -153,6 +156,7 @@
           var Hmessage = document.getElementById("Hmessage"); 
           var Explain = document.getElementById("Explain"); 
           var HHmessage = document.getElementById("HHmessage"); 
+          var BHmessage = document.getElementById("BHmessage");
           var Bhash = document.getElementById("Bhash"); 
           var SecretMessage = document.getElementById("SecretMessage"); 
           var Hashed = document.getElementById("Hashed"); 
@@ -190,43 +194,53 @@
             document.getElementById("next3").style = "display:all";
   
           }
+          
           var stepThree = function () 
           {
-              if(eKey.value % 26 == "0")
-              {
-                  document.getElementById("info").style.color = "red";
-                  document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
-                  document.body.style.backgroundColor = "red";
-                  document.getElementById("arrows").src = "../images/caeser-images/hacker_og.png";
-                  bEncrypt.value = aOriginal.value;
-                  hEncrypt.value = aOriginal.value;
-              }
-              else
-              {
-                  aEncrypt.value = cShift(aOriginal.value, eKey.value);
-                  document.body.style.backgroundColor = "white";
-                  document.getElementById("info").style.color = "black";
-                  document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
-                  bEncrypt.value = aEncrypt.value;
-                  hEncrypt.value = aEncrypt.value;
-                  document.getElementById("next3").style = "display:none";
-                  document.getElementById("arrows").src = "../images/Arrow_gif.gif";
-                  document.getElementById("lock").style = "display:all";
-                  document.getElementById("dButton").style = "display:all";
-                  moveText.textContent = bEncrypt.value;
-                  moveText.start();
-              }
+            document.getElementById("next3").style = "display:none";  
+            BHmessage.value = Hmessage.value;
+            document.getElementById("next4").style = "display:all";
+
           }
+          
+          var stepFour = function () 
+          {
+            document.getElementById("next4").style = "display:none";  
+            BHmessage.value = Hmessage.value;
+            
+            
+            
+            document.getElementById("next5").style = "display:all";
+
+          }
+
+          var stepFive = function () 
+          {
+            document.getElementById("next5").style = "display:none";  
+            
+            
+            
+            
+            document.getElementById("next6").style = "display:all";
+
+          }
+          
+          var stepSix = function () 
+          {
+            document.getElementById("next5").style = "display:none";  
+            
+            
+            
+            
+            document.getElementById("final").style = "display:all";
+
+          }
+          
+          
           var final = async function () 
           {
-            document.getElementById("dButton").style = "display:none";
-            //decrypt anim then continue...
-            await diagramEncryptAnimation (100, "cipherTable", "messageTable", true);
-            //continue...
-            bDecrypt.value = aOriginal.value;
-            document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
-            document.getElementById("arrows").src = "../images/AB_arrow_right.png";
-            document.getElementById("lock").src = "../images/caeser-images/unlock.png";
+            document.getElementById("final").style = "display:none";
+            
           }
         </script>
         
