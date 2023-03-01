@@ -247,7 +247,7 @@
               document.getElementById("next4").style = "display:none";  
               Bhash.value = temp;
               Bmessage.value = 8675309;
-              concat.value = Ssercet.value + Bmessage.value;
+              concat = Ssercet.value + Bmessage.value;
               Explain.value = "FILL IN";
               document.getElementById("next5").style = "display:all";
             }
@@ -273,6 +273,7 @@
           var stepSix = function () 
           {
             document.getElementById("next6").style = "display:none";  
+            concat.value = Ssercet.value + Bmessage.value;
             concat = concat % 13;
             if (hashingFunction(concat) == Bhash.value)
             {
