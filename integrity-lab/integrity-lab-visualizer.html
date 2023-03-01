@@ -248,7 +248,7 @@
               Bhash.value = temp;
               Bmessage.value = 8675309;
               concat = Ssercet.value + Bmessage.value;
-              Explain.value = "FILL IN";
+              Explain.value = "The recieved message is separated from the hash value.";
               document.getElementById("next5").style = "display:all";
             }
             else
@@ -256,7 +256,7 @@
               document.getElementById("next4").style = "display:none";  
               Bhash.value = temp;
               Bmessage.value = Umessage.value;
-              Explain.value = "FILL IN";
+              Explain.value = "The recieved message is separated from the hash value.";
               document.getElementById("next5").style = "display:all";
             }            
           }
@@ -266,7 +266,7 @@
             document.getElementById("next5").style = "display:none";  
             SecretMessage.value = Ssercet.value;
             Hashed.value = concat;
-            Explain.value = "FILL IN";
+            Explain.value = "The shared secret is concatonated to the front of the received message.";
             document.getElementById("next6").style = "display:all";
           }
           
@@ -278,13 +278,21 @@
             if (hashingFunction(concat) == Bhash.value)
             {
               Result.value = Bhash.value + " = " + concat;
-              Explain.value = "FILL IN";
+              if (hacked == true)
+              {
+                Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, so it seems like the correct message. The hacker got lucky faking the message and happened to have the correct hash.";
+              }
+              else
+              {
+                Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, thus this is the correct message.";
+              }
+              
               document.getElementById("final").style = "display:all";
             }
             else
             {
               Result.value = Bhash.value + " != " + concat;
-              Explain.value = "FILL IN";
+              Explain.value = "The hashed value of the concatonated message is " + concat + " which is not equal to the hash of the message received, thus this message is a fake.";
               document.getElementById("final").style = "display:all";
             }
           }
