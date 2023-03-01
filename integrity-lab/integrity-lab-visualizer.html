@@ -17,7 +17,7 @@
           <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
         </div>
         <a href="../cia-labs-home.html">CIA Lab Home</a>
-        <a href="../integrity-lab/integrity-lab-visualizer.html">Visualizer</a>
+        <a href="../integrity-lab/integrity-lab-visualizer.html">Integrity</a>
       </div>
       
     
@@ -39,15 +39,14 @@
         
         <div class="header">
           <div>
-            <label for="message"><strong>Message to Hash</strong></label>
+            <label for="message" style="font-size: 18px;"><strong>Message to Hash</strong></label>
             <input id="message" type="text" placeholder="Insert your message here!" onsubmit="return this.value"
-              style="width: 250px; font-size: 16;" />
+              style="width: 250px; font-size: 15;" />
+              <br>
+            <label for="mainSecret" style="font-size: 18px; "><strong>Shared Secret</strong></label>
+            <input id="mainSecret" type="text" placeholder="Insert your secret value" onsubmit="return this.value"  
+            style="width: 200px; font-size: 15; margin-left: 15px;"/>
           </div>
-          <label for="mainSecret">
-            <br /><strong>Shared Secret</strong></label>
-          <input id="mainSecret" type="text" placeholder="Insert your secret value" onsubmit="return this.value"  
-            style="width: 200px;" />
-          <br>
           <br>
         
           <div class="field">
@@ -60,8 +59,8 @@
             <button id="next6" style="display: none;" onclick="stepSix()">Next</button>
             <button id="final" style="display: none;" onclick="final()">Decrypt</button>
             <button id="reset2" onclick="window.location.href = window.location.href;">Reset</button>
-            <input type="checkbox" id="hacking" name="hacking" value="hacking">
-            <label for="hacking"> Enable Hacking</label>
+            <input type="checkbox" id="hacking" name="hacking" value="hacking" >
+            <label for="hacking" style="font-size: 14;"> Enable Hacking</label>
           </div>
 
         </div>
@@ -86,8 +85,9 @@
               <br>
               <br>
               
-              <input id="Explain"  placeholder="Explaination" type="text" style="width:80%; height: 150px; text-align: center; border: 2px solid rgb(244, 133, 186)"  readonly />
-          </div>
+              <!-- <input id="Explain"  placeholder="Explanation" type="text" style="width:80%; height: 150px; text-align: center; border: 2px solid rgb(244, 133, 186)"  readonly />
+               --><textarea id="Explain" placeholder="Explanation" style="width: 80%; height: 120px; text-align: center; border: 2px solid rgb(244, 133, 186); resize: none;" readonly ></textarea>
+            </div>
 
           <div class="column">
             
@@ -101,13 +101,12 @@
                     id = "moveText"
                     loop = 2
                     style="width: 100%";
-                   
-                    
                     >
                 </marquee> 
+
               <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
               <!-- <img src="../images/caeser-images/hacker_og.png" width="200" height="180">-->
-              <input placeholder="Hashed Message" id="HHmessage" type="text" style="width:280px; text-align: center; border: 2px solid rgb(48, 71, 66)" readonly />
+              <input placeholder="Hashed Message" id="HHmessage" type="text" style="width:280px; text-align: center; border: 2px solid rgb(48, 71, 66);" readonly />
 
               <img src="/images/Rats-Small.png" id="rats" alt="rats" style="display: none; object-fit:scale-down; "> 
           </div>
@@ -179,7 +178,7 @@
               {
                 document.getElementById("next1").style = "display:none";
                 concat = Ssercet.value + Umessage.value;
-                Explain.value = "This is our message with the shared secret: " + concat;
+                Explain.value = "This is our shared secret and message combined:\n" + concat;
                 console.log(concat);
                 document.getElementById("next2").style = "display:all";
                 
@@ -192,7 +191,7 @@
             let arr = arrConcat(Ssercet.value, Umessage.value);
             Hmessage.value = hashingFunction(arr);
             temp = arr[0];
-            Explain.value = "Now we take our combined message and use modulo to get our hash. We do this by: " + concat + " % 13 = " + Hmessage.value;
+            Explain.value = "Now we take our combined message and use modulo to get our hash.\nWe do this by: " + concat + " % 13 = " + Hmessage.value;
 
             document.getElementById("next3").style = "display:all";
   
@@ -202,7 +201,7 @@
           {
             document.getElementById("next3").style = "display:none";  
             BHmessage.value = Hmessage.value;
-            Explain.value = "Now we send our Hash and Hashed Message to the receiver.";
+            Explain.value = "Now we send our hash and message to the recipient.";
             document.getElementById("next4").style = "display:all";
 
           }
