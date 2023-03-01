@@ -176,6 +176,23 @@
               }
               else
               {
+                // Checks to see if both the Message & Secret are numbers
+                for(let i = 0; i < message.value.length; i++)
+                {
+                  if (message.value.charCodeAt(i) < 48 || message.value.charCodeAt(i) > 57)
+                  {
+                    alert("The inputted message contains non-numbers!");
+                    return -1;
+                  }
+                }
+                for(let j = 0; j < mainSecret.value.length; j++)
+                {
+                  if (mainSecret.value.charCodeAt(j) < 48 || mainSecret.value.charCodeAt(j) > 57)
+                  {
+                    alert("The inputted message contains non-numbers!");
+                    return -1;
+                  }
+                }
                 document.getElementById("next1").style = "display:none";
                 concat = Ssercet.value + Umessage.value;
                 Explain.value = "This is our shared secret and message combined:\n" + concat;
