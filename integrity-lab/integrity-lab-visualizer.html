@@ -163,6 +163,7 @@
           var temp = "Test"; 
           var temp2 = "Test"; 
           var moveText = document.getElementById("moveText"); 
+          let hacked = hacking.checked;
       
       
           var start = async function () {
@@ -217,21 +218,47 @@
           
           var stepThree = function () 
           {
-            document.getElementById("next3").style = "display:none";  
-            BHmessage.value = Hmessage.value;
-            Explain.value = "Now we send our hash and message to the recipient.";
-            document.getElementById("next4").style = "display:all";
-
+            if (hacking.checked == true)
+            {
+              hacked = true;
+              document.getElementById("next3").style = "display:none";  
+              let arrHack = arrConcat(35, 8675309);
+              hashingFunction(arrHack);
+              HHmessage.value = "Hash: " + arrHack[0] + " Message: " + arrHack[1];
+              BHmessage.value = HHmessage.value;
+              temp = arrHack[0];
+              Explain.value = "Now we send our hash and message to the recipient; however, it has been intercepted by a hacker!";
+              document.getElementById("next4").style = "display:all";
+            }
+            else
+            {
+              hacked = false;
+              document.getElementById("next3").style = "display:none";  
+              BHmessage.value = Hmessage.value;
+              Explain.value = "Now we send our hash and message to the recipient.";
+              document.getElementById("next4").style = "display:all";
+            }
           }
           
           var stepFour = function () 
           {
-            document.getElementById("next4").style = "display:none";  
-            Bhash.value = temp;
-            Bmessage.value = Umessage.value;
-            Explain.value = "FILL IN";
-            document.getElementById("next5").style = "display:all";
-
+            if (hacked == true)
+            {
+              document.getElementById("next4").style = "display:none";  
+              Bhash.value = temp;
+              Bmessage.value = 8675309;
+              concat = Ssercet.value + Bmessage.value;
+              Explain.value = "FILL IN";
+              document.getElementById("next5").style = "display:all";
+            }
+            else
+            {
+              document.getElementById("next4").style = "display:none";  
+              Bhash.value = temp;
+              Bmessage.value = Umessage.value;
+              Explain.value = "FILL IN";
+              document.getElementById("next5").style = "display:all";
+            }            
           }
 
           var stepFive = function () 
@@ -240,21 +267,25 @@
             SecretMessage.value = Ssercet.value;
             Hashed.value = concat;
             Explain.value = "FILL IN";
-            
             document.getElementById("next6").style = "display:all";
-
           }
           
           var stepSix = function () 
           {
             document.getElementById("next6").style = "display:none";  
-            
-            
-            Result.value = concat + " = " + concat;
-            
-            document.getElementById("final").style = "display:all";
-            
-
+            concat = concat % 13;
+            if (hashingFunction(concat) == Bhash.value)
+            {
+              Result.value = Bhash.value + " = " + concat;
+              Explain.value = "FILL IN";
+              document.getElementById("final").style = "display:all";
+            }
+            else
+            {
+              Result.value = Bhash.value + " != " + concat;
+              Explain.value = "FILL IN";
+              document.getElementById("final").style = "display:all";
+            }
           }
           
 
