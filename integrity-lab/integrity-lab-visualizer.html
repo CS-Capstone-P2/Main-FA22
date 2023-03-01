@@ -57,7 +57,6 @@
             <button id="next4" style="display: none;" onclick="stepFour()">Next</button>
             <button id="next5" style="display: none;" onclick="stepFive()">Next</button>
             <button id="next6" style="display: none;" onclick="stepSix()">Next</button>
-            <button id="final" style="display: none;" onclick="final()">Decrypt</button>
             <button id="reset2" onclick="window.location.href = window.location.href;">Reset</button>
             <input type="checkbox" id="hacking" name="hacking" value="hacking" >
             <label for="hacking" style="font-size: 14;"> Enable Hacking</label>
@@ -162,6 +161,7 @@
           var Result = document.getElementById("Result"); 
           var concat = "Test"; 
           var temp = "Test"; 
+          var temp2 = "Test"; 
           var moveText = document.getElementById("moveText"); 
       
       
@@ -206,9 +206,10 @@
           {
             document.getElementById("next2").style = "display:none";
             let arr = arrConcat(Ssercet.value, Umessage.value);
-            Hmessage.value = hashingFunction(arr);
+            hashingFunction(arr);
+            Hmessage.value =  "Hash: " + arr[0] + " Message: " + arr[1];
             temp = arr[0];
-            Explain.value = "Now we take our combined message and use modulo to get our hash.\nWe do this by: " + concat + " % 13 = " + Hmessage.value;
+            Explain.value = "Now we take our combined message and use modulo to get our hash.\nWe do this by: " + concat + " % 13 = " + arr[0];
 
             document.getElementById("next3").style = "display:all";
   
@@ -256,12 +257,8 @@
 
           }
           
-          
-          var final = async function () 
-          {
-            document.getElementById("final").style = "display:none";
-            
-          }
+
+        
         </script>
         
     <script>
