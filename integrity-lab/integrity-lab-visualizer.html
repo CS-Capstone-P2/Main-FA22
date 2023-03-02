@@ -56,6 +56,7 @@
             <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
             <button id="next4" style="display: none;" onclick="stepFour()">Next</button>
             <button id="next5" style="display: none;" onclick="stepFive()">Next</button>
+            <button id="next5.5" style="display: none;" onclick="stepFiveHalf()">Next</button>
             <button id="next6" style="display: none;" onclick="stepSix()">Next</button>
             <button id="reset2" onclick="window.location.href = window.location.href;">Reset</button>
             <input type="checkbox" id="hacking" name="hacking" value="hacking" >
@@ -97,7 +98,6 @@
                     direction = "right" 
                     id = "moveText"
                     loop = 2
-                    style="width: 100%";
                     style="width: 100%; font-size: 20px; color:blue;"
                     >
                 </marquee> 
@@ -122,11 +122,11 @@
                 <input id="Bhash" placeholder="Hash" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
             </br>
-                <input id="SecretMessage" placeholder="Secret Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
+                <input id="SecretMessage" placeholder="Secret + Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
                 <!-- <input id="Hashed" placeholder="Hashed" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly /> -->
               </br>
               <br>
-              <input id="Hashed" placeholder="Hashed" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
+              <input id="Hashed" placeholder="Hash" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
               <br>
             </br>
                <input id="Result" placeholder="Result" type="text" style="width:80%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
@@ -211,7 +211,8 @@
             let arr = arrConcat(Ssercet.value, Umessage.value);
             hashingFunction(arr);
             Hmessage.value =  "Hash: " + arr[0] + " Message: " + arr[1];
-            temp = "Hash: " + arr[0] + " Message: " + arr[1];
+            temp = arr[0]
+            temp2 = "Hash: " + arr[0] + " Message: " + arr[1];
             Explain.value = "Now we take our combined message and use modulo to get our hash.\nWe do this by: " + concat + " % 13 = " + arr[0];
 
             document.getElementById("next3").style = "display:all";
@@ -228,10 +229,11 @@
               hashingFunction(arrHack);
               HHmessage.value = "Hash: " + arrHack[0] + " Message: " + arrHack[1];
               BHmessage.value = HHmessage.value;
-              temp = arrHack[0];
+              temp2 = arrHack[0];
               Explain.value = "Now we send our hash and message to the recipient; however, it has been intercepted by a hacker!";
               document.getElementById("next4").style = "display:all";
-              moveText.textContent = temp + ", 8675309";
+              document.getElementById("moveText").style = "color:red";
+              moveText.textContent = temp2 + ", 8675309";
               moveText.start();
             }
             else
@@ -239,9 +241,10 @@
               hacked = false;
               document.getElementById("next3").style = "display:none";  
               BHmessage.value = Hmessage.value;
+              HHmessage.value = Hmessage.value;
               Explain.value = "Now we send our hash and message to the recipient.";
               document.getElementById("next4").style = "display:all"; 
-              moveText.textContent = temp;
+              moveText.textContent = temp2;
               moveText.start();
             }
           }
@@ -270,11 +273,21 @@
           var stepFive = function () 
           {
             document.getElementById("next5").style = "display:none";  
-            SecretMessage.value = Ssercet.value;
+            SecretMessage.value = Ssercet.value + "+" + Bmessage.value;
+            Explain.value = "The shared secret is concatonated to the front of the received message.";
+            document.getElementById("next5.5").style = "display:all";
+          }
+         
+          var stepFiveHalf = function () 
+          {
+            document.getElementById("next5.5").style = "display:none";  
+            concat.value = Ssercet.value + Bmessage.value;
+            concat = concat % 13;
             Hashed.value = concat;
             Explain.value = "The shared secret is concatonated to the front of the received message.";
             document.getElementById("next6").style = "display:all";
           }
+
           
           var stepSix = function () 
           {
@@ -297,14 +310,12 @@
             }
             else
             {
-              Result.value = Bhash.value + " != " + concat;
+              Result.value = concat + " != " + Bhash.value;
               Explain.value = "The hashed value of the concatonated message is " + concat + " which is not equal to the hash of the message received, thus this message is a fake.";
-              document.getElementById("final").style = "display:all";
+              document.getElementById("Result").style = "border-color:red";
             }
           }
           
-
-        
         </script>
         
     <script>
