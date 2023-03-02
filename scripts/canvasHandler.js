@@ -7,14 +7,17 @@ window.onload = function() {
 
     // Your code goes here
     function start(){
+        removeAll();
         width = getWidth();
         height = getHeight();
         var img = new WebImage(diagramImg);
         println("test");
-        var ratio =  img.height / img.width;
+        var imgHeight =  (img.height / img.width) * width;
+        println(imgHeight);
         //var ratio = 1;
         //img.setSize(200, 200);
-        img.setPosition(img.width, img.height);
+        img.setSize(width, imgHeight);
+        img.setPosition(width, imgHeight);
         add(img);
     }
 
