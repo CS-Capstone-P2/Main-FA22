@@ -5,40 +5,476 @@
         <title>RSA Tool</title>
         <link rel="stylesheet" href="styles/main.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-            <script type="text/javascript" src="https://static.codehs.com/gulp/80550f5fc4071985bfef352d04f005ca3de931d3/chs-js-lib/chs.js"></script>
-            <style>
-                canvas {
-                    border: 1px solid black;
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                pre {
-                    border: 1px solid black;
-                    display: inline-block;
-                    width: 400px;
-                    height: 500px;
-                    background-color: #F5F5F5;
-                }
-            </style>
+        <script type="text/javascript" src="https://static.codehs.com/gulp/80550f5fc4071985bfef352d04f005ca3de931d3/chs-js-lib/chs.js"></script>
+        <style>
+            canvas {
+                border: 1px solid black;
+                display: inline-block;
+                vertical-align: top;
+            }
+            pre {
+                border: 1px solid black;
+                display: inline-block;
+                width: 400px;
+                height: 500px;
+                background-color: #F5F5F5;
+            }
+        </style>
     </head>
 
-    <!--
+    
     <body style="display: none;">
         <script>window.location = "cia-labs-home.html";</script>
     </body>
-    -->
+    
     <body>
-        <script type="text/javascript" src="../scripts/canvasHandler.js"></script>
-        <h1>Your Program Title</h1>
+        <h1>Brick Breaker Easter Egg</h1>
         <canvas
         width="400"
         height="500"
         class="codehs-editor-canvas"></canvas>
         <pre id="console"></pre>
-
         <script>
             window.onload = function() {
-                // Your code goes here
+                /* Constants for bricks */
+                var NUM_ROWS = 8;
+                var BRICK_TOP_OFFSET = 10;
+                var BRICK_SPACING = 2;
+                var NUM_BRICKS_PER_ROW = 10;
+                var BRICK_HEIGHT = 10;
+                var SPACE_FOR_BRICKS = getWidth() - (NUM_BRICKS_PER_ROW + 1) * BRICK_SPACING;
+                var BRICK_WIDTH = SPACE_FOR_BRICKS / NUM_BRICKS_PER_ROW;
+
+                /* Constants for ball and paddle */
+                var PADDLE_WIDTH = 80;
+                var PADDLE_HEIGHT = 15;
+                var PADDLE_OFFSET = 10;
+                var BALL_RADIUS = 15;
+
+                /* global variables for objects */
+                var ball;
+                var scoreBoard;
+                var dx = 4;
+                var dy = 4;
+                var paddle;
+                var centerX = getWidth() / 2;
+                var centerY = getHeight() / 2;
+                var PaddleY = getHeight() - (PADDLE_OFFSET + PADDLE_HEIGHT);
+                var PaddleX = centerX - (PADDLE_WIDTH / 2);
+                var newPaddleLeft = 0;
+                var newPaddleRight = 0;
+                var scoreY = 0;
+                var scoreX = 0;
+                var ballX = centerX;
+                var ballY = centerY;
+                var rightSideOfBall = ballX - 20;
+                var leftSideOfBall = ballX + 20; 
+                var topSideOfBall = ballY - 20;
+                var bottomSideOfBall = ballY + 20;
+                var topObj = getElementAt(ballX, topSideOfBall);
+                var bottomObj = getElementAt(ballX, bottomSideOfBall);
+                var leftObj = getElementAt(leftSideOfBall, ballY);
+                var rightObj = getElementAt(rightSideOfBall, ballY);
+                var object;
+
+                /* global variables for the game */
+                var LIVES = 3;
+                var gamePause = true;
+                var score = 0;
+                var totNumBricks = 0;
+                var gameFont = 'Overseer';
+                var selectedMenuIndex = 0;
+                var menu = [
+                    {title: 'Start', color: Color.white},
+                    {title: 'Controls', color: Color.white},
+                    {title: 'About', color: Color.white}
+                ];
+
+                /*    start of program    */
+                function start()
+                {
+                    setUpBricks();
+                    setUpBall();
+                    setUpPaddle();
+                    setUpHUD();
+                    //setUpMenu();
+                    //drawMenu();
+                    
+                    mouseClickMethod(resume);
+                    setTimer(bounceBall, 20);
+                    mouseMoveMethod(movePaddle);
+                }
+                /*  This is the code that makes this an actual game  */
+
+                function loss()
+                {
+                    //maths and logic
+                    gamePause = true;
+                    LIVES--;
+                    ballX = centerX;
+                    ballY = centerY;
+                    
+                    //actual actions
+                    if (LIVES > 0)
+                    {
+                        ball.setPosition(ballX, ballY);
+                        paddle.setPosition(PaddleX, PaddleY);
+                    }
+                    else
+                    {
+                        gameOver();
+                    }
+                }
+
+                function gameOver()
+                {
+                    drawText('Game Over!', '24pt Overseer', centerX, centerY, Color.black);
+                    stopTimer(bounceBall);
+                }
+
+                function resume()
+                {
+                    gamePause = false;
+                }
+
+                function checkBrickAndBreak()
+                {
+                    if (object != null)
+                    {
+                        if (object != paddle)
+                        {
+                            if (object != scoreBoard)
+                            {
+                                reward();
+                            }
+                        }
+                    }
+                }
+
+                function reward()
+                {
+                    remove(object);
+                    totNumBricks--;
+                    score+= 100;
+                    updateHUD();
+                }
+
+                function updateHUD()
+                {
+                    scoreX = newPaddleLeft + (scoreBoard.getWidth() / 2);
+                    scoreBoard.setPosition(scoreX, scoreY);
+                    scoreBoard.setText(score + " pts.");
+                }
+
+                /*   this sets up the ball and paddle for brick breaker    */
+                function setUpBall()
+                {
+                    ball = new Circle(20);
+                    ball.setPosition(ballX, ballY);
+                    add(ball);
+                }
+
+                function setUpPaddle()
+                {
+                    paddle = new Rectangle(PADDLE_WIDTH, PADDLE_HEIGHT);
+                    paddle.setPosition(PaddleX, PaddleY);
+                    add(paddle);
+                }
+
+                function bounceBall()
+                {
+                    checkWalls();
+                    checkObjects();
+                    checkBrickAndBreak();
+                    
+                    if (gamePause == false)
+                    {
+                        ball.move(dx, dy);
+                    }
+                    
+                    /* ball edge math */
+                    rightSideOfBall = ball.getX() - ball.getRadius();
+                    leftSideOfBall = ball.getX() + ball.getRadius(); 
+                    topSideOfBall = ball.getY() - ball.getRadius();
+                    bottomSideOfBall = ball.getY() + ball.getRadius();
+                    ballX = ball.getX();
+                    ballY = ball.getY();
+                }
+
+                function checkObjects()
+                {
+                    topObj = getElementAt(ballX, topSideOfBall);
+                    bottomObj = getElementAt(ballX, bottomSideOfBall);
+                    leftObj = getElementAt(leftSideOfBall, ballY);
+                    rightObj = getElementAt(rightSideOfBall, ballY);
+                    
+                    //bounce off an object above
+                    if (topObj != null)
+                    {
+                        dy = -dy;
+                        object = topObj;
+                    }
+                    //bounce off an object below
+                    else if (bottomObj != null)
+                    {
+                        dy = -dy;
+                        object = bottomObj;
+                    }
+                    //bounce off an object on the left
+                    else if (leftObj != null)
+                    {
+                        dx = -dx;
+                        object = leftObj;
+                    }
+                    //bounce off an object on the right
+                    else if (rightObj != null)
+                    {
+                        dx = -dx;
+                        object = rightObj;
+                    }
+                    else
+                    {
+                        object = null;
+                    }
+                }
+
+                function checkWalls()
+                {
+                    // Bounce off right wall
+                    if(leftSideOfBall > getWidth())
+                    {
+                        dx = -dx;
+                    }
+                    
+                    // Bounce off left wall
+                    if(rightSideOfBall < 0)
+                    {
+                        dx = -dx;
+                    }
+                    
+                    // Bounce off bottom wall
+                    if(topSideOfBall > getHeight() + 10)
+                    {
+                        loss();
+                    }
+                    
+                    // Bounce off top wall
+                    if(topSideOfBall < 0)
+                    {
+                        dy = -dy;
+                    }
+                }
+
+                function movePaddle(e)
+                {
+                    newPaddleLeft = e.getX() - (PADDLE_WIDTH / 2);
+                    newPaddleRight = e.getX() + (PADDLE_WIDTH / 2);
+                    
+                    if (newPaddleLeft >= -3)
+                    {
+                        if (newPaddleRight <= getWidth() + 3)
+                        {
+                            paddle.setPosition(newPaddleLeft, PaddleY);
+                        }
+                    }
+                    updateHUD();
+                }
+
+                /*   This sets up the bricks for brick breaker   */
+                function setUpBricks()
+                {
+                    for (var i = 0; i < NUM_ROWS; i++)
+                    {
+                        var y = BRICK_TOP_OFFSET + (i * (BRICK_HEIGHT + BRICK_SPACING));
+                        var color = getColor(i);
+                        layRowOfBricks(y, color);
+                    }
+                }
+
+
+                function layRowOfBricks(y, color)
+                {
+                    for (var n = 0; n < NUM_BRICKS_PER_ROW; n++)
+                    {
+                        var x = BRICK_SPACING + (n * (BRICK_WIDTH + BRICK_SPACING));
+                        drawRectangle(BRICK_WIDTH, BRICK_HEIGHT, x, y, color);
+                        totNumBricks++;
+                    }
+                }
+
+                function getColor(i)
+                {
+                    var x = NUM_ROWS / 4;
+                    var y = i + 1;
+                    
+                    if(y / x > 3) 
+                    {
+                        var color = Color.blue;
+                    }
+                    else if((y / x) > 2) 
+                    {
+                        var color = Color.green;
+                    }
+                    else if((y / x) > 1) 
+                    {
+                        var color = Color.orange;
+                    }
+                    else if((y / x) > 0) 
+                    {
+                        var color = Color.red;
+                    }
+                    else
+                    {
+                        var color = Color.black;
+                    }
+                    return color;
+                }
+
+
+                /* enhancements   */
+                function setUpHUD()
+                {
+                    // load custome fonts
+                    loadStyle('@font-face { font-family: Overseer; src: url("https://codehs.com/uploads/8b2d62efb36c12fcf87fff511795525b") format("opentype");}');
+                    
+                    //score board
+                    drawScoreBoard("0 pts.", '12pt Overseer', 0, 0, Color.white);
+                    scoreY = PaddleY + scoreBoard.getHeight() - 2;
+                    scoreX = PaddleX + (scoreBoard.getWidth() / 2);
+                    scoreBoard.setPosition(scoreX, scoreY);
+                    
+                    //totNumBricks
+                    //drawText(totNumBricks + " totNumBricks", '24pt Overseer', centerX, centerY, Color.red);
+                }
+
+                /*
+                function setUpMenu()
+                {
+                    for (var i = 0; i < menu.length; i++)
+                    {
+                        var menuItem = menu[i];
+                        var text = addText(menuItem.title, menu.ItemColor);
+                        menuItem.ctl = text;
+                        var itemHeight = menuItem.ctl.getHeight();
+                        var menuTop = menuItem.ctl.getY() + (itemHeight * i);
+                        menuItem.ctl.setPosition(menuItem.ctl.getX(), menuTop);
+                    }
+                }
+
+
+                function drawMenu()
+                {
+                    for (var i = 0; i < )
+                    {
+                        menu[selectedMenuIndex].ctl.setColor(Color.red);
+                    }
+                } */
+
+                function handleKeyPress(e)
+                {
+                    if (e.keyCode == Keyboard.UP)
+                    {
+                        selectedMenuIndex--;
+                    }
+                    if (e.keyCode == Keyboard.DOWN)
+                    {
+                        selectedMenuIndex++;
+                    }
+                    if (selectedMenuIndex >= menu.length)
+                    {
+                        selectedMenuIndex = 0;
+                    }
+                    if (selectedMenuIndex < 0)
+                    {
+                        selectedMenuIndex = menu.length - 1;
+                    }
+                    if (e.keyCode == Keyboard.ENTER)
+                    {
+                        if (selectedMenuIndex == 0)
+                        {
+                            hideMenu();
+                            paused = false;
+                        }
+                    }
+                    if (e.keyCode == Keyboard.letter('P'))
+                    {
+                        if (gamePaused == false)
+                        {
+                            showMenu();
+                            paused = true;
+                        }
+                    }
+                }
+
+                var REMOVE_POSITION = -9999;
+                function hideMenu()
+                {
+                    for (var i = o; i < menu.length; i++)
+                    {
+                        menu[i].ctl.move(REMOVE_POSITION, 0);
+                    }
+                }
+
+
+                function showMenu()
+                {
+                    for (var i = o; i < menu.length; i++)
+                    {
+                        menu[i].ctl.move(REMOVE_POSITION * -1, 0);
+                    }
+                }
+
+                /*   reusable draw functions   */
+                function drawRectangle(width, height, x, y, Color)
+                {
+                    var rect = new Rectangle(width, height);
+                    rect.setPosition(x, y);
+                    rect.setColor(Color);
+                    add(rect);
+                }
+
+                /*
+                function addText(label, font, x, y, Color)
+                {
+                    if (font == null)
+                    {
+                        font = "30pt" + gameFont;
+                    }
+                    
+                    var txt = new Text(label, font);
+                    txt.setPosition(x - (txt.getWidth() / 2), y - (txt.getHeight() / 2));
+                    txt.setColor(Color);
+                    add(txt);
+                    return txt;
+                } */
+
+                function drawText(label, font, x, y, Color)
+                {
+                    var txt = new Text(label, font);
+                    txt.setPosition(x - (txt.getWidth() / 2), y - (txt.getHeight() / 2));
+                    txt.setColor(Color);
+                    add(txt);
+                }
+
+                function drawScoreBoard(label, font, x, y, Color)
+                {
+                    scoreBoard = new Text(label, font);
+                    scoreBoard.setPosition(x - (scoreBoard.getWidth() / 2), y - (scoreBoard.getHeight() / 2));
+                    scoreBoard.setColor(Color);
+                    add(scoreBoard);
+                }
+
+                function loadStyle(styles)
+                {
+                    var css = document.createElement('style');  
+                    css.appendChild(document.createTextNode(styles));
+                    document.getElementsByTagName('HEAD')[0].appendChild(css);    
+                }
+
+                //player (paddle) vault boy link: https://codehs.com/uploads/35a6fd32bbbfaa5612aa4420410700bc
+                //enemy (brick) roach link:       https://codehs.com/uploads/c11d098a031221ec09270577e7b2fe4c
+                //fonts (for theme):              https://codehs.com/uploads/8b2d62efb36c12fcf87fff511795525b
+                //end of program
                 if (typeof start === 'function') {
                     start();
                 }

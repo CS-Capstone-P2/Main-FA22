@@ -10,6 +10,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+        <script type="text/javascript" src="https://static.codehs.com/gulp/80550f5fc4071985bfef352d04f005ca3de931d3/chs-js-lib/chs.js"></script>
+        <style>
+            canvas {
+                border: 1px solid black;
+                display: inline-block;
+                vertical-align: top;
+            }
+            pre {
+                border: 1px solid black;
+                display: inline-block;
+                width: 400px;
+                height: 200px;
+                background-color: #F5F5F5;
+            }
+        </style>
       </head>
 
       <div class="topnav" id="Navbar">
@@ -52,7 +68,7 @@
         
           <div class="field">
             <!--BUTTONS-->
-            <button id="next1" onclick="start()">Next</button>
+            <button id="next1" onclick="stepOne()">Next</button>
             <button id="next2" style="display: none;" onclick="stepTwo()">Next</button>
             <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
             <button id="dButton" style="display: none;" onclick="final()">Decrypt</button>
@@ -92,14 +108,9 @@
           <div class="column">
             
             <br>
-              <br>
-              <br>
-                <br>
-                <br>
                 <script type="text/javascript" src="../scripts/canvasHandler.js"></script>
-                <canvas id="cvs" width="720" height="350">
-                  Your Browser does not support the HTML 5 Canvas.
-                </canvas>
+                <canvas width="400" height="500" class="codehs-editor-canvas"></canvas>
+                <script></script>
               <input style="font-size: 20; width: 50%;" id="hEncrypt" type="text" style="width:280px; border: 2px solid rgb(48, 71, 66)" readonly />
 
               <img src="/images/Rats-Small.png" id="rats" alt="rats" style="display: none; object-fit:scale-down; "> 
@@ -121,8 +132,11 @@
               <input id="bDecrypt" type="text" style="width:280px; font-size: 20px; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
               <img src="/images/caeser-images/lock.png" width="200" height="200" id="lock" alt="lock" style="display: none;">
-
-            
+              <br>
+              <br>
+              <!--
+              <pre id="console"></pre>
+              -->
           </div>
           
         
@@ -146,7 +160,7 @@
             var moveText = document.getElementById("moveText"); //The moving text
             
             
-            var start = async function () {
+            var stepOne = async function () {
     
                 aOriginal.value = message.value;
                 if (message.value.trim() == "")
@@ -193,7 +207,7 @@
                     document.getElementById("info").style.color = "red";
                     document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
                     document.body.style.backgroundColor = "red";
-                    changeImage("../images/caeser-images/hacker_og.png");
+                    changeImage("../images/caeser-images/hacker_og.png"); // change image to the hacker image
                     bEncrypt.value = aOriginal.value;
                     hEncrypt.value = aOriginal.value;
                 }
@@ -206,7 +220,7 @@
                     bEncrypt.value = aEncrypt.value;
                     hEncrypt.value = aEncrypt.value;
                     document.getElementById("next3").style = "display:none";
-                    changeImage("../images/Arrow_gif.gif");
+                    changeImage("../images/Arrow_gif.gif"); //change the image to the gif
                     document.getElementById("lock").style = "display:all";
                     document.getElementById("dButton").style = "display:all";
                     drawText(bEncrypt.value);
@@ -221,8 +235,8 @@
             //continue...
             bDecrypt.value = aOriginal.value;
             document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
-            document.getElementById("arrows").src = "../images/AB_arrow_right.png";
-            document.getElementById("lock").src = "../images/caeser-images/unlock.png";
+            document.getElementById("arrows").src = "../images/AB_arrow_right.png"; // change the image back to the static gif
+            document.getElementById("lock").src = "../images/caeser-images/unlock.png"; //change the lock image to the unlock
           }
         </script>
         
