@@ -93,13 +93,13 @@
             <br>
               <br>
               <br>
-                <br>
-                <br>
+             
                 <marquee 
                     direction = "right" 
                     id = "moveText"
                     loop = 2
                     style="width: 100%";
+                    style="width: 100%; font-size: 20px; color:blue;"
                     >
                 </marquee> 
 
@@ -107,7 +107,7 @@
               <!-- <img src="../images/caeser-images/hacker_og.png" width="200" height="180">-->
               <input placeholder="Hashed Message" id="HHmessage" type="text" style="width:280px; text-align: center; border: 2px solid rgb(48, 71, 66);" readonly />
 
-              <img src="/images/Rats-Small.png" id="rats" alt="rats" style="display: none; object-fit:scale-down; "> 
+    
           </div>
 
           <div class="column">
@@ -209,7 +209,7 @@
             let arr = arrConcat(Ssercet.value, Umessage.value);
             hashingFunction(arr);
             Hmessage.value =  "Hash: " + arr[0] + " Message: " + arr[1];
-            temp = arr[0];
+            temp = "Hash: " + arr[0] + " Message: " + arr[1];
             Explain.value = "Now we take our combined message and use modulo to get our hash.\nWe do this by: " + concat + " % 13 = " + arr[0];
 
             document.getElementById("next3").style = "display:all";
@@ -229,6 +229,8 @@
               temp = arrHack[0];
               Explain.value = "Now we send our hash and message to the recipient; however, it has been intercepted by a hacker!";
               document.getElementById("next4").style = "display:all";
+              moveText.textContent = temp + ", 8675309";
+              moveText.start();
             }
             else
             {
@@ -236,7 +238,9 @@
               document.getElementById("next3").style = "display:none";  
               BHmessage.value = Hmessage.value;
               Explain.value = "Now we send our hash and message to the recipient.";
-              document.getElementById("next4").style = "display:all";
+              document.getElementById("next4").style = "display:all"; 
+              moveText.textContent = temp;
+              moveText.start();
             }
           }
           
