@@ -9,12 +9,13 @@ window.onload = function() {
     function start(){
         width = getWidth();
         height = getHeight();
-        var img = new WebImage("../images/AB_arrow_right.png");
-        println(test);
-        //var ratio =  img.height / img.width;
-        var ratio = 1;
-        img.setSize(width, width * ratio);
-        img.setPosition(0, 0);
+        var img = new WebImage(diagramImg);
+        println("test");
+        var ratio =  img.height / img.width;
+        //var ratio = 1;
+        //img.setSize(200, 200);
+        img.setPosition(img.width, img.height);
+        add(img);
     }
 
     function sendMessage(imgSrc, message){
