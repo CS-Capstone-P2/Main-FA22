@@ -96,16 +96,10 @@
               <br>
                 <br>
                 <br>
-                <marquee 
-                    direction = "right" 
-                    id = "moveText"
-                    loop = 1
-                    style="width: 100%; font-size: 20px;color:blue;"
-                    
-                    >
-                </marquee> 
-              <img src="../images/AB_arrow.png" id="arrows" alt="arrows" >
-              <!-- <img src="../images/caeser-images/hacker_og.png" width="200" height="180">-->
+                <script type="text/javascript" src="../scripts/canvasHandler.js"></script>
+                <canvas id="cvs" width="720" height="350">
+                  Your Browser does not support the HTML 5 Canvas.
+                </canvas>
               <input style="font-size: 20; width: 50%;" id="hEncrypt" type="text" style="width:280px; border: 2px solid rgb(48, 71, 66)" readonly />
 
               <img src="/images/Rats-Small.png" id="rats" alt="rats" style="display: none; object-fit:scale-down; "> 
@@ -140,88 +134,86 @@
         
           <script type="text/javascript" src="../scripts/cShift.js"></script>
           <script>
-         
-  var next = document.getElementById("next"); //Next button
-          var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box for alice
-          var aOriginal = document.getElementById("aOriginal"); // OG Alice text
-          var bEncrypt = document.getElementById("bEncrypt"); //Encrypted Message text box for bob
-          var bDecrypt = document.getElementById("bDecrypt"); //uncrypted Message text box for bob
-          var hEncrypt = document.getElementById("hEncrypt"); //Encrypted Message text box for hacker
-          var message = document.getElementById("message"); //Message to Encrypt text box
-          var eKey = document.getElementById("key"); //number of places to shift
-          var aOutput = ""; //final encrypted message goes here
-          var moveText = document.getElementById("moveText"); //The moving text
-      
-      
-          var start = async function () {
-  
-              aOriginal.value = message.value;
-              if (message.value.trim() == "")
-              {
-                alert("The inputted message is only spaces!");
-                return -1;
-              }
-              
-              if(message.value == "")
-              {
-                document.getElementById("info").style.color = "blue";
-                document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
-              }
-              else
-              {
-                document.getElementById("next1").style = "display:none";
-                //anim functions await their completion before continuing
-                await diagramGenerateTable(aOriginal.value.toUpperCase(), "cipherTable");
-                await populateTextTable(aOriginal.value.toUpperCase(), "messageTable");
-                //continue..
-                document.getElementById("info").style.color = "blue";
-                document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
-                document.getElementById("next2").style = "display:all";
-                document.getElementById('message').readOnly = true;
-              }
-          }
-  
-          var stepTwo = async function () 
-          {
-            document.getElementById("next2").style = "display:none";
-            //anim functions await their completion before continuing
-            await diagramShiftAnimation(eKey.value, 100, "cipherTable");
-            await diagramEncryptAnimation (100, "cipherTable", "messageTable")
-            //continue...
-            aEncrypt.value = cShift(aOriginal.value, eKey.value);
-            document.getElementById("info").style.color = "black";
-            document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
-            document.getElementById("next3").style = "display:all";
-  
-          }
-          var stepThree = function () 
-          {
-              if(eKey.value % 26 == "0")
-              {
-                  document.getElementById("info").style.color = "red";
-                  document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
-                  document.body.style.backgroundColor = "red";
-                  document.getElementById("arrows").src = "../images/caeser-images/hacker_og.png";
-                  bEncrypt.value = aOriginal.value;
-                  hEncrypt.value = aOriginal.value;
-              }
-              else
-              {
-                  aEncrypt.value = cShift(aOriginal.value, eKey.value);
-                  document.body.style.backgroundColor = "white";
-                  document.getElementById("info").style.color = "black";
-                  document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
-                  bEncrypt.value = aEncrypt.value;
-                  hEncrypt.value = aEncrypt.value;
-                  document.getElementById("next3").style = "display:none";
-                  document.getElementById("arrows").src = "../images/Arrow_gif.gif";
-                  document.getElementById("lock").style = "display:all";
-                  document.getElementById("dButton").style = "display:all";
-                  moveText.textContent = bEncrypt.value;
-                  moveText.start();
-              }
-          }
-          var final = async function () 
+            var next = document.getElementById("next"); //Next button
+            var aEncrypt = document.getElementById("aEncrypt"); //Encrypted Message text box for alice
+            var aOriginal = document.getElementById("aOriginal"); // OG Alice text
+            var bEncrypt = document.getElementById("bEncrypt"); //Encrypted Message text box for bob
+            var bDecrypt = document.getElementById("bDecrypt"); //uncrypted Message text box for bob
+            var hEncrypt = document.getElementById("hEncrypt"); //Encrypted Message text box for hacker
+            var message = document.getElementById("message"); //Message to Encrypt text box
+            var eKey = document.getElementById("key"); //number of places to shift
+            var aOutput = ""; //final encrypted message goes here
+            var moveText = document.getElementById("moveText"); //The moving text
+            
+            
+            var start = async function () {
+    
+                aOriginal.value = message.value;
+                if (message.value.trim() == "")
+                {
+                  alert("The inputted message is only spaces!");
+                  return -1;
+                }
+                
+                if(message.value == "")
+                {
+                  document.getElementById("info").style.color = "blue";
+                  document.getElementById("info").innerHTML = "Please enter a message to encrypt.";
+                }
+                else
+                {
+                  document.getElementById("next1").style = "display:none";
+                  //anim functions await their completion before continuing
+                  await diagramGenerateTable(aOriginal.value.toUpperCase(), "cipherTable");
+                  await populateTextTable(aOriginal.value.toUpperCase(), "messageTable");
+                  //continue..
+                  document.getElementById("info").style.color = "blue";
+                  document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
+                  document.getElementById("next2").style = "display:all";
+                  document.getElementById('message').readOnly = true;
+                }
+            }
+            var stepTwo = async function () 
+            {
+              document.getElementById("next2").style = "display:none";
+              //anim functions await their completion before continuing
+              await diagramShiftAnimation(eKey.value, 100, "cipherTable");
+              await diagramEncryptAnimation (100, "cipherTable", "messageTable")
+              //continue...
+              aEncrypt.value = cShift(aOriginal.value, eKey.value);
+              document.getElementById("info").style.color = "black";
+              document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
+              document.getElementById("next3").style = "display:all";
+    
+            }
+            var stepThree = function () 
+            {
+                if(eKey.value % 26 == "0")
+                {
+                    document.getElementById("info").style.color = "red";
+                    document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
+                    document.body.style.backgroundColor = "red";
+                    changeImage("../images/caeser-images/hacker_og.png");
+                    bEncrypt.value = aOriginal.value;
+                    hEncrypt.value = aOriginal.value;
+                }
+                else
+                {
+                    aEncrypt.value = cShift(aOriginal.value, eKey.value);
+                    document.body.style.backgroundColor = "white";
+                    document.getElementById("info").style.color = "black";
+                    document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
+                    bEncrypt.value = aEncrypt.value;
+                    hEncrypt.value = aEncrypt.value;
+                    document.getElementById("next3").style = "display:none";
+                    changeImage("../images/Arrow_gif.gif");
+                    document.getElementById("lock").style = "display:all";
+                    document.getElementById("dButton").style = "display:all";
+                    drawText(bEncrypt.value);
+                    moveText.start();
+                }
+            }
+            var final = async function () 
           {
             document.getElementById("dButton").style = "display:none";
             //decrypt anim then continue...

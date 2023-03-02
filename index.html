@@ -4,9 +4,45 @@
         <meta charset="utf-8" />
         <title>RSA Tool</title>
         <link rel="stylesheet" href="styles/main.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script type="text/javascript" src="https://static.codehs.com/gulp/80550f5fc4071985bfef352d04f005ca3de931d3/chs-js-lib/chs.js"></script>
+            <style>
+                canvas {
+                    border: 1px solid black;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                pre {
+                    border: 1px solid black;
+                    display: inline-block;
+                    width: 400px;
+                    height: 500px;
+                    background-color: #F5F5F5;
+                }
+            </style>
     </head>
 
+    <!--
     <body style="display: none;">
         <script>window.location = "cia-labs-home.html";</script>
+    </body>
+    -->
+    <body>
+        <script type="text/javascript" src="../scripts/canvasHandler.js"></script>
+        <h1>Your Program Title</h1>
+        <canvas
+        width="400"
+        height="500"
+        class="codehs-editor-canvas"></canvas>
+        <pre id="console"></pre>
+
+        <script>
+            window.onload = function() {
+                // Your code goes here
+                if (typeof start === 'function') {
+                    start();
+                }
+            };
+        </script>
     </body>
 </html>
