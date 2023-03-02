@@ -198,7 +198,7 @@
                 }
                 document.getElementById("next1").style = "display:none";
                 concat = Ssercet.value + Umessage.value;
-                Explain.value = "This is our shared secret and message combined:\n" + concat;
+                Explain.value = "This is our shared secret and message combined:\n" + Ssercet.value + " " + Umessage.value;
                 console.log(concat);
                 document.getElementById("next2").style = "display:all";
                 
@@ -213,7 +213,7 @@
             Hmessage.value =  "Hash: " + arr[0] + " Message: " + arr[1];
             temp = arr[0]
             temp2 = "Hash: " + arr[0] + " Message: " + arr[1];
-            Explain.value = "Now we take our combined message and use modulo to get our hash.\nWe do this by: " + concat + " % 13 = " + arr[0];
+            Explain.value = "Now we take our combined message and hash it.\nWe will be using modulus 13 to create the hash:\n " + Ssercet.value + " " + Umessage.value + " % 13 = " + arr[0];
 
             document.getElementById("next3").style = "display:all";
   
@@ -230,7 +230,7 @@
               HHmessage.value = "Hash: " + arrHack[0] + " Message: " + arrHack[1];
               BHmessage.value = HHmessage.value;
               temp2 = arrHack[0];
-              Explain.value = "Now we send our hash and message to the recipient; however, it has been intercepted by a hacker!";
+              Explain.value = "Now we can send our hash to the recipient,\n but this time it has been intercepted by a hacker!";
               document.getElementById("next4").style = "display:all";
               document.getElementById("moveText").style = "color:red";
               moveText.textContent = temp2 + ", 8675309";
@@ -265,7 +265,7 @@
               document.getElementById("next4").style = "display:none";  
               Bhash.value = temp;
               Bmessage.value = Umessage.value;
-              Explain.value = "The recieved message is separated from the hash value.";
+              Explain.value = "The recieved message and hash are separated from each other.";
               document.getElementById("next5").style = "display:all";
             }            
           }
@@ -273,8 +273,8 @@
           var stepFive = function () 
           {
             document.getElementById("next5").style = "display:none";  
-            SecretMessage.value = Ssercet.value + "+" + Bmessage.value;
-            Explain.value = "The shared secret is concatonated to the front of the received message.";
+            SecretMessage.value = Ssercet.value + " " + Bmessage.value;
+            Explain.value = "The recipient can combine the shared secret and the supplied message.";
             document.getElementById("next5.5").style = "display:all";
           }
          
@@ -284,7 +284,7 @@
             concat.value = Ssercet.value + Bmessage.value;
             concat = concat % 13;
             Hashed.value = concat;
-            Explain.value = "The shared secret is concatonated to the front of the received message.";
+            Explain.value = "The recipient then hashes the combination of the received message and shared secret.";
             document.getElementById("next6").style = "display:all";
           }
 
@@ -312,7 +312,7 @@
             {
               Result.value = concat + " != " + Bhash.value;
               Explain.value = "The hashed value of the concatonated message is " + concat + " which is not equal to the hash of the message received, thus this message is a fake.";
-              document.getElementById("Result").style = "border-color:red";
+              document.getElementById("Result").style = "border-color:red;";
             }
           }
           
