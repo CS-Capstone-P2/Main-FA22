@@ -1,4 +1,2 @@
 //reset button
-document.getElementById("reset").addEventListener("click", function(){
-    location.reload();
- });
+$("#reset").on("click", () => location.reload());
