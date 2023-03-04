@@ -175,7 +175,7 @@
                 await populateTextTable(aOriginal.value.toUpperCase(), "messageTable");
                 //continue..
                 document.getElementById("info").style.color = "blue";
-                document.getElementById("info").innerHTML = "Before you send your message you have to encryt it so hackers can not read the message. Set a shift value and click the next button to enrypt it.";
+                document.getElementById("info").innerHTML = "Before you send your message, you have to encrypt it so hackers can not read the message. Set a shift value and click the next button to encrypt it.";
                 document.getElementById("next2").style = "display:all";
                 document.getElementById('message').readOnly = true;
               }
@@ -190,7 +190,7 @@
             //continue...
             aEncrypt.value = cShift(aOriginal.value, eKey.value);
             document.getElementById("info").style.color = "black";
-            document.getElementById("info").innerHTML = "Your message should now be encrpted so hackers can not read it. Click the next button to send it.";
+            document.getElementById("info").innerHTML = "Your message should now be encrypted so hackers can not read it. Click the next button to send it.";
             document.getElementById("next3").style = "display:all";
   
           }
@@ -210,7 +210,7 @@
                   aEncrypt.value = cShift(aOriginal.value, eKey.value);
                   document.body.style.backgroundColor = "white";
                   document.getElementById("info").style.color = "black";
-                  document.getElementById("info").innerHTML = "Your message was received but can not be read without decrpting with the key. Click Decrypt so the mesaage can be read by the receiver and the the hacker.";
+                  document.getElementById("info").innerHTML = "Your message was received but can not be read without decrypting with the key. Click Decrypt so the message can be read by the receiver and the the hacker.";
                   bEncrypt.value = aEncrypt.value;
                   hEncrypt.value = aEncrypt.value;
                   document.getElementById("next3").style = "display:none";
@@ -228,7 +228,7 @@
             await diagramEncryptAnimation (100, "cipherTable", "messageTable", true);
             //continue...
             bDecrypt.value = aOriginal.value;
-            document.getElementById("info").innerHTML = "Congrats! Your mesage was read by the reciever and not the hacker. Click Next Page or Reset to start again.";
+            document.getElementById("info").innerHTML = "Congrats! Your message was read by the receiver and not the hacker. Click Next Page or Reset to start again.";
             document.getElementById("arrows").src = "../images/AB_arrow_right.png";
             document.getElementById("lock").src = "../images/caeser-images/unlock.png";
           }
