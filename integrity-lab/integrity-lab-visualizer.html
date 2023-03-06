@@ -41,11 +41,11 @@
           <div>
             <label for="message" style="font-size: 18px;"><strong>Message to Hash</strong></label>
             <input id="message" type="text" placeholder="Insert your message here!" onsubmit="return this.value"
-              style="width: 250px; font-size: 15;" />
+              style="width: 250px; font-size: 15; color:blue;" />
               <br>
             <label for="mainSecret" style="font-size: 18px; "><strong>Shared Secret</strong></label>
             <input id="mainSecret" type="text" placeholder="Insert your secret value" onsubmit="return this.value"  
-            style="width: 200px; font-size: 15; margin-left: 15px;"/>
+            style="width: 200px; font-size: 15; margin-left: 15px; color:red;"/>
           </div>
           <br>
         
@@ -72,8 +72,8 @@
               <h5>Sender</h5>
               <!-- <img src="../images/caeser-images/alice.png" width="200" height="180">-->
               <div>
-                <input id="Umessage" placeholder="User Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(244, 133, 186);" readonly />
-                <input id="Ssercet" placeholder="Shared Secret" type="text" style="width:40%; text-align: center; border: 2px solid rgb(244, 133, 186);" readonly />
+                <input id="Ssercet" placeholder="Shared Secret" type="text" style="width:40%; text-align: center; border: 2px solid rgb(244, 133, 186); color:red;" readonly />
+                <input id="Umessage" placeholder="User Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(244, 133, 186); color:blue;" readonly />
               </div>
 
               <br>
@@ -118,8 +118,8 @@
               <input id="BHmessage" placeholder="Hashed Message" type="text" style="width:80%; text-align: center; border: 2px solid rgb(127, 164, 255);" readonly />
               <br>
               <br>
-                <input id="Bmessage" placeholder="Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
                 <input id="Bhash" placeholder="Hash" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
+                <input id="Bmessage" placeholder="Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
             </br>
                 <input id="SecretMessage" placeholder="Secret + Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
@@ -296,7 +296,7 @@
             concat = concat % 13;
             if (hashingFunction(concat) == Bhash.value)
             {
-              Result.value = Bhash.value + " = " + concat;
+              Result.value = Bhash.value + " EQUALS " + concat;
               if (hacked == true)
               {
                 Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, so it seems like the correct message. The hacker got lucky faking the message and happened to have the correct hash.";
