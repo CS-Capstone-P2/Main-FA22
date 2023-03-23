@@ -24,8 +24,8 @@
         <div class="header">
 
           <span>
-            <p id="info" class="box" style="font-size: 120%;" readonly>
-              INFO BAR
+            <p id="info" class="box" style="font-size: 150%;" readonly>
+              Click the Next Button to begin the attack
             </p>
           </span>  
         
@@ -59,28 +59,62 @@
             <br>
               <br>
               <br>
+              
              
                 <marquee 
                     direction = "right" 
                     id = "moveText"
-                    loop = 2
-                    style="width: 100%; font-size: 20px; color:blue;"
+                    scrollamount = 20
+                    style="width: 100%; font-size: 20px; color:red; padding: 40px;"
+                    >
+                </marquee>
+                <marquee 
+                    direction = "right" 
+                    id = "moveText1"
+                    scrollamount = 30
+                    style="width: 100%; font-size: 20px; color:red;"
                     >
                 </marquee> 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <marquee 
+                    direction = "right" 
+                    id = "moveText2"
+                    scrollamount = 17
+                    style="width: 100%; font-size: 20px; color:red;"
+                    >
+                </marquee> 
+                <marquee 
+                    direction = "right" 
+                    id = "moveText3"
+                    scrollamount = 10
+                    style="width: 100%; font-size: 20px; color:red;"
+                    >
+                </marquee>  
+                <marquee 
+                    direction = "right" 
+                    id = "moveText4"
+                    scrollamount = 15
+                    style="width: 100%; font-size: 20px; color:red;"
+                    >
+                </marquee> 
+                <marquee 
+                    direction = "right" 
+                    id = "moveText5"
+                    scrollamount = 25
+                    style="width: 100%; font-size: 20px; color:red;"
+                    >
+                </marquee> 
+
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               
+               
+
 
                <!--BUTTONS-->
             <button id="next1" onclick="start()">Next</button>
@@ -88,7 +122,6 @@
             <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
             <button id="next4" style="display: none;" onclick="stepFour()">Next</button>
             <button id="next5" style="display: none;" onclick="stepFive()">Next</button>
-            <button id="next5.5" style="display: none;" onclick="stepFiveHalf()">Next</button>
             <button id="next6" style="display: none;" onclick="stepSix()">Next</button>
             <button id="reset2" onclick="window.location.href = window.location.href;">Reset</button>
 
@@ -97,13 +130,14 @@
 
           <div class="column" style="text-align: left;">
             
-              <h2>VICTIM SCREEN</h2>
-              
-              <center><img src="../images/Computer.png" width="250" height="210" style="text-align:center;" id="server" alt="server" ></center>
+              <center>
+              <img src="../images/firewall.png" width="200" height="350" style="text-align:center; display: none;" id="firewall" alt="firewall" >
+              <img src="../images/server_normal.png" width="400" height="500" style="text-align:center;" id="server" alt="server" >
 
+              <br>
               
               <label style="color: red;" for="load">Server Load:</label>
-              <progress id="load" style="color: red;" value="50" max="100"></progress>
+              <progress id="load" style="color: red;" value="25" max="100"></progress></center>
 
               <div>
                 
@@ -122,172 +156,89 @@
           <script type="text/javascript" src="../scripts/hashing.js"></script>
           <script>
          
-  var next = document.getElementById("next"); 
-          var message = document.getElementById("message"); 
-          var mainSecret = document.getElementById("mainSecret"); 
-          var Umessage = document.getElementById("Umessage"); 
-          var Ssercet = document.getElementById("Ssercet"); 
-          var Hmessage = document.getElementById("Hmessage"); 
+          var next = document.getElementById("next"); 
+          var message = document.getElementById("message");
           var Explain = document.getElementById("Explain"); 
-          var HHmessage = document.getElementById("HHmessage"); 
-          var BHmessage = document.getElementById("BHmessage");
-          var Bhash = document.getElementById("Bhash"); 
-          var SecretMessage = document.getElementById("SecretMessage"); 
-          var Hashed = document.getElementById("Hashed"); 
-          var Result = document.getElementById("Result"); 
+          var info = document.getElementById("info");  
           var concat = "Test"; 
           var temp = "Test"; 
           var temp2 = "Test"; 
-          var moveText = document.getElementById("moveText"); 
-          let hacked = hacking.checked;
+          var moveText = document.getElementById("moveText");
+          var moveText1 = document.getElementById("moveText1"); 
+          var moveText2 = document.getElementById("moveText2"); 
+          var moveText3 = document.getElementById("moveText3");  
+          var moveText4 = document.getElementById("moveText4"); 
+          var moveText5 = document.getElementById("moveText5");
+          var load = document.getElementById("load"); 
       
       
-          var start = async function () {
-  
-              Umessage.value = message.value;
-              Ssercet.value = mainSecret.value;
-              if (message.value.trim() == "")
-              {
-                alert("The inputted message is blank!");
-                return -1;
-              }
-              else
-              {
-                // Checks to see if both the Message & Secret are numbers
-                for(let i = 0; i < message.value.length; i++)
-                {
-                  if (message.value.charCodeAt(i) < 48 || message.value.charCodeAt(i) > 57)
-                  {
-                    alert("The inputted message contains non-numbers!");
-                    return -1;
-                  }
-                }
-                for(let j = 0; j < mainSecret.value.length; j++)
-                {
-                  if (mainSecret.value.charCodeAt(j) < 48 || mainSecret.value.charCodeAt(j) > 57)
-                  {
-                    alert("The inputted message contains non-numbers!");
-                    return -1;
-                  }
-                }
-                document.getElementById("next1").style = "display:none";
-                concat = Ssercet.value + Umessage.value;
-                Explain.value = "This is our shared secret and message combined:\n" + Ssercet.value + " " + Umessage.value;
-                console.log(concat);
-                document.getElementById("next2").style = "display:all";
-                
-              }
+          var start = async function () 
+          {
+            document.getElementById("next1").style = "display:none";   
+            document.getElementById("info").style = "display:none";  
+            moveText.textContent =  "gU9EAE5W58jo5Scr";
+            moveText.start();
+            console.log("Start Works");
+            Explain.value = "Place single attacker Explanation here";
+            document.getElementById("next2").style = "display:all";
+              
           }
   
           var stepTwo = async function()
           {
             document.getElementById("next2").style = "display:none";
-            let arr = arrConcat(Ssercet.value, Umessage.value);
-            hashingFunction(arr);
-            Hmessage.value =  "Hash: " + arr[0] + " Message: " + arr[1];
-            temp = arr[0]
-            temp2 = "Hash: " + arr[0] + " Message: " + arr[1];
-            Explain.value = "Now we take our combined message and hash it.\nWe will be using modulus 13 to create the hash:\n " + Ssercet.value + " " + Umessage.value + " % 13 = " + arr[0];
-
+            moveText.textContent = " ";
+            moveText1.textContent = "JRhcwU3dM7RsVLCJ";
+            Explain.value = "Place single attacker Explanation here that is creating DDOS";
+            document.getElementById("server").src = "../images/server_error.png";
+            document.getElementById("load").value = 100;
             document.getElementById("next3").style = "display:all";
   
           }
           
           var stepThree = function () 
           {
-            if (hacking.checked == true)
-            {
-              hacked = true;
-              document.getElementById("next3").style = "display:none";  
-              let arrHack = arrConcat(35, 8675309);
-              hashingFunction(arrHack);
-              HHmessage.value = "Hash: " + arrHack[0] + " Message: " + arrHack[1];
-              BHmessage.value = HHmessage.value;
-              temp2 = arrHack[0];
-              Explain.value = "Now we can send our hash to the recipient,\n but this time it has been intercepted by a hacker!";
-              document.getElementById("next4").style = "display:all";
-              document.getElementById("moveText").style = "color:red";
-              moveText.textContent = temp2 + ", 8675309";
-              moveText.start();
-            }
-            else
-            {
-              hacked = false;
-              document.getElementById("next3").style = "display:none";  
-              BHmessage.value = Hmessage.value;
-              HHmessage.value = Hmessage.value;
-              Explain.value = "Now we send our hash and message to the recipient.";
-              document.getElementById("next4").style = "display:all"; 
-              moveText.textContent = temp2;
-              moveText.start();
-            }
+            document.getElementById("next3").style = "display:none";
+            document.getElementById("firewall").style = "display:all";
+            document.getElementById("server").src = "../images/server_normal.png";
+            Explain.value = "Explanation for firewall fixing the DDOS";
+            document.getElementById("load").value = 25;
+            document.getElementById("next4").style = "display:all";
           }
           
           var stepFour = function () 
           {
-            if (hacked == true)
-            {
-              document.getElementById("next4").style = "display:none";  
-              Bhash.value = temp;
-              Bmessage.value = 8675309;
-              concat = Ssercet.value + Bmessage.value;
-              Explain.value = "The received message is separated from the hash value.";
-              document.getElementById("next5").style = "display:all";
-            }
-            else
-            {
-              document.getElementById("next4").style = "display:none";  
-              Bhash.value = temp;
-              Bmessage.value = Umessage.value;
-              Explain.value = "The received message and hash are separated from each other.";
-              document.getElementById("next5").style = "display:all";
-            }            
+            document.getElementById("next4").style = "display:none";
+            document.getElementById("hacker").src = "../images/Multi_Hacker.png";
+            document.getElementById("hacker").width = 500;
+            moveText1.textContent = " ";
+            Explain.value = "Explanation for trying to defeat the firewall wuth more hackers";
+            document.getElementById("next5").style = "display:all";    
           }
 
           var stepFive = function () 
           {
             document.getElementById("next5").style = "display:none";  
-            SecretMessage.value = Ssercet.value + " " + Bmessage.value;
-            Explain.value = "The recipient can combine the shared secret and the supplied message.";
-            document.getElementById("next5.5").style = "display:all";
-          }
-         
-          var stepFiveHalf = function () 
-          {
-            document.getElementById("next5.5").style = "display:none";  
-            concat.value = Ssercet.value + Bmessage.value;
-            concat = concat % 13;
-            Hashed.value = concat;
-            Explain.value = "The recipient then hashes the combination of the received message and shared secret.";
+            moveText.textContent = "gU9EAE5W58jo5Scr";
+            moveText1.textContent = "JRhcwU3dM7RsVLCJ";
+            moveText2.textContent = "5IOw876SlIZfrVUT";
+            moveText3.textContent = "PZByKcxcQrazktWN";
+            moveText4.textContent = "187398mXiUVzPcPr";
+            moveText5.textContent = "v1d37M7x4zJRtks5";
+            Explain.value = "Explanation on why it defeated the server with the firewall";
+            document.getElementById("load").value = 100;
+            document.getElementById("server").src = "../images/server_error.png";
             document.getElementById("next6").style = "display:all";
           }
 
           
           var stepSix = function () 
           {
-            document.getElementById("next6").style = "display:none";  
-            concat.value = Ssercet.value + Bmessage.value;
-            concat = concat % 13;
-            if (hashingFunction(concat) == Bhash.value)
-            {
-              Result.value = Bhash.value + " EQUALS " + concat;
-              if (hacked == true)
-              {
-                Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, so it seems like the correct message. The hacker got lucky faking the message and happened to have the correct hash.";
-              }
-              else
-              {
-                Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, thus this is the correct message.";
-              }
-              
-              document.getElementById("final").style = "display:all";
-            }
-            else
-            {
-              Result.value = concat + " != " + Bhash.value;
-              Explain.value = "The hashed value of the concatonated message is " + concat + " which is not equal to the hash of the message received, thus this message is a fake.";
-              document.getElementById("Result").style = "border-color: red; text-align:center;";
-            }
+            document.getElementById("next6").style = "display:none";
+            document.getElementById("server").src = "../images/multi_server.png";
+            Explain.value = "Explanation multi server and load balancing";
+            document.getElementById("load").value = 50;
+            
           }
           
         </script>
