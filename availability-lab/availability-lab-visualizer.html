@@ -1,0 +1,311 @@
+<html>
+    <body>
+      <head>
+        <meta charset="utf-8" />
+        <title>Lab 3: Availability</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+        <script type="text/javascript" src="../scripts/cShift.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+
+      <div class="topnav" id="Navbar">
+        <div class="headerBU" style="text-align: center; height: 80px;">
+          <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
+        </div>
+        <a href="../cia-labs-home.html">CIA Lab Home</a>
+        <a href="../availability-lab/availability-lab-visualizer.html">Availability</a>
+      </div>
+      
+    
+        <div class="header">
+
+          <span>
+            <p id="info" class="box" style="font-size: 120%;" readonly>
+              INFO BAR
+            </p>
+          </span>  
+        
+        <div class="header">
+          <div>
+            
+          </div>
+          <br>
+        
+          <div class="field">
+           
+            
+          </div>
+
+        </div>
+
+        
+          <div class="leftcolumn">
+            
+              <div>
+                <center><img src="../images/caeser-images/hacker_og.png" width="250" height="210" style="text-align:center;" id="hacker" alt="hacker" >
+
+                 <textarea id="Explain" placeholder="Explanation" style="width: 80%; height: 120px; text-align: center; border: 2px solid rgb(240, 10, 10); resize: none;" readonly ></textarea>
+                </center>
+            
+              </div>
+          </div>
+
+          <div class="column">
+            
+            <br>
+              <br>
+              <br>
+             
+                <marquee 
+                    direction = "right" 
+                    id = "moveText"
+                    loop = 2
+                    style="width: 100%; font-size: 20px; color:blue;"
+                    >
+                </marquee> 
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+               <!--BUTTONS-->
+            <button id="next1" onclick="start()">Next</button>
+            <button id="next2" style="display: none;" onclick="stepTwo()">Next</button>
+            <button id="next3" style="display: none;" onclick="stepThree()">Next</button>
+            <button id="next4" style="display: none;" onclick="stepFour()">Next</button>
+            <button id="next5" style="display: none;" onclick="stepFive()">Next</button>
+            <button id="next5.5" style="display: none;" onclick="stepFiveHalf()">Next</button>
+            <button id="next6" style="display: none;" onclick="stepSix()">Next</button>
+            <button id="reset2" onclick="window.location.href = window.location.href;">Reset</button>
+
+            </div>
+          </div>
+
+          <div class="column" style="text-align: left;">
+            
+              <h2>VICTIM SCREEN</h2>
+              
+              
+
+              <div>
+                
+             
+
+            
+          </div>
+          
+        
+
+          <div class="footer">
+            Property of Bradley University. All Rights Reserved. 2023
+          </div>
+        
+        
+          <script type="text/javascript" src="../scripts/hashing.js"></script>
+          <script>
+         
+  var next = document.getElementById("next"); 
+          var message = document.getElementById("message"); 
+          var mainSecret = document.getElementById("mainSecret"); 
+          var Umessage = document.getElementById("Umessage"); 
+          var Ssercet = document.getElementById("Ssercet"); 
+          var Hmessage = document.getElementById("Hmessage"); 
+          var Explain = document.getElementById("Explain"); 
+          var HHmessage = document.getElementById("HHmessage"); 
+          var BHmessage = document.getElementById("BHmessage");
+          var Bhash = document.getElementById("Bhash"); 
+          var SecretMessage = document.getElementById("SecretMessage"); 
+          var Hashed = document.getElementById("Hashed"); 
+          var Result = document.getElementById("Result"); 
+          var concat = "Test"; 
+          var temp = "Test"; 
+          var temp2 = "Test"; 
+          var moveText = document.getElementById("moveText"); 
+          let hacked = hacking.checked;
+      
+      
+          var start = async function () {
+  
+              Umessage.value = message.value;
+              Ssercet.value = mainSecret.value;
+              if (message.value.trim() == "")
+              {
+                alert("The inputted message is blank!");
+                return -1;
+              }
+              else
+              {
+                // Checks to see if both the Message & Secret are numbers
+                for(let i = 0; i < message.value.length; i++)
+                {
+                  if (message.value.charCodeAt(i) < 48 || message.value.charCodeAt(i) > 57)
+                  {
+                    alert("The inputted message contains non-numbers!");
+                    return -1;
+                  }
+                }
+                for(let j = 0; j < mainSecret.value.length; j++)
+                {
+                  if (mainSecret.value.charCodeAt(j) < 48 || mainSecret.value.charCodeAt(j) > 57)
+                  {
+                    alert("The inputted message contains non-numbers!");
+                    return -1;
+                  }
+                }
+                document.getElementById("next1").style = "display:none";
+                concat = Ssercet.value + Umessage.value;
+                Explain.value = "This is our shared secret and message combined:\n" + Ssercet.value + " " + Umessage.value;
+                console.log(concat);
+                document.getElementById("next2").style = "display:all";
+                
+              }
+          }
+  
+          var stepTwo = async function()
+          {
+            document.getElementById("next2").style = "display:none";
+            let arr = arrConcat(Ssercet.value, Umessage.value);
+            hashingFunction(arr);
+            Hmessage.value =  "Hash: " + arr[0] + " Message: " + arr[1];
+            temp = arr[0]
+            temp2 = "Hash: " + arr[0] + " Message: " + arr[1];
+            Explain.value = "Now we take our combined message and hash it.\nWe will be using modulus 13 to create the hash:\n " + Ssercet.value + " " + Umessage.value + " % 13 = " + arr[0];
+
+            document.getElementById("next3").style = "display:all";
+  
+          }
+          
+          var stepThree = function () 
+          {
+            if (hacking.checked == true)
+            {
+              hacked = true;
+              document.getElementById("next3").style = "display:none";  
+              let arrHack = arrConcat(35, 8675309);
+              hashingFunction(arrHack);
+              HHmessage.value = "Hash: " + arrHack[0] + " Message: " + arrHack[1];
+              BHmessage.value = HHmessage.value;
+              temp2 = arrHack[0];
+              Explain.value = "Now we can send our hash to the recipient,\n but this time it has been intercepted by a hacker!";
+              document.getElementById("next4").style = "display:all";
+              document.getElementById("moveText").style = "color:red";
+              moveText.textContent = temp2 + ", 8675309";
+              moveText.start();
+            }
+            else
+            {
+              hacked = false;
+              document.getElementById("next3").style = "display:none";  
+              BHmessage.value = Hmessage.value;
+              HHmessage.value = Hmessage.value;
+              Explain.value = "Now we send our hash and message to the recipient.";
+              document.getElementById("next4").style = "display:all"; 
+              moveText.textContent = temp2;
+              moveText.start();
+            }
+          }
+          
+          var stepFour = function () 
+          {
+            if (hacked == true)
+            {
+              document.getElementById("next4").style = "display:none";  
+              Bhash.value = temp;
+              Bmessage.value = 8675309;
+              concat = Ssercet.value + Bmessage.value;
+              Explain.value = "The received message is separated from the hash value.";
+              document.getElementById("next5").style = "display:all";
+            }
+            else
+            {
+              document.getElementById("next4").style = "display:none";  
+              Bhash.value = temp;
+              Bmessage.value = Umessage.value;
+              Explain.value = "The received message and hash are separated from each other.";
+              document.getElementById("next5").style = "display:all";
+            }            
+          }
+
+          var stepFive = function () 
+          {
+            document.getElementById("next5").style = "display:none";  
+            SecretMessage.value = Ssercet.value + " " + Bmessage.value;
+            Explain.value = "The recipient can combine the shared secret and the supplied message.";
+            document.getElementById("next5.5").style = "display:all";
+          }
+         
+          var stepFiveHalf = function () 
+          {
+            document.getElementById("next5.5").style = "display:none";  
+            concat.value = Ssercet.value + Bmessage.value;
+            concat = concat % 13;
+            Hashed.value = concat;
+            Explain.value = "The recipient then hashes the combination of the received message and shared secret.";
+            document.getElementById("next6").style = "display:all";
+          }
+
+          
+          var stepSix = function () 
+          {
+            document.getElementById("next6").style = "display:none";  
+            concat.value = Ssercet.value + Bmessage.value;
+            concat = concat % 13;
+            if (hashingFunction(concat) == Bhash.value)
+            {
+              Result.value = Bhash.value + " EQUALS " + concat;
+              if (hacked == true)
+              {
+                Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, so it seems like the correct message. The hacker got lucky faking the message and happened to have the correct hash.";
+              }
+              else
+              {
+                Explain.value = "The hashed value of the concatonated message is " + concat + " which is equal to the hash of the message received, thus this is the correct message.";
+              }
+              
+              document.getElementById("final").style = "display:all";
+            }
+            else
+            {
+              Result.value = concat + " != " + Bhash.value;
+              Explain.value = "The hashed value of the concatonated message is " + concat + " which is not equal to the hash of the message received, thus this message is a fake.";
+              document.getElementById("Result").style = "border-color: red; text-align:center;";
+            }
+          }
+          
+        </script>
+        
+    <script>
+      window.onscroll = function () { myFunction() };
+
+      var topnav = document.getElementById("Navbar");
+      var sticky = topnav.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          topnav.classList.add("sticky");
+        } else {
+          topnav.classList.remove("sticky");
+        }
+      }
+    </script>
+
+    
+    
+  </body>
+
+  
+</html>
