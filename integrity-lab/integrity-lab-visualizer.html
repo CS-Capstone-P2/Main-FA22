@@ -148,6 +148,7 @@
           <script type="text/javascript" src="../scripts/hashing.js"></script>
           <script>
          
+         // Declaration of all future variables
           var next = document.getElementById("next"); 
           var message = document.getElementById("message"); 
           var mainSecret = document.getElementById("mainSecret"); 
@@ -167,11 +168,12 @@
           var moveText = document.getElementById("moveText"); 
           let hacked = hacking.checked;
       
-      
+          // User input message is given to Alice
           var start = async function () {
   
               Umessage.value = message.value;
               Ssercet.value = mainSecret.value;
+              // Blank Message Detection
               if (message.value.trim() == "")
               {
                 alert("The inputted message is blank!");
@@ -205,6 +207,7 @@
               }
           }
   
+          // Secret is concatonated to the message and then run through modulus 13 to get the hash
           var stepTwo = async function()
           {
             document.getElementById("next2").style = "display:none";
@@ -216,11 +219,12 @@
             Explain.value = "Now we take our combined message and hash it.\nWe will be using modulus 13 to create the hash:\n " + Ssercet.value + " " + Umessage.value + " % 13 = " + arr[0];
 
             document.getElementById("next3").style = "display:all";
-  
           }
           
+          // Alice passes the message and hash to Bob; Sometimes altered depending on user input
           var stepThree = function () 
           {
+            // If hacking is chosen, the text needs to discuss that the message has been altered rather than the normal default
             if (hacking.checked == true)
             {
               hacked = true;
@@ -249,6 +253,7 @@
             }
           }
           
+          // Receives the message and hash, either from Alice or the hacker 
           var stepFour = function () 
           {
             if (hacked == true)
@@ -270,6 +275,7 @@
             }            
           }
 
+          // Bob concatonates the secret to the received message
           var stepFive = function () 
           {
             document.getElementById("next5").style = "display:none";  
@@ -278,6 +284,7 @@
             document.getElementById("next5.5").style = "display:all";
           }
          
+          // Bob hashes the secret and the received message
           var stepFiveHalf = function () 
           {
             document.getElementById("next5.5").style = "display:none";  
@@ -288,7 +295,7 @@
             document.getElementById("next6").style = "display:all";
           }
 
-          
+          // Bob compares the hash to the received to see if the message is authentic
           var stepSix = function () 
           {
             document.getElementById("next6").style = "display:none";  
