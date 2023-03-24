@@ -54,18 +54,21 @@
               </div>
           </div>
 
+          
           <div class="column">
+            
             
             <br>
               <br>
               <br>
-              
-             
+                <!-- The marquee texts are set to varying speeds so step 5 appears more distributed rather than synchronized -->
+                <!-- The first moveText has additional padding to better align with the user/hacker's position on the page -->
+                <!-- Text is blue to represent a normal user and red to represent the malicious actor -->
                 <marquee 
                     direction = "right" 
                     id = "moveText"
                     scrollamount = 20
-                    style="width: 100%; font-size: 20px; color:red; padding: 40px;"
+                    style="width: 100%; font-size: 20px; color:blue; padding: 40px;"
                     >
                 </marquee>
                 <marquee 
@@ -172,6 +175,7 @@
           var load = document.getElementById("load"); 
       
       
+          // Normal User
           var start = async function () 
           {
             document.getElementById("next1").style = "display:none";   
@@ -179,11 +183,12 @@
             moveText.textContent =  "gU9EAE5W58jo5Scr";
             moveText.start();
             console.log("Start Works");
-            Explain.value = "A person accessing a website normally most likely won't cause a server any trouble.";
+            Explain.value = "A person accessing a website normally wouldn't cause a server any trouble.";
             document.getElementById("next2").style = "display:all";
               
           }
   
+          // Malicious Actor
           var stepTwo = async function()
           {
             document.getElementById("next2").style = "display:none";
@@ -196,30 +201,33 @@
   
           }
           
+          // Firewall
           var stepThree = function () 
           {
             document.getElementById("next3").style = "display:none";
             document.getElementById("firewall").style = "display:all";
             document.getElementById("server").src = "../images/server_normal.png";
-            Explain.value = "These attacks can be prevented by using a firewall that only allows limited quests from the same user in a period of time.";
+            Explain.value = "These attacks can be prevented by using a firewall that only allows a limited number of requests from the same user within a certain time frame.";
             document.getElementById("load").value = 25;
             document.getElementById("next4").style = "display:all";
           }
           
+          // Botnet Apprears
           var stepFour = function () 
           {
             document.getElementById("next4").style = "display:none";
             document.getElementById("hacker").src = "../images/Multi_Hacker.png";
             document.getElementById("hacker").width = 500;
             moveText1.textContent = " ";
-            Explain.value = "But even this measure isn't foolproof- malicious users can band together to perform a Distributed Denial of Service (DDoS) attack.";
+            Explain.value = "However this measure isn't foolproof - malicious users can band together to perform a Distributed Denial of Service (DDoS) attack.";
             document.getElementById("next5").style = "display:all";    
           }
 
+          // DDoS Visualization
           var stepFive = function () 
           {
             document.getElementById("next5").style = "display:none";  
-            moveText.textContent = "gU9EAE5W58jo5Scr";
+            // moveText.textContent = "gU9EAE5W58jo5Scr";
             moveText1.textContent = "JRhcwU3dM7RsVLCJ";
             moveText2.textContent = "5IOw876SlIZfrVUT";
             moveText3.textContent = "PZByKcxcQrazktWN";
@@ -231,12 +239,12 @@
             document.getElementById("next6").style = "display:all";
           }
 
-          
+          // Multiple Servers
           var stepSix = function () 
           {
             document.getElementById("next6").style = "display:none";
             document.getElementById("server").src = "../images/multi_server.png";
-            Explain.value = "One way to defeat a DDoS attack is to have multiple servers to handle requests, and perform load balancing to ensure each server receives an equal share.";
+            Explain.value = "One way to defeat a DDoS attack is to have multiple servers to handle requests and perform load balancing to ensure each server receives an equal share.";
             document.getElementById("load").value = 50;
             
           }
