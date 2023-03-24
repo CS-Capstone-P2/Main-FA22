@@ -179,7 +179,7 @@
             moveText.textContent =  "gU9EAE5W58jo5Scr";
             moveText.start();
             console.log("Start Works");
-            Explain.value = "Place single attacker Explanation here";
+            Explain.value = "A person accessing a website normally most likely won't cause a server any trouble.";
             document.getElementById("next2").style = "display:all";
               
           }
@@ -189,7 +189,7 @@
             document.getElementById("next2").style = "display:none";
             moveText.textContent = " ";
             moveText1.textContent = "JRhcwU3dM7RsVLCJ";
-            Explain.value = "Place single attacker Explanation here that is creating DDOS";
+            Explain.value = "But a malicious user could mass-request data to overload the server. This is called a Denial of Service (or DoS) attack.";
             document.getElementById("server").src = "../images/server_error.png";
             document.getElementById("load").value = 100;
             document.getElementById("next3").style = "display:all";
@@ -201,7 +201,7 @@
             document.getElementById("next3").style = "display:none";
             document.getElementById("firewall").style = "display:all";
             document.getElementById("server").src = "../images/server_normal.png";
-            Explain.value = "Explanation for firewall fixing the DDOS";
+            Explain.value = "These attacks can be prevented by using a firewall that only allows limited quests from the same user in a period of time.";
             document.getElementById("load").value = 25;
             document.getElementById("next4").style = "display:all";
           }
@@ -212,7 +212,7 @@
             document.getElementById("hacker").src = "../images/Multi_Hacker.png";
             document.getElementById("hacker").width = 500;
             moveText1.textContent = " ";
-            Explain.value = "Explanation for trying to defeat the firewall wuth more hackers";
+            Explain.value = "But even this measure isn't foolproof- malicious users can band together to perform a Distributed Denial of Service (DDoS) attack.";
             document.getElementById("next5").style = "display:all";    
           }
 
@@ -225,7 +225,7 @@
             moveText3.textContent = "PZByKcxcQrazktWN";
             moveText4.textContent = "187398mXiUVzPcPr";
             moveText5.textContent = "v1d37M7x4zJRtks5";
-            Explain.value = "Explanation on why it defeated the server with the firewall";
+            Explain.value = "With so many users, even with limited requests per-user, the combined traffic can overwhelm the server.";
             document.getElementById("load").value = 100;
             document.getElementById("server").src = "../images/server_error.png";
             document.getElementById("next6").style = "display:all";
@@ -236,7 +236,7 @@
           {
             document.getElementById("next6").style = "display:none";
             document.getElementById("server").src = "../images/multi_server.png";
-            Explain.value = "Explanation multi server and load balancing";
+            Explain.value = "One way to defeat a DDoS attack is to have multiple servers to handle requests, and perform load balancing to ensure each server receives an equal share.";
             document.getElementById("load").value = 50;
             
           }
