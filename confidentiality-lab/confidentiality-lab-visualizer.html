@@ -158,7 +158,7 @@
               aOriginal.value = message.value;
               if (message.value.trim() == "")
               {
-                alert("The inputted message is only spaces!");
+                alert("The inputted message is blank!");
                 return -1;
               }
               
@@ -199,7 +199,8 @@
               if(eKey.value % 26 == "0")
               {
                   document.getElementById("info").style.color = "red";
-                  document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!";
+                  document.getElementById("info").innerHTML = "HACKER ALERT!! \nThe hacker has intercepted your message: Make sure to use a key larger than 0 to properly encrypt!\n Please click reset to restart the visualizer.";
+                  document.getElementById("next3").style = "display:none";
                   document.body.style.backgroundColor = "red";
                   document.getElementById("arrows").src = "../images/caeser-images/hacker_og.png";
                   bEncrypt.value = aOriginal.value;

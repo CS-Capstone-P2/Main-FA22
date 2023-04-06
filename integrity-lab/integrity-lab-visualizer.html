@@ -123,19 +123,14 @@
               </br>
             </br>
                 <input id="SecretMessage" placeholder="Secret + Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
+                <input id="Hashed" placeholder="Hash" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
                 <!-- <input id="Hashed" placeholder="Hashed" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly /> -->
               </br>
-              <br>
-              <input id="Hashed" placeholder="Hash" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
-              <br>
+              
             </br>
                <input id="Result" placeholder="Result" type="text" style="width:80%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
 
               <div>
-                
-             
-
-            
           </div>
           
         
@@ -177,6 +172,11 @@
               if (message.value.trim() == "")
               {
                 alert("The inputted message is blank!");
+                return -1;
+              }
+              else if (mainSecret.value.trim() == "")
+              {
+                alert("The inputted shared secret is blank!");
                 return -1;
               }
               else
