@@ -3,6 +3,15 @@
  * 1/25/23
  * This script is for functions to help expand the capabilities of buttons
  */
+function changeHref(buttonId, urlId, wordToChange = "base")
+{
+    let n = document.getElementById(buttonId).innerHTML.split(" ");
+    let replacement = n[n.length - 1];
+    let url = document.getElementById(urlId);
+    var newHref = url.href
+        .replace(wordToChange, replacement);
+    url.href = newHref;
+}
 
 function toggleVisibility(divId, buttonId=null, onlyHideButton=true)
 {
