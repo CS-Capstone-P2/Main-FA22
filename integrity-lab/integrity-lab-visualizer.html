@@ -122,7 +122,7 @@
                 <input id="Bmessage" placeholder="Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
               </br>
             </br>
-                <input id="SecretMessage" placeholder="Secret + Message" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
+                <input id="Secret" placeholder="Secret  + " type="text" style="width:20%; text-align: right; border: 2px solid rgb(127, 164, 255); color:red; border-right-style: hidden;" readonly /><input id="SecretMessage" placeholder="Message" type="text" style="width:20%; text-align: left; border: 2px solid rgb(127, 164, 255);color:blue; border-left-style: hidden;" readonly />
                 <input id="Hashed" placeholder="Hash" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly />
                 <!-- <input id="Hashed" placeholder="Hashed" type="text" style="width:40%; text-align: center; border: 2px solid rgb(127, 164, 255)" readonly /> -->
               </br>
@@ -154,6 +154,7 @@
           var HHmessage = document.getElementById("HHmessage"); 
           var BHmessage = document.getElementById("BHmessage");
           var Bhash = document.getElementById("Bhash"); 
+          var Bsecret = document.getElementById('Secret');
           var SecretMessage = document.getElementById("SecretMessage"); 
           var Hashed = document.getElementById("Hashed"); 
           var Result = document.getElementById("Result"); 
@@ -278,8 +279,9 @@
           // Bob concatonates the secret to the received message
           var stepFive = function () 
           {
-            document.getElementById("next5").style = "display:none";  
-            SecretMessage.value = Ssercet.value + " " + Bmessage.value;
+            document.getElementById("next5").style = "display:none"; 
+            Bsecret.value =  Ssercet.value + " ";
+            SecretMessage.value = " " + Bmessage.value;
             Explain.value = "The recipient can combine the shared secret and the supplied message.";
             document.getElementById("next5.5").style = "display:all";
           }
