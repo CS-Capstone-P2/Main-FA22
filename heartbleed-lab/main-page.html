@@ -5,6 +5,11 @@
         <link rel="stylesheet" href="/styles/main.css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-core.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-venn.min.js"></script>
         <div class="topnav" id="Navbar">
             <div class="headerBU" style="text-align: center; height: 80px;">
             <img src="https://www.bradley.edu/dotAsset/1cc22ef2-a30c-4f83-a4ea-d36172d54d73.svg" alt="Bradley Logo" class="responsive" />
@@ -80,8 +85,21 @@
             <h1>Heart Bleed Lab Instructions</h1>
             <p>Below are video instructions for completing the heartbleed lab for you to watch while the files you need are downloading.</p>
             <div class="video-container">
-                <div class="video">
-                    <iframe width="1120" height="630" src="https://drive.google.com/file/d/1GPHAmtlwfsMJSHkZbP1oKMCJ04RMyDoO/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div id="os-specific-links" style="display: none;"> 
+                    <!-- These links need to get replaced with the actual video links but these are temporary place holders-->
+                    <Image id="Default" src="https://drive.google.com/file/d/1GPHAmtlwfsMJSHkZbP1oKMCJ04RMyDoO/preview" />
+                    <Image id="Windows" src="https://www.youtube.com/embed/wO8WynXQhls" />
+                    <Image id="Mac" src="https://www.youtube.com/embed/PXPtjhFd0kc" />
+                    <Image id="Linux" src="https://www.youtube.com/embed/6EuGPWRN0bo" />
+                    <script> 
+                        var lastState;
+                        $(document).ready(function() { lastState = vidLinkUpdater("HBbut","os-specific"); });
+                        $(window).click(function(e) { lastState = vidLinkUpdater("HBbut","os-specific", lastState); });
+                    </script>
+                    <script src="../scripts/os-link-updater.js"></script>
+                </div>
+                <div id="os-specific" class="video">
+                    <iframe id="iframe" width="1120" height="630" src="https://drive.google.com/file/d/1GPHAmtlwfsMJSHkZbP1oKMCJ04RMyDoO/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             
