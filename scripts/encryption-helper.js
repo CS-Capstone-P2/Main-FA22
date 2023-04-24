@@ -1,7 +1,16 @@
 
-//Caesar Code
-//
+/*
+ * Filename: encryption-helper.js
+ * Documented by: Gabe Roy
+ *
+ * Description:
+ * This file contains utility functions for asymmetric RSA and symmetric AES
+ * encryption and decryption. These functions use the Web Crypto API to
+ * perform cryptographic operations.
+ */
 
+
+// RSA configuration
 var rsaAlgorithm = {
     name: "RSA-OAEP",
     modulusLength: 2048,
@@ -9,13 +18,24 @@ var rsaAlgorithm = {
     hash: { name: "SHA-256" }
 };
 
+
+// AES configuration
 var aesAlgorithm = {
     name: "AES-GCM",
     length: 256
 };
 
+// AES IV length
 var aesIVLength = 12;
 
+
+/**
+ * Generate RSA public and private keys.
+ *
+ * returns {Promise<Object>} A Promise that resolves to an object containing
+ *                            ArrayBuffer representations of the generated public
+ *                            and private keys.
+ */
 var generateRsaKeys = function () {
     return crypto.subtle.generateKey(rsaAlgorithm,
         /* extractable: */ true, /* keyUsages: */ ["wrapKey", "unwrapKey"])
@@ -31,6 +51,14 @@ var generateRsaKeys = function () {
         });
 };
 
+
+/**
+ * Encrypt data using RSA and AES algorithms.
+ *
+ * param {ArrayBuffer} data - The data to be encrypted.
+ * param {ArrayBuffer} rsaPublicKeyBuffer - The RSA public key to encrypt the symmetric AES key.
+ * returns {Promise<ArrayBuffer>} A Promise that resolves to the encrypted data.
+ */
 var rsaEncrypt = function (data, rsaPublicKeyBuffer) {
     var importRsaPublicKey = crypto.subtle.importKey("spki", rsaPublicKeyBuffer, rsaAlgorithm,
         /* extractable: */ false, /* keyUsages: */ ["wrapKey"])
@@ -62,6 +90,14 @@ var rsaEncrypt = function (data, rsaPublicKeyBuffer) {
         });
 };
 
+
+/**
+ * Decrypt data using RSA and AES algorithms.
+ *
+ * param {ArrayBuffer} data - The encrypted data.
+ * param {ArrayBuffer} rsaPrivateKeyBuffer - The RSA private key to decrypt the symmetric AES key.
+ * returns {Promise<ArrayBuffer>} A Promise that resolves to the decrypted data.
+ */
 var rsaDecrypt = function (data, rsaPrivateKeyBuffer) {
     return crypto.subtle.importKey("pkcs8", rsaPrivateKeyBuffer, rsaAlgorithm,
         /* extractable: */ false, /* keyUsages: */ ["unwrapKey"])
