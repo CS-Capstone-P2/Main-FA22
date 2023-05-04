@@ -12,8 +12,8 @@ We have developed an interactive, hands-on, challenge-based learning software to
 Take a look at our [git's wiki](https://github.com/CS-Capstone-P2/Main-FA22/wiki) for further information about the project.
 
 ## End-User Information and How-To
-  Check out our project hosted by Bradley University at: [cybered-capstone.bradley.edu](https://cybered-capstone.bradley.edu/).
+    Check out our project hosted by Bradley University at: [cybered-capstone.bradley.edu](https://cybered-capstone.bradley.edu/).
 
-  For a walkthrough of our project check out our [Capstone User Guide](https://youtu.be/iXSMQxUcdM8).
+    For a walkthrough of our project check out our [Capstone User Guide](https://youtu.be/iXSMQxUcdM8).
 
 If you want to download the code and host it yourself for viewing here is how you would do so...
