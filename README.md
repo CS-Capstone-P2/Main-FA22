@@ -16,7 +16,7 @@ Check out our project hosted by Bradley University at: [cybered-capstone.bradley
 
 For a walkthrough of our project check out our [Capstone User Guide](https://youtu.be/iXSMQxUcdM8).
 
-If you want to download the code and host it yourself for viewing [below]() is the instructions on how to do so.
+If you want to download the code and host it yourself for viewing [below](https://github.com/CS-Capstone-P2/Main-FA22/blob/main/README.md#end-user-how-to-self-host) is the instructions on how to do so.
 
 ## End-User How-To Self Host
 First, what you'll need to do is follow the instructions below to clone the Repository...
