@@ -11,9 +11,28 @@ We have developed an interactive, hands-on, challenge-based learning software to
 ## Note For Future Developers
 Take a look at our [git's wiki](https://github.com/CS-Capstone-P2/Main-FA22/wiki) for further information about the project.
 
-## End-User Information and How-To
+## End-User Information
 Check out our project hosted by Bradley University at: [cybered-capstone.bradley.edu](https://cybered-capstone.bradley.edu/).
 
 For a walkthrough of our project check out our [Capstone User Guide](https://youtu.be/iXSMQxUcdM8).
 
-If you want to download the code and host it yourself for viewing here is how you would do so...
+If you want to download the code and host it yourself for viewing [below]() is the instructions on how to do so.
+
+## End-User How-To Self Host
+First, what you'll need to do is follow the instructions below to clone the Repository...
+- Install [github desktop](https://desktop.github.com/) (which I recommend for new users). 
+- Either sign in with an existing github account or skip the sign-in step by supplying a username and email.
+- Hit "Clone a repository from the Internet..." then Click the URL button
+- Paste `https://github.com/CS-Capstone-P2/Main-FA22` into the URL Bar
+- Then choose the file location that you would like to have the repo cloned to (Have a specific folder for it.)
+
+Then Once you have the Repository cloned, you need to open it in Visual Studio Code with Live Server...
+- Install [Visual Studio Code](https://code.visualstudio.com/) on your computer.
+- Now we need to install the extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+- Make sure to select your browser of Choice upon installing Live Server.
+
+Now that we have the repo cloned, visual studio code (VS code) installed, all that is left is to open the project in VS Code...
+- Under the File tab in VS Code click `Open Folder` or use the keyboard shortcut `Ctrl+K Ctrl+O`
+- Navigate to the folder which we cloned our repo to. By Default it is `%UserProfile%/Documents/GitHub/Main-FA22`
+- Select `Main-FA22` folder in the GitHub Folder then click `open`
+- Once the project has opened, you can view in the development environment. Do so by going to the bottom right hand corner then hitting the `Go Live` button.
